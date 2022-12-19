@@ -26,9 +26,6 @@ keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
--- File explorer
-keymap("n", "<leader>e", ":Lex 30<CR>", opts)
-
 -- Window resizing
 keymap("n", "<C-Up>", ":resize +2<CR>", opts)
 keymap("n", "<C-Down>", ":resize -2<CR>", opts)
@@ -42,6 +39,12 @@ keymap("n", "<S-h>", ":bprev<CR>", opts)
 -- Telescope
 keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<CR>", opts)
 keymap("n", "<C-t>", "<cmd>Telescope live_grep<CR>", opts)
+
+-- Comment
+keymap("n", "<leader>/", "<cmd>lua require('Comment').toggle()<CR>", opts)
+
+-- Nvimtree
+keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 
 -- Insert -- 
 
@@ -61,4 +64,7 @@ keymap("v", "K", ":move '<-2<CR>gv-gv", opts)
 
 -- No yank on paste
 keymap("v", "p", '"_dP', opts)
+
+-- Comment
+keymap("v", "<leader>/", ":lua require(\"Comment.api\").gc(vim.fn.visualmode())<CR>", opts)
 
