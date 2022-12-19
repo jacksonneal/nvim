@@ -46,6 +46,7 @@ return packer.startup(function(use)
     use "nvim-lua/popup.nvim" 
     use "nvim-lua/plenary.nvim"
     use "windwp/nvim-autopairs" 
+    use "numToStr/Comment.nvim"
 
     -- Color schemes
     use "folke/tokyonight.nvim" 
@@ -77,6 +78,7 @@ return packer.startup(function(use)
     use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
     use "p00f/nvim-ts-rainbow" 
     use "nvim-treesitter/playground" 
+    use "JoosepAlviste/nvim-ts-context-commentstring"
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
