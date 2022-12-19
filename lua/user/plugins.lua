@@ -1,7 +1,7 @@
 local fn = vim.fn
 
 -- Automatically install packer
-local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
+local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
     PACKER_BOOTSTRAP = fn.system {
         "git",
@@ -16,12 +16,12 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 -- Autocommand that reloads Neovim when plugins.lua is saved
-vim.cmd [[
+vim.cmd([[
     augroup packer_user_config
         autocmd!
         autocmd BufWritePost plugins.lua source <afile> | PackerSync
     augroup end
-]]
+]])
 
 -- Use protected call to avoid error on first use
 local status_ok, packer = pcall(require, "packer")
@@ -41,6 +41,7 @@ packer.init {
 
 -- Install plugins
 return packer.startup(function(use)
+    -- General plugins
     use "wbthomason/packer.nvim" -- Have packer manage itself
     use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
     use "nvim-lua/plenary.nvim" -- Useful lua functions used by lots of plugins
@@ -54,6 +55,8 @@ return packer.startup(function(use)
     use "hrsh7th/cmp-path"
     use "hrsh7th/cmp-cmdline"
     use "saadparwaiz1/cmp_luasnip"
+    use "hrsh7th/cmp-nvim-lsp"
+    use "hrsh7th/cmp-nvim-lua"
 
     -- Snippets
     use "L3MON4D3/LuaSnip"
@@ -61,11 +64,13 @@ return packer.startup(function(use)
     
     -- LSP 
     use "neovim/nvim-lspconfig" 
-    use "williamboman/nvim-lsp-installer"
+    use "williamboman/mason.nvim"
+    use "williamboman/mason-lspconfig.nvim"
+    use "jose-elias-alvarez/null-ls.nvim"
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if PACKER_BOOTSTRAP then
-    require("packer").sync()
+        require("packer").sync()
     end
 end)

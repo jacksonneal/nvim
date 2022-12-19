@@ -10,6 +10,7 @@ local options = {
     guifont = "monospace:h17",
     hlsearch = true,
     ignorecase = true,
+    linebreak = true,
     mouse = "a",
     number = true,
     numberwidth = 4,
@@ -30,7 +31,7 @@ local options = {
     timeoutlen = 1000,
     undofile = true,
     updatetime = 300,
-    wrap = false,
+    wrap = true,
     writebackup = false,
 }
 
