@@ -24,13 +24,13 @@ require("mason-lspconfig").setup({
 })
 
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
-if not lspconfig_status_ok then 
+if not lspconfig_status_ok then
     return
-end 
+end
 
 local opts = {}
 
-for _, server in pairs(servers) do 
+for _, server in pairs(servers) do
     opts = {
         on_attach = require("user.lsp.handlers").on_attach,
         capabilities = require("user.lsp.handlers").capabilities,
@@ -39,10 +39,10 @@ for _, server in pairs(servers) do
     server = vim.split(server, "@")[1]
 
     local require_ok, conf_opts = pcall(require, "user.lsp.settings." .. server)
-    if require_ok then 
+    if require_ok then
         opts = vim.tbl_deep_extend("force", conf_opts, opts)
-    end 
+    end
 
     lspconfig[server].setup(opts)
-end 
+end
 
