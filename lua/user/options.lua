@@ -35,11 +35,11 @@ local options = {
     writebackup = false,
 }
 
-for k, v in pairs(options) do 
+for k, v in pairs(options) do
     vim.opt[k] = v
 end
 
 vim.opt.iskeyword:append "-"
-vim.opt.shortmess:append "c"    
+vim.opt.shortmess:append "c"
 vim.opt.whichwrap:append "<,>,[,],h,l"
 
