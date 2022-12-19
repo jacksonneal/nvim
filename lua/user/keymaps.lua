@@ -37,7 +37,7 @@ keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprev<CR>", opts)
 
 -- Telescope
-keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<CR>", opts)
+keymap("n", "<leader>o", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<CR>", opts)
 keymap("n", "<C-t>", "<cmd>Telescope live_grep<CR>", opts)
 
 -- Comment
@@ -45,6 +45,7 @@ keymap("n", "<leader>/", "<cmd>lua require('Comment').toggle()<CR>", opts)
 
 -- Nvimtree
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
+keymap("n", "<leader>f", ":Format<CR>", opts)
 
 -- Insert -- 
 
