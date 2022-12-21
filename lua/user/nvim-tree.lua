@@ -11,8 +11,6 @@ if not config_status_ok then
     return
 end
 
-vim.cmd[[hi NvimTreeNormal guibg=NONE ctermbg=NONE]]
-
 local tree_cb = nvim_tree_config.nvim_tree_callback
 
 nvim_tree.setup {
