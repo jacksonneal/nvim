@@ -21,4 +21,3 @@ mason_lspconfig.setup({
     --       Example: automatic_installation = { exclude = { "rust_analyzer", "solargraph" } }
     automatic_installation = true,
 })
-

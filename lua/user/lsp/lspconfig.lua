@@ -20,4 +20,3 @@ for _, server in ipairs(Servers) do
 
     lspconfig[server].setup(opts)
 end
-

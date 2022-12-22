@@ -93,4 +93,3 @@ local settings = {
 }
 
 mason.setup(settings)
-
