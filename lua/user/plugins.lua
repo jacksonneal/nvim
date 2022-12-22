@@ -29,7 +29,7 @@ if not status_ok then
 	return
 end
 
--- Have packer us a popup window
+-- Have packer use a popup window
 packer.init({
 	display = {
 		open_fn = function()
@@ -42,6 +42,7 @@ packer.init({
 return packer.startup(function(use)
 	-- General
 	use("wbthomason/packer.nvim") -- Top level package manager
+
 	use("nvim-lua/popup.nvim")
 	use("nvim-lua/plenary.nvim")
 	use("windwp/nvim-autopairs")
@@ -58,10 +59,10 @@ return packer.startup(function(use)
 	use("goolord/alpha-nvim")
 	use("antoinemadec/FixCursorHold.nvim")
 	use("folke/which-key.nvim")
- 
+
 	-- Color schemes
 	use("folke/tokyonight.nvim") -- Clean and dark
-    use("rose-pine/neovim") -- Natural pine, faux fur, soho vibes for classy minimalist
+	use("rose-pine/neovim") -- Natural pine, faux fur, soho vibes for classy minimalist
 
 	-- Completion
 	use("hrsh7th/nvim-cmp") -- Autocompletion
