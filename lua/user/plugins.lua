@@ -41,8 +41,8 @@ packer.init {
 
 -- Install plugins
 return packer.startup(function(use)
-    -- General plugins
-    use "wbthomason/packer.nvim" 
+    -- General 
+    use "wbthomason/packer.nvim" -- Top level package manager
     use "nvim-lua/popup.nvim" 
     use "nvim-lua/plenary.nvim"
     use "windwp/nvim-autopairs" 
@@ -64,23 +64,24 @@ return packer.startup(function(use)
     use "folke/tokyonight.nvim" 
 
     -- Completion
-    use "hrsh7th/nvim-cmp"
-    use "hrsh7th/cmp-buffer"
-    use "hrsh7th/cmp-path"
-    use "hrsh7th/cmp-cmdline"
-    use "saadparwaiz1/cmp_luasnip"
-    use "hrsh7th/cmp-nvim-lsp"
-    use "hrsh7th/cmp-nvim-lua"
+    use "hrsh7th/nvim-cmp" -- Autocompletion
+    use "hrsh7th/cmp-buffer" -- nvim-cmp source for buffer words
+    use "hrsh7th/cmp-path" -- nvim-cmp source for filesystem paths
+    use "hrsh7th/cmp-cmdline" -- nvim-cmp source for vim's cmdline
+    use "hrsh7th/cmp-nvim-lsp" -- nvim-cmp source for LSP
+    use "hrsh7th/cmp-nvim-lua" -- nvim-cmp source for Lua
+    use "saadparwaiz1/cmp_luasnip" -- nvim-cmp source for LuaSnip
 
     -- Snippets
-    use "L3MON4D3/LuaSnip"
-    use "rafamadriz/friendly-snippets"
+    use "L3MON4D3/LuaSnip" -- Snippet engine for Nvim
+    use "rafamadriz/friendly-snippets" -- Snippets for various languages
 
     -- LSP 
-    use "neovim/nvim-lspconfig"
-    use "williamboman/mason.nvim"
-    use "williamboman/mason-lspconfig.nvim"
-    use "jose-elias-alvarez/null-ls.nvim"
+    use "neovim/nvim-lspconfig" -- Configurations for Nvim LSP
+    use "williamboman/mason.nvim" -- Package manager for LSP, DAP, linters, formatters
+    use "williamboman/mason-lspconfig.nvim" -- Bridge mason.nvim with lspconfig
+    --  use "RRethy/vim-illuminate" -- Automatic highlighting of word under cursor 
+    use "jose-elias-alvarez/null-ls.nvim" -- Inject LSP diagnostics, code actions, and more
 
     -- Telescope
     use "nvim-telescope/telescope.nvim" 

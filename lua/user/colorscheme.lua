@@ -1,8 +1,8 @@
 require("tokyonight").setup({
-    transparent = true,
+    transparent = false,
     styles = {
-        sidebars = "transparent",
-        floats = "transparent",
+        --m  sidebars = "transparent",
+        -- floats = "transparent",
     },
     on_colors = function(colors)
         -- fg_gutter is way to dark to be LineNr
