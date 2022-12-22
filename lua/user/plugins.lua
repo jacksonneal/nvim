@@ -58,7 +58,7 @@ return packer.startup(function(use)
 	use("goolord/alpha-nvim")
 	use("antoinemadec/FixCursorHold.nvim")
 	use("folke/which-key.nvim")
-
+ 
 	-- Color schemes
 	use("folke/tokyonight.nvim")
 
