@@ -26,7 +26,6 @@ vim.cmd([[
 -- Use protected call to avoid error on first use
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
-    vim.notify("Failed to require packer")
     return
 end
 
