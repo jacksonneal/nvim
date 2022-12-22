@@ -60,7 +60,8 @@ return packer.startup(function(use)
 	use("folke/which-key.nvim")
  
 	-- Color schemes
-	use("folke/tokyonight.nvim")
+	use("folke/tokyonight.nvim") -- Clean and dark
+    use("rose-pine/neovim") -- Natural pine, faux fur, soho vibes for classy minimalist
 
 	-- Completion
 	use("hrsh7th/nvim-cmp") -- Autocompletion
