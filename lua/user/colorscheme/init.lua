@@ -3,4 +3,4 @@ require("user.colorscheme.tokyonight")
 
 local colorscheme = "rose-pine"
 
-vim.cmd("colorscheme " .. colorscheme)
+pcall(vim.cmd, "colorscheme " .. colorscheme)
