@@ -40,11 +40,12 @@ packer.init({
 
 -- Install plugins
 return packer.startup(function(use)
-	-- General
 	use("wbthomason/packer.nvim") -- Top level package manager
+    
+	use("nvim-lua/popup.nvim") -- vim popup api implementation in Neovim
 
-	use("nvim-lua/popup.nvim")
-	use("nvim-lua/plenary.nvim")
+	use("nvim-lua/plenary.nvim") -- Luan functions
+
 	use("windwp/nvim-autopairs")
 	use("numToStr/Comment.nvim")
 	use("kyazdani42/nvim-web-devicons")
@@ -74,11 +75,11 @@ return packer.startup(function(use)
 	use("saadparwaiz1/cmp_luasnip") -- nvim-cmp source for LuaSnip
 
 	-- Snippets
-	use("L3MON4D3/LuaSnip") -- Snippet engine for Nvim
+	use("L3MON4D3/LuaSnip") -- Snippet engine for Neovim
 	use("rafamadriz/friendly-snippets") -- Snippets for various languages
 
 	-- LSP
-	use("neovim/nvim-lspconfig") -- Configurations for Nvim LSP
+	use("neovim/nvim-lspconfig") -- Configurations for Neovim LSP
 	use("williamboman/mason.nvim") -- Package manager for LSP, DAP, linters, formatters
 	use("williamboman/mason-lspconfig.nvim") -- Bridge mason.nvim with lspconfig
 	use "RRethy/vim-illuminate" -- Automatic highlighting of word under cursor, next/prev occurrencekk:wq
