@@ -81,7 +81,7 @@ return packer.startup(function(use)
 	use("neovim/nvim-lspconfig") -- Configurations for Nvim LSP
 	use("williamboman/mason.nvim") -- Package manager for LSP, DAP, linters, formatters
 	use("williamboman/mason-lspconfig.nvim") -- Bridge mason.nvim with lspconfig
-	--  use "RRethy/vim-illuminate" -- Automatic highlighting of word under cursor
+	use "RRethy/vim-illuminate" -- Automatic highlighting of word under cursor
 	use("jose-elias-alvarez/null-ls.nvim") -- Inject LSP diagnostics, code actions, and more
 
 	-- Telescope
