@@ -102,7 +102,6 @@ local mappings = {
 	},
 	["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
 	["P"] = { "<cmd>Telescope projects<cr>", "Projects" },
-
 	p = {
 		name = "Packer",
 		c = { "<cmd>PackerCompile<cr>", "Compile" },
@@ -111,7 +110,6 @@ local mappings = {
 		S = { "<cmd>PackerStatus<cr>", "Status" },
 		u = { "<cmd>PackerUpdate<cr>", "Update" },
 	},
-
 	g = {
 		name = "Git",
 		g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
@@ -134,7 +132,12 @@ local mappings = {
 			"Diff",
 		},
 	},
-
+    i = {
+        name = "illuminate",
+        n = { "<cmd>lua require('illuminate').goto_next_reference(wrap)<cr>", "Next occurrence"},
+        p = { "<cmd>lua require('illuminate').goto_prev_reference(wrap)<cr>", "Prev occurrence"},
+        i = { "<cmd>lua require('illuminate').textobj_select()<cr>", "Select as text"},
+    },
 	l = {
 		name = "LSP",
 		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
@@ -177,7 +180,6 @@ local mappings = {
 		k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
 		C = { "<cmd>Telescope commands<cr>", "Commands" },
 	},
-
 	t = {
 		name = "Terminal",
 		n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
