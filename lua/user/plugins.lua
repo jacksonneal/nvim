@@ -50,6 +50,10 @@ return packer.startup(function(use)
 
 	use("nvim-telescope/telescope.nvim") -- find, filter, preview, pick
 
+    -- Project management
+    use("goolord/alpha-nvim") -- Greeter
+    use("ahmedkhalf/project.nvim") -- Superior project management
+
 	use("windwp/nvim-autopairs")
 	use("kyazdani42/nvim-web-devicons")
 	use("kyazdani42/nvim-tree.lua")
@@ -57,10 +61,8 @@ return packer.startup(function(use)
 	use("moll/vim-bbye")
 	use("nvim-lualine/lualine.nvim")
 	use("akinsho/toggleterm.nvim")
-	use("ahmedkhalf/project.nvim")
 	use("lewis6991/impatient.nvim")
 	use("lukas-reineke/indent-blankline.nvim")
-	use("goolord/alpha-nvim")
 	use("antoinemadec/FixCursorHold.nvim")
 	use("folke/which-key.nvim")
 

@@ -9,6 +9,10 @@ vim.g.maplocalleader = " "
 
 -- Normal --
 
+-- Move text up and down
+keymap("n", "<A-j>", ":move .+1<CR>==", opts)
+keymap("n", "<A-k>", ":move .-2<CR>==", opts)
+
 -- Window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
