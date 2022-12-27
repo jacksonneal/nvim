@@ -46,8 +46,9 @@ return packer.startup(function(use)
 
 	use("nvim-lua/plenary.nvim") -- Lua functions
 
+	use("numToStr/Comment.nvim") -- Comments
+
 	use("windwp/nvim-autopairs")
-	use("numToStr/Comment.nvim")
 	use("kyazdani42/nvim-web-devicons")
 	use("kyazdani42/nvim-tree.lua")
 	use("akinsho/bufferline.nvim")
@@ -90,10 +91,9 @@ return packer.startup(function(use)
 	use("nvim-telescope/telescope-media-files.nvim")
 
 	-- Treesitter
-	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-	use("p00f/nvim-ts-rainbow")
-	use("nvim-treesitter/playground")
-	use("JoosepAlviste/nvim-ts-context-commentstring")
+	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }) -- Neovim tree-sitter configurations
+	use("p00f/nvim-ts-rainbow") -- Rainbow parentheses using tree-sitter
+    use({ "nvim-treesitter/playground", run = ":TSInstall query"}) -- Neovim tree-sitter playground
 
 	-- Git
 	use("lewis6991/gitsigns.nvim")

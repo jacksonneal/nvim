@@ -1,8 +1,5 @@
 local opts = { noremap = true, silent = true }
 
--- local term_opts = { silent = true }
-
--- Shorten function name
 local keymap = vim.api.nvim_set_keymap
 
 -- Remap space as leader key
@@ -37,9 +34,6 @@ keymap(
 )
 keymap("n", "<C-t>", "<cmd>Telescope live_grep<CR>", opts)
 
--- Comment
-keymap("n", "<leader>/", "<cmd>lua require('Comment').toggle()<CR>", opts)
-
 -- Nvimtree
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 keymap("n", "<leader>f", ":Format<CR>", opts)
@@ -62,6 +56,3 @@ keymap("v", "K", ":move '<-2<CR>gv-gv", opts)
 
 -- No yank on paste
 keymap("v", "p", '"_dP', opts)
-
--- Comment
-keymap("v", "<leader>/", ':lua require("Comment.api").gc(vim.fn.visualmode())<CR>', opts)
