@@ -96,7 +96,7 @@ return packer.startup(function(use)
     use({ "nvim-treesitter/playground", run = ":TSInstall query"}) -- Neovim tree-sitter playground
 
 	-- Git
-	use("lewis6991/gitsigns.nvim")
+	use("lewis6991/gitsigns.nvim") -- Git integrations
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
