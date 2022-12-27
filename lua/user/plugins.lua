@@ -41,7 +41,7 @@ packer.init({
 -- Install plugins
 return packer.startup(function(use)
 	use("wbthomason/packer.nvim") -- Top level package manager
-    
+
 	use("nvim-lua/popup.nvim") -- vim popup api implementation in Neovim
 
 	use("nvim-lua/plenary.nvim") -- Luan functions
@@ -82,8 +82,19 @@ return packer.startup(function(use)
 	use("neovim/nvim-lspconfig") -- Configurations for Neovim LSP
 	use("williamboman/mason.nvim") -- Package manager for LSP, DAP, linters, formatters
 	use("williamboman/mason-lspconfig.nvim") -- Bridge mason.nvim with lspconfig
-	use "RRethy/vim-illuminate" -- Automatic highlighting of word under cursor, next/prev occurrencekk:wq
+	use("RRethy/vim-illuminate") -- Automatic highlighting of word under cursor, next/prev occurrencekk:wq
 	use("jose-elias-alvarez/null-ls.nvim") -- Inject LSP diagnostics, code actions, and more
+
+    -- Haskell
+    use { 
+        'MrcJkb/haskell-tools.nvim',
+        requires = {
+            'neovim/nvim-lspconfig',
+            'nvim-lua/plenary.nvim',
+            'nvim-telescope/telescope.nvim',
+        },
+        tag = '1.4.4'
+    }
 
 	-- Telescope
 	use("nvim-telescope/telescope.nvim")

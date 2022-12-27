@@ -132,12 +132,12 @@ local mappings = {
 			"Diff",
 		},
 	},
-    i = {
-        name = "illuminate",
-        n = { "<cmd>lua require('illuminate').goto_next_reference(wrap)<cr>", "Next occurrence"},
-        p = { "<cmd>lua require('illuminate').goto_prev_reference(wrap)<cr>", "Prev occurrence"},
-        i = { "<cmd>lua require('illuminate').textobj_select()<cr>", "Select as text"},
-    },
+	i = {
+		name = "illuminate",
+		n = { "<cmd>lua require('illuminate').goto_next_reference(wrap)<cr>", "Next occurrence" },
+		p = { "<cmd>lua require('illuminate').goto_prev_reference(wrap)<cr>", "Prev occurrence" },
+		i = { "<cmd>lua require('illuminate').textobj_select()<cr>", "Select as text" },
+	},
 	l = {
 		name = "LSP",
 		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
@@ -168,6 +168,15 @@ local mappings = {
 			"<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
 			"Workspace Symbols",
 		},
+	},
+	r = {
+		name = "Haskell",
+		r = { "<cmd>lua require('haskell-tools').repl.toggle()<CR>", "Toggle repl for current package" },
+		f = {
+			"<cmd>lua require('haskell-tools').repl.toggle(vim.api.nvim_buf_get_name(0))<CR>",
+			"Toggle repl for current buffer",
+		},
+		q = { "<cmd>lua require('haskell-tools').repl.quit()<CR>", "Quit repl" },
 	},
 	s = {
 		name = "Search",

@@ -1,6 +1,6 @@
 local opts = { noremap = true, silent = true }
 
-local term_opts = { silent = true }
+-- local term_opts = { silent = true }
 
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
@@ -29,7 +29,12 @@ keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprev<CR>", opts)
 
 -- Telescope
-keymap("n", "<leader>o", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<CR>", opts)
+keymap(
+	"n",
+	"<leader>o",
+	"<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<CR>",
+	opts
+)
 keymap("n", "<C-t>", "<cmd>Telescope live_grep<CR>", opts)
 
 -- Comment
@@ -39,13 +44,13 @@ keymap("n", "<leader>/", "<cmd>lua require('Comment').toggle()<CR>", opts)
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 keymap("n", "<leader>f", ":Format<CR>", opts)
 
--- Insert -- 
+-- Insert --
 
 -- Escape with fast jk
 keymap("i", "jk", "<ESC>", opts)
 keymap("i", "kj", "<ESC>", opts)
 
--- Visual -- 
+-- Visual --
 
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
@@ -59,5 +64,4 @@ keymap("v", "K", ":move '<-2<CR>gv-gv", opts)
 keymap("v", "p", '"_dP', opts)
 
 -- Comment
-keymap("v", "<leader>/", ":lua require(\"Comment.api\").gc(vim.fn.visualmode())<CR>", opts)
-
+keymap("v", "<leader>/", ':lua require("Comment.api").gc(vim.fn.visualmode())<CR>', opts)
