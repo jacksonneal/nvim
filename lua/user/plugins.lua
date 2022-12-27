@@ -48,6 +48,8 @@ return packer.startup(function(use)
 
 	use("numToStr/Comment.nvim") -- Comments
 
+	use("nvim-telescope/telescope.nvim") -- find, filter, preview, pick
+
 	use("windwp/nvim-autopairs")
 	use("kyazdani42/nvim-web-devicons")
 	use("kyazdani42/nvim-tree.lua")
@@ -86,14 +88,10 @@ return packer.startup(function(use)
 	use("RRethy/vim-illuminate") -- Automatic highlighting of word under cursor, next/prev occurrencekk:wq
 	use("jose-elias-alvarez/null-ls.nvim") -- Inject LSP diagnostics, code actions, and more
 
-	-- Telescope
-	use("nvim-telescope/telescope.nvim")
-	use("nvim-telescope/telescope-media-files.nvim")
-
 	-- Treesitter
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }) -- Neovim tree-sitter configurations
 	use("p00f/nvim-ts-rainbow") -- Rainbow parentheses using tree-sitter
-    use({ "nvim-treesitter/playground", run = ":TSInstall query"}) -- Neovim tree-sitter playground
+	use({ "nvim-treesitter/playground", run = ":TSInstall query" }) -- Neovim tree-sitter playground
 
 	-- Git
 	use("lewis6991/gitsigns.nvim") -- Git integrations

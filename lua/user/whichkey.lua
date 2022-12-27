@@ -85,7 +85,6 @@ local opts = {
 }
 
 local mappings = {
-	-- ["/"] = { '<cmd>lua require("Comment.api").toggle_current_linewise()<CR>', "Comment" },
 	["a"] = { "<cmd>Alpha<cr>", "Alpha" },
 	["b"] = {
 		"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
@@ -169,15 +168,6 @@ local mappings = {
 			"Workspace Symbols",
 		},
 	},
-	r = {
-		name = "Haskell",
-		r = { "<cmd>lua require('haskell-tools').repl.toggle()<CR>", "Toggle repl for current package" },
-		f = {
-			"<cmd>lua require('haskell-tools').repl.toggle(vim.api.nvim_buf_get_name(0))<CR>",
-			"Toggle repl for current buffer",
-		},
-		q = { "<cmd>lua require('haskell-tools').repl.quit()<CR>", "Quit repl" },
-	},
 	s = {
 		name = "Search",
 		b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
@@ -201,18 +191,5 @@ local mappings = {
 	},
 }
 
-local vopts = {
-	mode = "v", -- VISUAL mode
-	prefix = "<leader>",
-	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-	silent = true, -- use `silent` when creating keymaps
-	noremap = true, -- use `noremap` when creating keymaps
-	nowait = true, -- use `nowait` when creating keymaps
-}
-local vmappings = {
-	["/"] = { '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>', "Comment" },
-}
-
 which_key.setup(setup)
 which_key.register(mappings, opts)
-which_key.register(vmappings, vopts)
