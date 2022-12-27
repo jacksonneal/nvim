@@ -18,12 +18,5 @@ for _, server in ipairs(Servers) do
 		opts = vim.tbl_deep_extend("force", conf_opts, opts)
 	end
 
-	if server == "hls" then
-		require("haskell-tools").setup({
-			hls = opts,
-		})
-		-- lspconfig[server].setup(opts)
-	else
-		lspconfig[server].setup(opts)
-	end
+	lspconfig[server].setup(opts)
 end

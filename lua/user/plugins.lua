@@ -44,7 +44,7 @@ return packer.startup(function(use)
 
 	use("nvim-lua/popup.nvim") -- vim popup api implementation in Neovim
 
-	use("nvim-lua/plenary.nvim") -- Luan functions
+	use("nvim-lua/plenary.nvim") -- Lua functions
 
 	use("windwp/nvim-autopairs")
 	use("numToStr/Comment.nvim")
@@ -84,17 +84,6 @@ return packer.startup(function(use)
 	use("williamboman/mason-lspconfig.nvim") -- Bridge mason.nvim with lspconfig
 	use("RRethy/vim-illuminate") -- Automatic highlighting of word under cursor, next/prev occurrencekk:wq
 	use("jose-elias-alvarez/null-ls.nvim") -- Inject LSP diagnostics, code actions, and more
-
-    -- Haskell
-    use { 
-        'MrcJkb/haskell-tools.nvim',
-        requires = {
-            'neovim/nvim-lspconfig',
-            'nvim-lua/plenary.nvim',
-            'nvim-telescope/telescope.nvim',
-        },
-        tag = '1.4.4'
-    }
 
 	-- Telescope
 	use("nvim-telescope/telescope.nvim")
