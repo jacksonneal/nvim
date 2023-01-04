@@ -6,11 +6,18 @@ end
 Servers = {
 	"sumneko_lua",
 	"hls",
+	"pyright",
+    "yamlls"
 }
 
 local ensure_servers = {
 	"sumneko_lua",
-    -- "hls"
+	"pyright",
+	"yamlls",
+}
+
+local exlude_servers = {
+	"hls",
 }
 
 mason_lspconfig.setup({
@@ -25,5 +32,5 @@ mason_lspconfig.setup({
 	--   - true: All servers set up via lspconfig are automatically installed.
 	--   - { exclude: string[] }: All servers set up via lspconfig, except the ones provided in the list, are automatically installed.
 	--       Example: automatic_installation = { exclude = { "rust_analyzer", "solargraph" } }
-	automatic_installation = { exclude = { "hls" } },
+	automatic_installation = { exclude = exlude_servers },
 })
