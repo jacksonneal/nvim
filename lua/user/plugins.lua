@@ -54,11 +54,8 @@ return packer.startup(function(use)
 
 	use("antoinemadec/FixCursorHold.nvim") -- fix CursorHold performance
 
-	-- Project management
-	use("goolord/alpha-nvim") -- Greeter
-	use("ahmedkhalf/project.nvim") -- Superior project management
+	use("windwp/nvim-autopairs") -- parentheses and such
 
-	use("windwp/nvim-autopairs")
 	use("kyazdani42/nvim-web-devicons")
 	use("kyazdani42/nvim-tree.lua")
 	use("akinsho/bufferline.nvim")
@@ -67,6 +64,10 @@ return packer.startup(function(use)
 	use("akinsho/toggleterm.nvim")
 	use("lewis6991/impatient.nvim")
 	use("folke/which-key.nvim")
+
+	-- Project management
+	use("goolord/alpha-nvim") -- Greeter
+	use("ahmedkhalf/project.nvim") -- Superior project management
 
 	-- Color schemes
 	use("folke/tokyonight.nvim") -- Clean and dark
