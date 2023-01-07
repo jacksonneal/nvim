@@ -7,13 +7,15 @@ Servers = {
 	"sumneko_lua",
 	"hls",
 	"pyright",
-    "yamlls"
+	"yamlls",
+    "marksman",
 }
 
 local ensure_servers = {
 	"sumneko_lua",
 	"pyright",
 	"yamlls",
+    "marksman",
 }
 
 local exlude_servers = {

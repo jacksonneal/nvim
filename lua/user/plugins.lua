@@ -56,6 +56,8 @@ return packer.startup(function(use)
 
 	use("windwp/nvim-autopairs") -- parentheses and such
 
+    use("ellisonleao/glow.nvim") -- markdown preview 
+
 	use("kyazdani42/nvim-web-devicons")
 	use("kyazdani42/nvim-tree.lua")
 	use("akinsho/bufferline.nvim")
