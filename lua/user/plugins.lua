@@ -50,7 +50,9 @@ return packer.startup(function(use)
 
 	use("nvim-telescope/telescope.nvim") -- find, filter, preview, pick
 
-	use({ "shortcuts/no-neck-pain.nvim", tag = "*" }) -- center buffer
+	use({ "shortcuts/no-neck-pain.nvim", tag = "*" }) -- center buffer (zen mode)
+
+	use("antoinemadec/FixCursorHold.nvim") -- fix CursorHold performance
 
 	-- Project management
 	use("goolord/alpha-nvim") -- Greeter
@@ -64,7 +66,6 @@ return packer.startup(function(use)
 	use("nvim-lualine/lualine.nvim")
 	use("akinsho/toggleterm.nvim")
 	use("lewis6991/impatient.nvim")
-	use("antoinemadec/FixCursorHold.nvim")
 	use("folke/which-key.nvim")
 
 	-- Color schemes
