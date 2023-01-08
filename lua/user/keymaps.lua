@@ -29,6 +29,9 @@ keymap("n", "<C-Right>", ":vertical resize -2<CR>", opts)
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprev<CR>", opts)
 
+-- Markdown preview
+keymap("n", "<C-p>", ":Glow<cr>", opts)
+
 -- Insert --
 
 -- Escape with fast jk
