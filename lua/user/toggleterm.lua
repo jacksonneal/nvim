@@ -69,7 +69,7 @@ function _PYTHON_TOGGLE()
 	python:toggle()
 end
 
-local haskell = Terminal:new({ cmd = "ghci", hidden = true })
+local haskell = Terminal:new({ cmd = "cabal repl", hidden = true, direction = "vertical" })
 
 function _HASKELL_TOGGLE()
 	haskell:toggle()
