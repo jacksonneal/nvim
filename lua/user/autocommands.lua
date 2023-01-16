@@ -30,4 +30,9 @@ vim.cmd([[
     au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
     au WinLeave * setlocal nocursorline
   augroup END
+  augroup HaskellTab
+    autocmd!
+    autocmd FileType haskell setlocal tabstop=2
+    autocmd FileType haskell setlocal shiftwidth=2
+  augroup end
  ]])
