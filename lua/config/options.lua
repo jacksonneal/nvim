@@ -5,3 +5,4 @@
 local opt = vim.opt
 
 opt.scrolloff = 8
+opt.whichwrap:append("<,>,[,],h,l")
