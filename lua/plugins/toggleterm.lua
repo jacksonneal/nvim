@@ -15,8 +15,16 @@ return {
     end
 
     vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
+
+    local Terminal = require("toggleterm.terminal").Terminal
+    local cabal_repl = Terminal:new({ cmd = "cabal repl", hidden = true })
+
+    function _CABAL_REPL_TOGGLE()
+      cabal_repl:toggle()
+    end
   end,
   keys = {
-    { [[<C-\>]], "<cmd>ToggleTerm<cr>", desc = "ToggleTerm<cr>" },
+    { [[<C-\>]], "<cmd>ToggleTerm<cr>", desc = "ToggleTerm" },
+    { "<leader>rr", "<cmd>lua _CABAL_REPL_TOGGLE()<cr>", desc = "Cabal repl" },
   },
 }
