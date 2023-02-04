@@ -4,7 +4,9 @@ if not status_ok then
 end
 
 toggleterm.setup({
-	size = 20,
+	size = function(_)
+		return vim.o.columns * 0.4
+	end,
 	open_mapping = [[<c-\>]],
 	hide_numbers = true,
 	shade_filetypes = {},
@@ -69,7 +71,11 @@ function _PYTHON_TOGGLE()
 	python:toggle()
 end
 
-local haskell = Terminal:new({ cmd = "cabal repl", hidden = true, direction = "vertical" })
+local haskell = Terminal:new({
+	cmd = "cabal repl",
+	hidden = true,
+	direction = "vertical",
+})
 
 function _HASKELL_TOGGLE()
 	haskell:toggle()
