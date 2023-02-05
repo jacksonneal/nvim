@@ -24,6 +24,7 @@ return {
           mappings = {
             ["h"] = "close_node",
             ["l"] = "open",
+            ["v"] = "open_vsplit",
           },
         },
       },
