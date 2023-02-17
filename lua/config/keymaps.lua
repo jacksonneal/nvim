@@ -9,3 +9,10 @@ local keymap = vim.api.nvim_set_keymap
 -- Escape with fast jk
 keymap("i", "jk", "<ESC>", opts)
 keymap("i", "kj", "<ESC>", opts)
+
+-- Move line up/down
+keymap("v", "<C-k>", ":move '<-2<CR>gv-gv", opts)
+keymap("v", "<C-j>", ":move '>+1<CR>gv-gv", opts)
+
+-- No yank on paste
+keymap("v", "p", '"_dP', opts)
