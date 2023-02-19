@@ -1,7 +1,7 @@
 return {
   {
     "s1n7ax/nvim-window-picker",
-    tag = "v1.*",
+    version = "v1.*",
     config = function()
       require("window-picker").setup({
         -- the foreground (text) color of the picker

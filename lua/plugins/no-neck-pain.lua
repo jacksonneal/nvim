@@ -1,3 +1,3 @@
 return {
-  { "shortcuts/no-neck-pain.nvim", tag = "*" },
+  { "shortcuts/no-neck-pain.nvim", version = "*" },
 }
