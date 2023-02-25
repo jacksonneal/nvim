@@ -68,4 +68,24 @@ return {
       },
     },
   },
+  -- add html
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        html = {},
+      },
+      setup = {
+        format = {
+          templating = true,
+          wrapLineLength = 120,
+          wrapAttributes = "auto",
+        },
+        hover = {
+          documentation = true,
+          references = true,
+        },
+      },
+    },
+  },
 }
