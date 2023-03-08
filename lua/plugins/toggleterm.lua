@@ -18,13 +18,19 @@ return {
 
     local Terminal = require("toggleterm.terminal").Terminal
     local cabal_repl = Terminal:new({ cmd = "cabal repl", hidden = true })
+    local python_console = Terminal:new({ cmd = "python", hidden = true })
 
     function _CABAL_REPL_TOGGLE()
       cabal_repl:toggle()
+    end
+
+    function _PYTHON_TOGGLE()
+      python_console:toggle()
     end
   end,
   keys = {
     { [[<C-\>]], "<cmd>ToggleTerm<cr>", desc = "ToggleTerm" },
     { "<leader>rr", "<cmd>lua _CABAL_REPL_TOGGLE()<cr>", desc = "Cabal repl" },
+    { "<leader>pp", "<cmd>lua _PYTHON_TOGGLE()<cr>", desc = "Python console" },
   },
 }
