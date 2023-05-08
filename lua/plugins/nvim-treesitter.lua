@@ -17,9 +17,11 @@ return {
         "python",
         "query",
         "regex",
+        "scss",
         "tsx",
         "typescript",
         "vim",
+        "vue",
         "yaml",
       },
       autotag = {

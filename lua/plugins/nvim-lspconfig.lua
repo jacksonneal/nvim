@@ -105,4 +105,21 @@ return {
       },
     },
   },
+  -- add vue
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        volar = {},
+      },
+      setup = {
+        filetypes = {
+          "typescript",
+          "javascript",
+          "vue",
+          "json",
+        },
+      },
+    },
+  },
 }
