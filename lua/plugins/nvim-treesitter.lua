@@ -1,5 +1,5 @@
 return {
-  -- add more treesitter parsers
+  -- add treesitter parsers
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {

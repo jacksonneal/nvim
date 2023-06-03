@@ -36,7 +36,7 @@ return {
       init = function()
         require("lazyvim.util").on_attach(function(_, buffer)
           -- stylua: ignore
-          vim.keymap.set( "n", "<leader>co", "TypescriptOrganizeImports", { buffer = buffer, desc = "Organize Imports" })
+          vim.keymap.set("n", "<leader>co", "TypescriptOrganizeImports", { buffer = buffer, desc = "Organize Imports" })
           vim.keymap.set("n", "<leader>cR", "TypescriptRenameFile", { desc = "Rename File", buffer = buffer })
         end)
       end,
@@ -61,30 +61,30 @@ return {
         -- ["*"] = function(server, opts) end,
       },
       diagnostics = {
-        virtual_text = false,
+        virtual_text = true,
       },
     },
   },
   -- add hls
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
-        hls = {},
-      },
-      setup = {
-        {
-          filetypes = { "haskell", "lhaskell", "cabal" },
-          cmd = { "haskell-language-server-wrapper", "--lsp" },
-          haskell = {
-            cabalFormattingProvider = "cabalfmt",
-            formattingProvider = "ormolu",
-          },
-          single_file_support = true,
-        },
-      },
-    },
-  },
+  -- {
+  --   "neovim/nvim-lspconfig",
+  --   opts = {
+  --     servers = {
+  --       hls = {},
+  --     },
+  --     setup = {
+  --       {
+  --         filetypes = { "haskell", "lhaskell", "cabal" },
+  --         cmd = { "haskell-language-server-wrapper", "--lsp" },
+  --         haskell = {
+  --           cabalFormattingProvider = "cabalfmt",
+  --           formattingProvider = "ormolu",
+  --         },
+  --         single_file_support = true,
+  --       },
+  --     },
+  --   },
+  -- },
   -- add html
   {
     "neovim/nvim-lspconfig",
