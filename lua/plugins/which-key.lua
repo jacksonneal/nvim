@@ -3,8 +3,11 @@ return {
 	event = "VeryLazy",
 	opts = {
 		plugins = { spelling = true },
-		mode = { "n", "v" },
-
+		defaults = {
+			mode = { "n", "v" },
+			["<leader>b"] = { name = "+buffer" },
+			["<leader>f"] = { name = "+file/find" },
+		}
 	},
 	config = function(_, opts) 
 		local wk = require("which-key")
