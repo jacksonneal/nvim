@@ -1,6 +1,3 @@
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
 local opt = vim.opt
 
 opt.scrolloff = 6 -- keep context lines above and below cursor

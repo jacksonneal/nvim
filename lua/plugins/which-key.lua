@@ -4,7 +4,6 @@ return {
 	opts = {
 		plugins = { spelling = true },
 		mode = { "n", "v" },
-		["<leader><tab>"] = { name = "+tabs" },
 
 	},
 	config = function(_, opts) 
