@@ -7,18 +7,18 @@ return {
 		"nvim-tree/nvim-web-devicons",
 		"MunifTanjim/nui.nvim",
 	},
-	opts = {
-		filesystem = {
-			window = {
-				width = 30,
-				mappings = {
-					["h"] = "close_node",
-					["l"] = "open",
-					["v"] = "open_vsplit",
-				},
-			},
+	 opts = {
+	      filesystem = {
+		window = {
+		  width = 30,
+		  mappings = {
+		    ["h"] = "close_node",
+		    ["l"] = "open",
+		    ["v"] = "open_vsplit",
+		  },
 		},
-	},
+	      },
+	    },
 	keys = {
 		{
 			"<leader>fe",
@@ -27,31 +27,15 @@ return {
 					toggle = true,
 				})
 			end,
-			desc = "Explorer NeoTree (root dir)",
-		},
-		{
-			"<leader>fE",
-			function() 
-				require("neo-tree.command").execute({
-					toggle = true,
-					dir = vim.loop.cwd()
-				})
-			end,
-			desc = "Explorer NeoTree (cwd dir)",
+			desc = "Explorer NeoTree",
 		},
 		{
 			"<leader>e", 
 			"<leader>fe",
-			desc = "Explorer NeoTree (root dir)", 
+			desc = "Explorer NeoTree", 
 			remap = true,
 		},
-		{
-			"<leader>E", 
-			"<leader>fE",
-			desc = "Explorer NeoTree (cwd dir)", 
-			remap = true,
-		},
-	},
+	},    
 	init = function()
 		vim.g.neo_tree_remove_legacy_commands = 1
 		if vim.fn.argc() == 1 then
