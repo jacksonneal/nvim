@@ -1,5 +1,5 @@
 -- File is loaded by init.lua
--- Loads all config modules that should be loaded before plugins.
+-- Loads all config modules.
 
 require("config.autocmds")
 require("config.lazy")
