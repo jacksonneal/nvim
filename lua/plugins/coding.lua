@@ -127,5 +127,11 @@ return {
       end, { "i", "s" }),
     })
   end,
-}
+},
+    -- auto pairs
+    {
+      "echasnovski/mini.pairs",
+      event = "VeryLazy",
+      opts = {},
+    }
 }
