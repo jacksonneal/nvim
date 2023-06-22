@@ -1,14 +1,13 @@
 -- File is loaded by config.init.lua
--- Creates autocomands.
+-- Creates autocomands
 
--- Create an autocommand group with the given name,
--- clearing if already exists.
---
----@param name string - group name
----@return number - integer id of the created group
-local function augroup(name)
-  return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
-end
+local augroup = require("config.util").augroup
+
+-- Check if we need to reload the file when it changed
+vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
+  group = augroup("checktime"),
+  command = "checktime",
+})
 
 -- Highlight content on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -19,7 +18,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- Resize splits if window got resized
-vim.api.nvim_create_autocmd({ "VimResized" }, {
+vim.api.nvim_create_autocmd("VimResized", {
   group = augroup("resize_splits"),
   callback = function()
     vim.cmd("tabdo wincmd =")
@@ -69,7 +68,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Auto create dir when saving a file, in case some intermediate directory does not exist
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+vim.api.nvim_create_autocmd("BufWritePre", {
   group = augroup("auto_create_dir"),
   callback = function(event)
     if event.match:match("^%w%w+://") then
