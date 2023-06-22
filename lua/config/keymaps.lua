@@ -1,9 +1,6 @@
 local function map(mode, lhs, rhs, opts)
 	opts = opts or {}
 	opts.silent = opts.silent ~= false
-	if opts.remap and not vim.g.vscode then
-		opts.remap = nil
-	end
 	vim.keymap.set(mode, lhs, rhs, opts)
 end
 
@@ -39,17 +36,17 @@ map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 -- Move between buffers
 map("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
 map("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
-map("n", "[b", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
-map("n", "]b", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
 map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
 map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
-map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
-map("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
 map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
-map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 
 -- Clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
+
+-- Add undo break-points
+map("i", ",", ",<c-g>u")
+map("i", ".", ".<c-g>u")
+map("i", ";", ";<c-g>u")
 
 -- Save file
 map({ "i", "v", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
@@ -60,3 +57,23 @@ map("v", ">", ">gv")
 
 -- Lazy
 map("n", "<leader>l", "<cmd>:Lazy<cr>", { desc = "Lazy" })
+
+-- New file
+map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New file" })
+
+-- Quit
+map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
+
+-- Windows
+map("n", "<leader>ww", "<C-W>p", { desc = "Other window", remap = true })
+map("n", "<leader>wd", "<C-W>c", { desc = "Delete window", remap = true })
+map("n", "<leader>w-", "<C-W>s", { desc = "Split window below", remap = true })
+map("n", "<leader>w|", "<C-W>v", { desc = "Split window right", remap = true })
+
+-- Tabs
+map("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last tab" })
+map("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "First tab" })
+map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New tab" })
+map("n", "<leader><tab>l", "<cmd>tabnext<cr>", { desc = "Next tab" })
+map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close tab" })
+map("n", "<leader><tab>h", "<cmd>tabprevious<cr>", { desc = "Previous tab" })

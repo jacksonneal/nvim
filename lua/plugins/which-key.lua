@@ -7,6 +7,9 @@ return {
 			mode = { "n", "v" },
 			["<leader>b"] = { name = "+buffer" },
 			["<leader>f"] = { name = "+file/find" },
+			["<leader><tab>"] = { name = "+tab" },
+			["<leader>w"] = { name = "+window" },
+			["<leader>q"] = { name = "+quit" },
 		}
 	},
 	config = function(_, opts) 
