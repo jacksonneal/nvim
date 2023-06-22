@@ -1,7 +1,20 @@
+-- Create a keymap.
+---@param mode string | table - mode short-name
+---@param lhs string - left-hand side of the mapping
+---@param rhs string - right-hand side of the mapping
+---@param opts table | nil - table of map arguments
 local function map(mode, lhs, rhs, opts)
+  local keys = require("lazy.core.handler").handlers.keys
+  ---@cast keys LazyKeysHandler
+  -- do no create keymap if a lazy key handler exists
+  -- if not keys.active[keys.parse({ lhs, mode = mode }).id] then
   opts = opts or {}
   opts.silent = opts.silent ~= false
+  if opts.remap and not vim.g.vscode then
+    opts.remape = nil
+  end
   vim.keymap.set(mode, lhs, rhs, opts)
+  -- end
 end
 
 -- Remap leader key

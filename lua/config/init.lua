@@ -1,3 +1,6 @@
+-- File is loaded by init.lua
+-- Loads all config modules that should be loaded before plugins.
+
 require("config.autocmds")
 require("config.lazy")
 require("config.keymaps")

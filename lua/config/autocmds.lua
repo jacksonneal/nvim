@@ -1,4 +1,5 @@
--- File is loaded by config.init
+-- File is loaded by config.init.lua
+-- Creates autocomands.
 
 -- Create an autocommand group with the given name,
 -- clearing if already exists.
