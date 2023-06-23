@@ -1,3 +1,6 @@
+-- File is loaded by init.lua
+-- Bootstraps lazy.nvim
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -10,3 +13,23 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup({
+  spec = {
+    -- add Stardog and import its plugins
+    {
+      dir = "~/plugins/Stardog",
+      dev = true,
+      import = "stardog.plugins",
+    },
+    -- import local plugins
+    { import = "plugins" },
+  },
+  ---@diagnostic disable-next-line: assign-type-mismatch official example uses table
+  dev = {
+    -- dir to local plugin projects
+    path = "~/plugins",
+    patterns = { "Stardog" },
+    fallback = false,
+  },
+})
