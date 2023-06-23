@@ -1,4 +1,4 @@
--- Files in dir are automatically loaded by lazy.nvim
--- Loads local plugin configs
+-- Files in plugins module are automatically loaded by lazy.nvim
+-- Provides local plugin configs
 
 return {}
