@@ -1,2 +1,0 @@
--- File is automatically loaded on VeryLazy event
--- Loads local keymaps

@@ -18,18 +18,16 @@ require("lazy").setup({
   spec = {
     -- add Stardog and import its plugins
     {
-      dir = "~/plugins/Stardog",
+      dir = "~/plugins/stardog-setup",
       dev = true,
       import = "stardog.plugins",
     },
-    -- import local plugins
-    { import = "plugins" },
   },
   ---@diagnostic disable-next-line: assign-type-mismatch official example uses table
   dev = {
     -- dir to local plugin projects
     path = "~/plugins",
-    patterns = { "Stardog" },
+    patterns = { "stardog-setup" },
     fallback = false,
   },
 })
