@@ -17,7 +17,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   spec = {
     -- add Stardog and import its plugins
-    { "jacksonneal/StardogVim", version = "0.1.*", import = "stardog.plugins" },
+    { "jacksonneal/StardogVim", version = "0.1.1", import = "stardog.plugins" },
     -- {
     --   dir = "~/plugins/StardogVim",
     --   dev = true,
@@ -25,10 +25,10 @@ require("lazy").setup({
     -- },
   },
   ---@diagnostic disable-next-line: assign-type-mismatch official example uses table
-  dev = {
-    -- dir to local plugin projects
-    path = "~/plugins",
-    patterns = { "StardogVim" },
-    fallback = false,
-  },
+  -- dev = {
+  --   -- dir to local plugin projects
+  --   path = "~/plugins",
+  --   patterns = { "StardogVim" },
+  --   fallback = false,
+  -- },
 })
