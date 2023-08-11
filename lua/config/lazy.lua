@@ -25,10 +25,10 @@ require("lazy").setup({
     -- },
   },
   ---@diagnostic disable-next-line: assign-type-mismatch official example uses table
-  -- dev = {
-  --   -- dir to local plugin projects
-  --   path = "~/plugins",
-  --   patterns = { "StardogVim" },
-  --   fallback = false,
-  -- },
+  dev = {
+    -- dir to local plugin projects
+    path = "~/plugins",
+    patterns = { "StardogVim" },
+    fallback = false,
+  },
 })
