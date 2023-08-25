@@ -20,7 +20,7 @@ require("lazy").setup({
     {
       "jacksonneal/StardogVim",
       name = "StardogVim",
-      version = "0.1.2",
+      version = "0.1.3",
       import = "stardog.plugins",
     },
   },
