@@ -20,7 +20,6 @@ M.setup = function()
   plugins.setup()
 
   cmd.colorscheme(config.colorscheme)
-
 end
 
 return M
