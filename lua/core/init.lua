@@ -15,9 +15,9 @@ M.setup = function()
 
     lazy.bootstrap()
 
-    cmd.colorscheme(config.colorscheme)
-
     plugins.setup()
+
+    cmd.colorscheme(config.colorscheme)
 end
 
 return M

@@ -13,6 +13,8 @@ local function on_attach(bufnr)
   vim.keymap.set("n", "L", api.tree.expand_all, opts("Expand all"))
   vim.keymap.set("n", "h", api.node.navigate.parent_close, opts("Close"))
   vim.keymap.set("n", "H", api.tree.collapse_all, opts("Close all"))
+
+  vim.keymap.set("n", "v", api.node.open.vertical, opts("Open v-split"))
 end
 
 M.keys = {
