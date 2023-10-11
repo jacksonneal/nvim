@@ -8,16 +8,16 @@ local cmd = vim.cmd
 local M = {}
 
 M.setup = function()
-	settings.setup()
-	local config = settings.config
+  settings.setup()
+  local config = settings.config
 
-	options.setup(config)
+  options.setup(config)
 
-	lazy.bootstrap()
+  lazy.bootstrap()
 
-	plugins.setup()
+  plugins.setup()
 
-	cmd.colorscheme(config.colorscheme)
+  cmd.colorscheme(config.colorscheme)
 end
 
 return M

@@ -1,7 +1,7 @@
 local M = {}
 
 M.configs = {
-	{ "rose-pine/neovim", name = "rose-pine" },
+  { "rose-pine/neovim", name = "rose-pine" },
 }
 
 return M
