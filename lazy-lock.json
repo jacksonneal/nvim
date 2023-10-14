@@ -1,5 +1,10 @@
 {
-  "lazy.nvim": { "branch": "main", "commit": "73fbf5ccabd0233653bdeb4bb2b07fcfa97b57e0" },
+  "bamboo.nvim": { "branch": "master", "commit": "eda9000134961539af910d6e7d1286dcdfa5bc3b" },
+  "lazy.nvim": { "branch": "main", "commit": "276e572f645430bcfd6fd25faa301ea9077f6ab1" },
+  "mason-lspconfig.nvim": { "branch": "main", "commit": "397273083f988c1a17acf3816947cd198338e700" },
+  "mason.nvim": { "branch": "main", "commit": "cd7835b15f5a4204fc37e0aa739347472121a54c" },
+  "nvim-lspconfig": { "branch": "master", "commit": "bb8e3dfbe10d80c294bb609c4bb4bba3ecdfbfe2" },
   "nvim-tree.lua": { "branch": "master", "commit": "53b0bcaadaffb505acff230578b56a86ec1ab38a" },
-  "nvim-web-devicons": { "branch": "master", "commit": "a1e6268779411048a87f767a27380089362a0ce2" }
+  "nvim-web-devicons": { "branch": "master", "commit": "a1e6268779411048a87f767a27380089362a0ce2" },
+  "rose-pine": { "branch": "main", "commit": "e29002cbee4854a9c8c4b148d8a52fae3176070f" }
 }
