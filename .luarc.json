@@ -1,0 +1,19 @@
+{
+    "workspace.library": [
+        "/home/jax/.config/nvim",
+        "/home/jax/.local/share/nvim/lazy/lazy.nvim",
+        "/home/jax/.local/share/nvim/lazy/nvim-web-devicons",
+        "/home/jax/.local/share/nvim/lazy/rose-pine",
+        "/home/jax/.local/share/nvim/lazy/bamboo.nvim",
+        "/home/jax/.local/share/nvim/lazy/mason.nvim",
+        "/home/jax/.local/share/nvim/lazy/mason-lspconfig.nvim",
+        "/home/jax/.local/share/nvim/lazy/friendly-snippets",
+        "/home/jax/.local/share/nvim/lazy/LuaSnip",
+        "/home/jax/.local/share/nvim/lazy/nvim-lspconfig",
+        "/usr/local/share/nvim/runtime",
+        "/usr/local/share/nvim/runtime/pack/dist/opt/matchit",
+        "/usr/local/lib/nvim",
+        "/home/jax/.local/state/nvim/lazy/readme",
+        "${3rd}/luassert/library"
+    ]
+}

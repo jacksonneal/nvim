@@ -7,7 +7,7 @@ local opt = vim.opt
 
 local M = {}
 
-M.bootstrap = function()
+function M.bootstrap()
   if not file.is_dir(const.LAZY_PATH) then
     shell.call(const.LAZY_CLONE_CMD)
   end
