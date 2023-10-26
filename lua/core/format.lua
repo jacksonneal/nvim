@@ -3,8 +3,6 @@ local shell = require("util.shell")
 
 local api = vim.api
 
-local M = {}
-
 local function format_lua()
   local filepath = buffer.filepath()
   shell.call({ "stylua", filepath })
@@ -21,8 +19,4 @@ local function format()
   api.nvim_command("edit!")
 end
 
-M.setup = function()
-  vim.keymap.set("n", "<leader>f", format)
-end
-
-return M
+vim.keymap.set("n", "<leader>f", format)
