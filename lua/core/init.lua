@@ -15,16 +15,32 @@ lazy.bootstrap()
 
 require("lazy").setup({
   {
+    -- package manager
+    "williamboman/mason.nvim",
+    -- empty opts so lazy.nvim calls Plugin.config
+    opts = {},
+  },
+  {
+    -- bridge mason and lspconfig, supporting installation
+    -- and configuration of LSP servers
+    "williamboman/mason-lspconfig.nvim",
+    dependencies = {
+      "mason.nvim",
+    },
+    opts = {
+      -- list of servers to automatically install
+      ensure_installed = {
+        -- lua-language-server
+        "lua_ls",
+      },
+    },
+  },
+  {
     -- configs for neovim LSP client
     "neovim/nvim-lspconfig",
     dependencies = {
-      { "williamboman/mason.nvim", opts = {} },
-      {
-        "williamboman/mason-lspconfig.nvim",
-        opts = {
-          ensure_installed = { "lua_ls" },
-        },
-      },
+      "mason.nvim",
+      "mason-lspconfig.nvim",
     },
   },
   {
@@ -85,7 +101,7 @@ require("lazy").setup({
               -- menu is visible, go to next option
               cmp.select_next_item()
             elseif luasnip.expand_or_jumpable() then
-              print("expand or jumpable")
+              -- can either expand or jump in snippet
               luasnip.expand_or_jump()
             elseif has_words_before() then
               -- non-space characters before cursor, try to complete word
@@ -100,7 +116,17 @@ require("lazy").setup({
               -- menu is visible, go to previous option
               cmp.select_prev_item()
             elseif luasnip.jumpable(-1) then
+              -- can jump backwards in snippet
               luasnip.jump(-1)
+            else
+              fallback()
+            end
+          end),
+          -- select option
+          ["<CR>"] = cmp.mapping(function(fallback)
+            if cmp.visible() and cmp.get_active_entry() then
+              -- menu is visible with active option
+              cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace })
             else
               fallback()
             end
@@ -154,23 +180,18 @@ require("lazy").setup({
 
         -- default mappings
         api.config.mappings.default_on_attach(bufnr)
-
         -- if folder, toggle open/close
         -- if file, open
         vim.keymap.set("n", "l", api.node.open.edit, opts("Open"))
-
         -- if folder, toggle open/close
         -- if file, open in v-split
         vim.keymap.set("n", "v", api.node.open.vertical, opts("Open v-split"))
-
         -- if folder, expand all children
         -- if file, expand all folders in project
         vim.keymap.set("n", "L", api.tree.expand_all, opts("Expand all"))
-
         -- if expanded folder, collapse
         -- if collapsed folder or file, collapse parent
         vim.keymap.set("n", "h", api.node.navigate.parent_close, opts("Collapse"))
-
         -- collapse all folders in project
         vim.keymap.set("n", "H", api.tree.collapse_all, opts("Collapse all"))
       end,
