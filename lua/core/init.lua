@@ -1,4 +1,6 @@
-local lazy = require("core.lazy-bootstrap")
+local const = require("const")
+local file = require("util.file")
+local shell = require("util.shell")
 local settings = require("core.settings")
 
 settings.setup()
@@ -8,10 +10,15 @@ require("core.options")
 require("core.keymaps")
 require("core.autocommands")
 require("core.format")
-
 vim.cmd.colorscheme(config.colorscheme)
 
-lazy.bootstrap()
+-- bootstrap lazy.nvim package manager
+if not file.is_dir(const.LAZY_PATH) then
+  -- clone repo
+  shell.call(const.LAZY_CLONE_CMD)
+end
+-- add to runtime path
+vim.opt.rtp:prepend(const.LAZY_PATH)
 
 require("lazy").setup({
   {
@@ -90,12 +97,13 @@ require("lazy").setup({
         },
         -- completion sources
         sources = cmp.config.sources({
-          { name = "nvim_lsp" },
-          { name = "nvim_lua" },
-          { name = "luasnip" },
-          { name = "buffer" },
-          { name = "path" },
+          -- appear in options in reverse order
           { name = "emoji" },
+          { name = "path" },
+          { name = "buffer" },
+          { name = "luasnip" },
+          { name = "nvim_lua" },
+          { name = "nvim_lsp" },
         }),
         -- custom mappings
         mapping = {
@@ -206,14 +214,38 @@ require("lazy").setup({
   },
 })
 
--- Set up lspconfig.
+-- Configure LSP's
+
+-- access completion capabilities
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
--- require("lspconfig")["lua_ls"].setup({
--- capabilities = capabilities,
--- })
 
 require("lspconfig").lua_ls.setup({
+  -- set completion capabilities
   capabilities = capabilities,
+  diagnostics = {
+    unusedLocalExclude = { "_" },
+  },
+  -- set mappings on buffer attach
+  on_attach = function(_, bufnr)
+    -- hover info
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr })
+    -- goto definition
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr })
+    -- goto type definition
+    vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = bufnr })
+    -- goto implementation
+    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr })
+
+    -- show line diagnostic
+    vim.keymap.set("n", "<leader>ds", vim.diagnostic.open_float, { buffer = bufnr })
+    -- goto next diagnostic
+    vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, { buffer = bufnr })
+    -- goto previous diagnostic
+    vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, { buffer = bufnr })
+
+    -- show code action
+    vim.keymap.set("n", "<leader>cr", vim.lsp.buf.implementation, { buffer = bufnr })
+  end,
   on_init = function(client)
     local path = client.workspace_folders[1].name
     if
@@ -244,4 +276,10 @@ require("lspconfig").lua_ls.setup({
     end
     return true
   end,
+})
+
+-- Configure diagnostics
+vim.diagnostic.config({
+  -- no inline virtual diagnostic text
+  virtual_text = false,
 })
