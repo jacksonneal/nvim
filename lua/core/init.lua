@@ -21,8 +21,7 @@ require("lazy").setup({
     opts = {},
   },
   {
-    -- bridge mason and lspconfig, supporting installation
-    -- and configuration of LSP servers
+    -- bridge mason and lspconfig with installation and configuration of LSP servers
     "williamboman/mason-lspconfig.nvim",
     dependencies = {
       "mason.nvim",
@@ -39,8 +38,12 @@ require("lazy").setup({
     -- configs for neovim LSP client
     "neovim/nvim-lspconfig",
     dependencies = {
+      -- package manager
       "mason.nvim",
+      -- bridge mason and lspconfig with installation and configuration of LSP servers
       "mason-lspconfig.nvim",
+      -- completion source for neovim LSP client
+      "cmp-nvim-lsp",
     },
   },
   {
@@ -51,19 +54,19 @@ require("lazy").setup({
     dependencies = {
       -- configs for neovim LSP client
       "nvim-lspconfig",
-      -- source for neovim LSP client
+      -- completion source for neovim LSP client
       "hrsh7th/cmp-nvim-lsp",
-      -- source for neovim Lua API
+      -- completion source for neovim Lua API
       "hrsh7th/cmp-nvim-lua",
       -- snippet engine
       "L3MON4D3/LuaSnip",
-      -- source for LuaSnip
+      -- completion source for LuaSnip
       "saadparwaiz1/cmp_luasnip",
-      -- source for buffer words
+      -- completion source for buffer words
       "hrsh7th/cmp-buffer",
-      -- source for filesystem paths
+      -- completion source for filesystem paths
       "hrsh7th/cmp-path",
-      -- source for emojis
+      -- completion source for emojis
       "hrsh7th/cmp-emoji",
     },
     opts = function()
@@ -85,7 +88,7 @@ require("lazy").setup({
             require("luasnip").lsp_expand(args.body)
           end,
         },
-        -- provide completion sources
+        -- completion sources
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
           { name = "nvim_lua" },
@@ -94,6 +97,7 @@ require("lazy").setup({
           { name = "path" },
           { name = "emoji" },
         }),
+        -- custom mappings
         mapping = {
           -- cycle through options
           ["<Tab>"] = cmp.mapping(function(fallback)
@@ -132,6 +136,7 @@ require("lazy").setup({
             end
           end),
         },
+        -- experimental options
         experimental = {
           -- completion ghost text appears like comments
           ghost_text = {
@@ -155,7 +160,9 @@ require("lazy").setup({
       "nvim-tree/nvim-web-devicons",
     },
     keys = {
+      -- toggle open/close the tree
       { "<leader>e", "<cmd>NvimTreeToggle<cr>", "Toggle tree" },
+      -- open the tree if closed, then focus the tree
       { "<C-e>", "<cmd>NvimTreeFocus<cr>", "Focus tree" },
     },
     opts = {
@@ -201,7 +208,40 @@ require("lazy").setup({
 
 -- Set up lspconfig.
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
--- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-require("lspconfig")["lua_ls"].setup({
+-- require("lspconfig")["lua_ls"].setup({
+-- capabilities = capabilities,
+-- })
+
+require("lspconfig").lua_ls.setup({
   capabilities = capabilities,
+  on_init = function(client)
+    local path = client.workspace_folders[1].name
+    if
+      not vim.loop.fs_stat(path .. "/.luarc.json") and not vim.loop.fs_stat(path .. "/.luarc.jsonc")
+    then
+      client.config.settings = vim.tbl_deep_extend("force", client.config.settings, {
+        Lua = {
+          runtime = {
+            -- Tell the language server which version of Lua you're using
+            -- (most likely LuaJIT in the case of Neovim)
+            version = "LuaJIT",
+          },
+          -- Make the server aware of Neovim runtime files
+          workspace = {
+            checkThirdParty = false,
+            library = {
+              vim.env.VIMRUNTIME,
+              -- "${3rd}/luv/library"
+              -- "${3rd}/busted/library",
+            },
+            -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
+            -- library = vim.api.nvim_get_runtime_file("", true)
+          },
+        },
+      })
+
+      client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+    end
+    return true
+  end,
 })
