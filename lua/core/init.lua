@@ -1,4 +1,4 @@
-local lazy = require("core.lazy")
+local lazy = require("core.lazy-bootstrap")
 local settings = require("core.settings")
 
 settings.setup()
@@ -15,6 +15,7 @@ lazy.bootstrap()
 
 require("lazy").setup({
   {
+    -- configs for neovim LSP client
     "neovim/nvim-lspconfig",
     dependencies = {
       { "williamboman/mason.nvim", opts = {} },
@@ -26,16 +27,99 @@ require("lazy").setup({
       },
     },
   },
-  "hrsh7th/cmp-nvim-lsp",
-  "hrsh7th/cmp-nvim-lua",
-  "hrsh7th/nvim-cmp",
-  "L3MON4D3/LuaSnip",
-  "saadparwaiz1/cmp_luasnip",
   {
-    -- a file explorer
+    -- a completion engine
+    "hrsh7th/nvim-cmp",
+    -- just before starting Insert mode
+    event = "InsertEnter",
+    dependencies = {
+      -- configs for neovim LSP client
+      "nvim-lspconfig",
+      -- source for neovim LSP client
+      "hrsh7th/cmp-nvim-lsp",
+      -- source for neovim Lua API
+      "hrsh7th/cmp-nvim-lua",
+      -- snippet engine
+      "L3MON4D3/LuaSnip",
+      -- source for LuaSnip
+      "saadparwaiz1/cmp_luasnip",
+      -- source for buffer words
+      "hrsh7th/cmp-buffer",
+      -- source for filesystem paths
+      "hrsh7th/cmp-path",
+      -- source for emojis
+      "hrsh7th/cmp-emoji",
+    },
+    opts = function()
+      local cmp = require("cmp")
+      local luasnip = require("luasnip")
+
+      -- determine if character before cursor is not a space
+      local has_words_before = function()
+        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+        return col ~= 0
+          and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s")
+            == nil
+      end
+
+      return {
+        -- provide a snippet engine
+        snippet = {
+          expand = function(args)
+            require("luasnip").lsp_expand(args.body)
+          end,
+        },
+        -- provide completion sources
+        sources = cmp.config.sources({
+          { name = "nvim_lsp" },
+          { name = "nvim_lua" },
+          { name = "luasnip" },
+          { name = "buffer" },
+          { name = "path" },
+          { name = "emoji" },
+        }),
+        mapping = {
+          -- cycle through options
+          ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              -- menu is visible, go to next option
+              cmp.select_next_item()
+            elseif luasnip.expand_or_jumpable() then
+              print("expand or jumpable")
+              luasnip.expand_or_jump()
+            elseif has_words_before() then
+              -- non-space characters before cursor, try to complete word
+              cmp.complete()
+            else
+              fallback()
+            end
+          end),
+          -- cycle in reverse
+          ["<S-Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              -- menu is visible, go to previous option
+              cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
+              luasnip.jump(-1)
+            else
+              fallback()
+            end
+          end),
+        },
+        experimental = {
+          -- completion ghost text appears like comments
+          ghost_text = {
+            hl_group = "Comment",
+          },
+        },
+      }
+    end,
+  },
+  {
+    -- file explorer
     "nvim-tree/nvim-tree.lua",
     cmd = {
-      -- open or close the tree
+      -- toggle open/close the tree
       "NvimTreeToggle",
       -- open the tree if closed, then focus the tree
       "NvimTreeFocus",
@@ -92,23 +176,6 @@ require("lazy").setup({
       end,
     },
   },
-})
-
-local cmp = require("cmp")
-cmp.setup({
-  snippet = {
-    -- REQUIRED - you must specify a snippet engine
-    expand = function(args)
-      require("luasnip").lsp_expand(args.body)
-    end,
-  },
-  sources = cmp.config.sources({
-    { name = "nvim_lsp" },
-    { name = "nvim_lua" },
-    { name = "luasnip" },
-  }, {
-    { name = "buffer" },
-  }),
 })
 
 -- Set up lspconfig.
