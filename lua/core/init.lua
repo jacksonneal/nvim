@@ -214,18 +214,19 @@ require("lazy").setup({
   },
 })
 
--- Configure LSP's
-
 -- access completion capabilities
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+-- configure lua-language-server
 require("lspconfig").lua_ls.setup({
   -- set completion capabilities
   capabilities = capabilities,
+  -- diagnostics configuration
   diagnostics = {
+    -- names to allow for unused variables
     unusedLocalExclude = { "_" },
   },
-  -- set mappings on buffer attach
+  -- on buffer attach
   on_attach = function(_, bufnr)
     -- hover info
     vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr })
@@ -246,19 +247,23 @@ require("lspconfig").lua_ls.setup({
     -- show code action
     vim.keymap.set("n", "<leader>cr", vim.lsp.buf.implementation, { buffer = bufnr })
   end,
+  -- on server init
   on_init = function(client)
+    -- access workspace path
     local path = client.workspace_folders[1].name
     if
+      -- there is no workspace level config for lua-language-server
       not vim.loop.fs_stat(path .. "/.luarc.json") and not vim.loop.fs_stat(path .. "/.luarc.jsonc")
     then
+      -- setup server for neovim and config editing
       client.config.settings = vim.tbl_deep_extend("force", client.config.settings, {
         Lua = {
           runtime = {
-            -- Tell the language server which version of Lua you're using
+            -- tell the language server which version of Lua you're using
             -- (most likely LuaJIT in the case of Neovim)
             version = "LuaJIT",
           },
-          -- Make the server aware of Neovim runtime files
+          -- make the server aware of Neovim runtime files
           workspace = {
             checkThirdParty = false,
             library = {
@@ -272,6 +277,7 @@ require("lspconfig").lua_ls.setup({
         },
       })
 
+      -- notify client of new config
       client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
     end
     return true
