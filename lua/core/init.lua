@@ -46,6 +46,8 @@ require("lazy").setup({
       ensure_installed = {
         -- lua-language-server
         "lua_ls",
+        -- ruff-lsp
+        "ruff_lsp",
       },
     },
   },
@@ -230,6 +232,38 @@ require("lazy").setup({
 
 -- access completion capabilities
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+-- configure ruff-lsp
+require("lspconfig").ruff_lsp.setup({
+  -- set completion capabilities
+  -- capabilities = capabilities,
+  -- on buffer attach
+  on_attach = function(_, bufnr)
+    -- hover info
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr })
+    -- goto definition
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr })
+    -- goto type definition
+    vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = bufnr })
+    -- goto implementation
+    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr })
+
+    -- show line diagnostic
+    vim.keymap.set("n", "<leader>ds", vim.diagnostic.open_float, { buffer = bufnr })
+    -- goto next diagnostic
+    vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, { buffer = bufnr })
+    -- goto previous diagnostic
+    vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, { buffer = bufnr })
+
+    -- show code action
+    vim.keymap.set("n", "<leader>cr", vim.lsp.buf.implementation, { buffer = bufnr })
+  end,
+  init_options = {
+    settings = {
+      args = {},
+    },
+  },
+})
 
 -- configure lua-language-server
 require("lspconfig").lua_ls.setup({

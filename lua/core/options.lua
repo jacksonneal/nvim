@@ -123,6 +123,6 @@ vim.opt.updatetime = 200
 -- allow move left/right to move to prev/next line
 vim.opt.whichwrap:append("h,l")
 -- command line completion mode
-vim.opt.wildmode = "list:longest,full"
+vim.opt.wildmode = "longest:full,full"
 -- disable line wrap on display
 vim.opt.wrap = false
