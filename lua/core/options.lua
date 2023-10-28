@@ -3,22 +3,25 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 -- remap leader key, available for use as `<leader>` in global mappings
 vim.g.mapleader = " "
--- same as mapleader, for local buffer mappings
+-- same as 'mapleader', for local buffer mappings
 vim.g.maplocalleader = " "
--- fix markdown indentation settings, use configured tabstop
+-- fix markdown indentation settings, use configured 'tabstop'
 vim.g.markdown_recommended_style = 0
 
 -- enable autowrite on file modification
 vim.opt.autowrite = true
 -- sync copy content to system clipboard
 vim.opt.clipboard = "unnamedplus"
--- insert mode completion menu settings
+-- 'Insert' mode completion menu settings
+-- menu - use popup menu
+-- menuone - use menu even if only one match
+-- noselect - do not auto-select an item in the menu
 vim.opt.completeopt = "menu,menuone,noselect"
 -- hide text with "conceal" attribute (e.g. `*` markup for bold and italic)
 vim.opt.conceallevel = 3
 -- confirm changes for operations that would normally fail on unsaved changed (e.g. `:q`)
 vim.opt.confirm = true
--- column highlight, relative to textwidth
+-- column highlight, relative to 'textwidth'
 vim.opt.colorcolumn = "-20"
 -- enable highlight of current line
 vim.opt.cursorline = true
@@ -50,7 +53,7 @@ vim.opt.list = true
 vim.opt.mouse = "a"
 -- show line numbers
 vim.opt.number = true
--- popup blend with slight transparency
+-- popup menu with slight transparency
 vim.opt.pumblend = 15
 -- maximum entries in a popup
 vim.opt.pumheight = 10
@@ -58,26 +61,68 @@ vim.opt.pumheight = 10
 vim.opt.relativenumber = true
 -- keep context lines above and below cursor
 vim.opt.scrolloff = 6
-vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" } -- enable saving and restoring items
-vim.opt.shiftround = true -- indent to multiple of shiftwidth
-vim.opt.shiftwidth = 2 -- size of indent
-vim.opt.shortmess:append({ W = true, I = true, c = true, C = true }) -- shorten messages
-vim.opt.showmode = false -- do not show mode
-vim.opt.signcolumn = "yes:1" -- always show to avoid text shift, use 1 to avoid extra width
-vim.opt.sidescrolloff = 8 -- columns of context
-vim.opt.smartcase = true -- do not ignore case for capitals
-vim.opt.smartindent = true -- smart indenting when starting a new line
-vim.opt.spelllang = { "en" } -- english dictionary
-vim.opt.splitbelow = true -- put new windows below current
-vim.opt.splitkeep = "screen" -- keep text on same screen line when mananging splits
-vim.opt.splitright = true -- put new windows right of current
-vim.opt.tabstop = 2 -- Number of spaces tabs count for
-vim.opt.termguicolors = true -- get true coloring
-vim.opt.textwidth = 120 -- maximum width for text being inserted
-vim.opt.timeoutlen = 300 -- time in ms for a mapped sequence to complete
-vim.opt.undofile = true -- save undo history to file
-vim.opt.undolevels = 10000 -- maximum number of changes that can be undone
-vim.opt.updatetime = 200 -- idle typing for this time results in swap file write and trigger CursorHold
-vim.opt.whichwrap:append("h,l") -- allow keys that move left/right to move to prev/next line
-vim.opt.wildmode = "longest:full,full" -- command line completion mode
-vim.opt.wrap = false -- disable line wrap
+-- enable saving and restoring items using sessions
+vim.opt.sessionoptions = {
+  -- buffers, including hidden
+  "buffers",
+  -- current directory
+  "curdir",
+  -- tabs
+  "tabpages",
+  -- window sizes
+  "winsize",
+}
+-- indent to multiple of 'shiftwidth' with `>` and `<`
+vim.opt.shiftround = true
+-- size of indent in spaces
+vim.opt.shiftwidth = 2
+-- shorten messages
+vim.opt.shortmess:append({
+  -- when writing file
+  W = true,
+  -- when starting vim
+  I = true,
+  -- completion
+  c = true,
+  C = true,
+})
+-- do not show mode
+vim.opt.showmode = false
+-- always show to avoid text shift, use 1 for diagnostics
+vim.opt.signcolumn = "yes:1"
+-- keep context lines to right and left of cursor
+vim.opt.sidescrolloff = 6
+-- do not ignore case for capitals in search
+vim.opt.smartcase = true
+-- smart indenting when starting a new line
+vim.opt.smartindent = true
+-- enable spell checking
+vim.opt.spell = true
+-- use English dictionary for spell checking
+vim.opt.spelllang = { "en" }
+-- put new windows below current
+vim.opt.splitbelow = true
+-- keep text on same screen line when managing splits
+vim.opt.splitkeep = "screen"
+-- put new windows right of current
+vim.opt.splitright = true
+-- number of spaces tabs count for
+vim.opt.tabstop = 2
+-- get 24-bit RGB coloring
+vim.opt.termguicolors = true
+-- maximum width for text in 'Insert' mode
+vim.opt.textwidth = 120
+-- time in ms for a mapped sequence to complete
+vim.opt.timeoutlen = 350
+-- save undo history to file
+vim.opt.undofile = true
+-- maximum number of changes that can be undone
+vim.opt.undolevels = 10000
+-- idle typing for this time results in swap file write and trigger 'CursorHold' event
+vim.opt.updatetime = 200
+-- allow move left/right to move to prev/next line
+vim.opt.whichwrap:append("h,l")
+-- command line completion mode
+vim.opt.wildmode = "list:longest,full"
+-- disable line wrap on display
+vim.opt.wrap = false
