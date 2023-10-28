@@ -38,16 +38,26 @@ vim.opt.formatoptions = "tcrolj"
 vim.opt.grepformat = "%f:%l:%c:%m"
 -- use ripgrep for :grep
 vim.opt.grepprg = "rg --vimgrep"
-vim.opt.ignorecase = true -- ignore case in search patterns
-vim.opt.inccommand = "nosplit" -- preview incremental substitute w/out split
-vim.opt.laststatus = 0 -- no status line on last window
-vim.opt.list = true -- show invisible characters
-vim.opt.mouse = "a" -- enable mouse mode
-vim.opt.number = true -- show line number
-vim.opt.pumblend = 10 -- popup blend with slight transparency
-vim.opt.pumheight = 10 -- maximum entries in a popup
-vim.opt.relativenumber = true -- relative line numbers
-vim.opt.scrolloff = 6 -- keep context lines above and below cursor
+-- ignore case in search patterns
+vim.opt.ignorecase = true
+-- preview incremental substitute w/out split
+vim.opt.inccommand = "nosplit"
+-- no status line on last window
+vim.opt.laststatus = 0
+-- show invisible characters (e.g. tabs as '>', trailing space as '-')
+vim.opt.list = true
+-- enable mouse mode
+vim.opt.mouse = "a"
+-- show line numbers
+vim.opt.number = true
+-- popup blend with slight transparency
+vim.opt.pumblend = 15
+-- maximum entries in a popup
+vim.opt.pumheight = 10
+-- show relative line numbers
+vim.opt.relativenumber = true
+-- keep context lines above and below cursor
+vim.opt.scrolloff = 6
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" } -- enable saving and restoring items
 vim.opt.shiftround = true -- indent to multiple of shiftwidth
 vim.opt.shiftwidth = 2 -- size of indent
