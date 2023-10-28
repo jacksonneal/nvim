@@ -22,6 +22,14 @@ vim.opt.rtp:prepend(const.LAZY_PATH)
 
 require("lazy").setup({
   {
+    -- minimal and fast autopairs
+    "echasnovski/mini.pairs",
+    -- just before starting Insert mode
+    event = "InsertEnter",
+    -- empty opts so lazy.nvim calls Plugin.config
+    opts = {},
+  },
+  {
     -- package manager
     "williamboman/mason.nvim",
     -- empty opts so lazy.nvim calls Plugin.config
