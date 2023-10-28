@@ -48,6 +48,8 @@ require("lazy").setup({
         "lua_ls",
         -- ruff-lsp
         "ruff_lsp",
+        -- python LSP
+        "pyright",
       },
     },
   },
@@ -230,11 +232,17 @@ require("lazy").setup({
   },
 })
 
+-- configure LSP servers
+local lspconfig = require("lspconfig")
+
 -- access completion capabilities
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+-- configure pyright
+lspconfig.pyright.setup({})
+
 -- configure ruff-lsp
-require("lspconfig").ruff_lsp.setup({
+lspconfig.ruff_lsp.setup({
   -- set completion capabilities
   -- capabilities = capabilities,
   -- on buffer attach
@@ -256,7 +264,7 @@ require("lspconfig").ruff_lsp.setup({
     vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, { buffer = bufnr })
 
     -- show code action
-    vim.keymap.set("n", "<leader>cr", vim.lsp.buf.implementation, { buffer = bufnr })
+    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.implementation, { buffer = bufnr })
   end,
   init_options = {
     settings = {
@@ -266,7 +274,7 @@ require("lspconfig").ruff_lsp.setup({
 })
 
 -- configure lua-language-server
-require("lspconfig").lua_ls.setup({
+lspconfig.lua_ls.setup({
   -- set completion capabilities
   capabilities = capabilities,
   -- diagnostics configuration
@@ -293,7 +301,7 @@ require("lspconfig").lua_ls.setup({
     vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, { buffer = bufnr })
 
     -- show code action
-    vim.keymap.set("n", "<leader>cr", vim.lsp.buf.implementation, { buffer = bufnr })
+    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.implementation, { buffer = bufnr })
   end,
   -- on server init
   on_init = function(client)
