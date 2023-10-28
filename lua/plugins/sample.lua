@@ -84,18 +84,14 @@ return {
 
       -- keymaps on LspAttach
       util_on_attach(function(client, buffer)
-        require("stardog.plugins.nvim-lspconfig.keymaps").on_attach(
-          client,
-          buffer
-        )
+        require("stardog.plugins.nvim-lspconfig.keymaps").on_attach(client, buffer)
       end)
 
       -- get all the servers that are available thourgh mason-lspconfig
       local mlsp = require("mason-lspconfig")
       local all_mslp_servers = {}
-      all_mslp_servers = vim.tbl_keys(
-        require("mason-lspconfig.mappings.server").lspconfig_to_package
-      )
+      all_mslp_servers =
+        vim.tbl_keys(require("mason-lspconfig.mappings.server").lspconfig_to_package)
 
       -- configure lsp servers
       local servers = opts.servers
@@ -110,10 +106,7 @@ return {
       -- setup lsp servers, marking those to be managed by mason
       local ensure_installed = {}
       for server, server_opts in pairs(servers) do
-        if
-          server_opts.mason == false
-          or not vim.tbl_contains(all_mslp_servers, server)
-        then
+        if server_opts.mason == false or not vim.tbl_contains(all_mslp_servers, server) then
           -- not using mason, setup directly
           setup(server)
         else

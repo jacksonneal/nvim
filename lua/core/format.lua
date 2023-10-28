@@ -14,6 +14,8 @@ local function format()
   local file_type = buffer.file_type()
   if file_type == "lua" then
     format_lua()
+  else
+    vim.notify("No formatter available for" .. file_type)
   end
 
   api.nvim_command("edit!")
