@@ -299,7 +299,7 @@ require("lspconfig").lua_ls.setup({
   end,
 })
 
--- Configure diagnostics
+-- configure diagnostics
 vim.diagnostic.config({
   -- no inline virtual diagnostic text
   virtual_text = false,
