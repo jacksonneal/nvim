@@ -96,8 +96,8 @@ vim.opt.sidescrolloff = 6
 vim.opt.smartcase = true
 -- smart indenting when starting a new line
 vim.opt.smartindent = true
--- enable spell checking
-vim.opt.spell = true
+-- disable spell checking
+vim.opt.spell = false
 -- use English dictionary for spell checking
 vim.opt.spelllang = { "en" }
 -- put new windows below current

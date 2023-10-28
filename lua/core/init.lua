@@ -22,7 +22,7 @@ vim.opt.rtp:prepend(const.LAZY_PATH)
 
 require("lazy").setup({
   {
-    -- minimal and fast autopairs
+    -- autopairs
     "echasnovski/mini.pairs",
     -- just before starting Insert mode
     event = "InsertEnter",
