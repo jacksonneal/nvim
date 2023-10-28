@@ -1,7 +1,7 @@
 local const = require("const")
 local file = require("util.file")
-local shell = require("util.shell")
 local settings = require("core.settings")
+local shell = require("util.shell")
 
 settings.setup()
 local config = settings.config
@@ -267,7 +267,8 @@ require("lspconfig").lua_ls.setup({
     local path = client.workspace_folders[1].name
     if
       -- there is no workspace level config for lua-language-server
-      not vim.loop.fs_stat(path .. "/.luarc.json") and not vim.loop.fs_stat(path .. "/.luarc.jsonc")
+      not vim.loop.fs_stat(path .. "/.luarc.json")
+      and not vim.loop.fs_stat(path .. "/.luarc.jsonc")
     then
       -- setup server for neovim and config editing
       client.config.settings = vim.tbl_deep_extend("force", client.config.settings, {
