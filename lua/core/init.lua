@@ -52,6 +52,12 @@ require("lazy").setup({
   {
     -- configs for neovim LSP client
     "neovim/nvim-lspconfig",
+    event = {
+      -- before reading a file into a buffer
+      "BufReadPre",
+      -- before editing a new file
+      "BufNewFile",
+    },
     dependencies = {
       -- package manager
       "mason.nvim",
