@@ -46,10 +46,10 @@ require("lazy").setup({
       ensure_installed = {
         -- lua-language-server
         "lua_ls",
-        -- ruff-lsp
+        -- ruff-lsp (python lint/format)
         "ruff_lsp",
-        -- python LSP
-        "pyright",
+        -- jedi-language-server (python actions)
+        "jedi_language_server",
       },
     },
   },
@@ -238,8 +238,8 @@ local lspconfig = require("lspconfig")
 -- access completion capabilities
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
--- configure pyright
-lspconfig.pyright.setup({})
+-- configure jedi-language-server
+lspconfig.jedi_language_server.setup({})
 
 -- configure ruff-lsp
 lspconfig.ruff_lsp.setup({
@@ -264,7 +264,7 @@ lspconfig.ruff_lsp.setup({
     vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, { buffer = bufnr })
 
     -- show code action
-    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.implementation, { buffer = bufnr })
+    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr })
   end,
   init_options = {
     settings = {
@@ -301,7 +301,7 @@ lspconfig.lua_ls.setup({
     vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, { buffer = bufnr })
 
     -- show code action
-    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.implementation, { buffer = bufnr })
+    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr })
   end,
   -- on server init
   on_init = function(client)
