@@ -1,24 +1,43 @@
-local const = require("const")
 local file = require("util.file")
-local settings = require("core.settings")
 local shell = require("util.shell")
+local table = require("util.table")
 
-settings.setup()
-local config = settings.config
+-- project settings file name
+local settings_file_name = ".stardog.json"
+-- project settings filepath
+local settings_filepath = vim.fn.getcwd() .. "/" .. settings_file_name
+-- default project settings
+local settings = {
+  colorscheme = "habamax",
+}
+-- if project settings file exists, combine with default
+if file.is_file(settings_filepath) then
+  settings = table.merge(settings, file.read_json(settings_filepath))
+end
 
+-- configure vim options
 require("core.options")
 require("core.keymaps")
 require("core.autocommands")
 require("core.format")
-vim.cmd.colorscheme(config.colorscheme)
+vim.cmd.colorscheme(settings.colorscheme)
 
+-- path to install lazy.nvim
+local lazy_path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 -- bootstrap lazy.nvim package manager
-if not file.is_dir(const.LAZY_PATH) then
-  -- clone repo
-  shell.call(const.LAZY_CLONE_CMD)
+if not file.is_dir(lazy_path) then
+  -- clone lazy.nvim repo
+  shell.call({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",
+    lazy_path,
+  })
 end
 -- add to runtime path
-vim.opt.rtp:prepend(const.LAZY_PATH)
+vim.opt.rtp:prepend(lazy_path)
 
 require("lazy").setup({
   {
