@@ -1,5 +1,5 @@
 -- create an autocommand group
-local group = vim.api.nvim_create_augroup("Stardog", {
+local group = vim.api.nvim_create_augroup("Default", {
   -- clear existing commands if the group already exists
   clear = true,
 })

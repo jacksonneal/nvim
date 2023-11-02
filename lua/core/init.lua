@@ -20,7 +20,9 @@ require("core.options")
 require("core.keymaps")
 -- configure autocommands
 require("core.autocommands")
-require("core.format")
+-- configure static analysis
+require("core.static_analysis")
+-- set colorscheme
 vim.cmd.colorscheme(settings.colorscheme)
 
 -- path to install lazy.nvim
