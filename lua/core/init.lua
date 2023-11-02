@@ -17,13 +17,12 @@ end
 
 -- configure vim options
 require("core.options")
+-- configure keymaps
 require("core.keymaps")
 -- configure autocommands
 require("core.autocommands")
 -- configure static analysis
 require("core.static_analysis")
--- set colorscheme
-vim.cmd.colorscheme(settings.colorscheme)
 
 -- path to install lazy.nvim
 local lazy_path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -43,6 +42,16 @@ end
 vim.opt.rtp:prepend(lazy_path)
 
 require("lazy").setup({
+  {
+    -- gruvbox colorscheme with softened palette
+    "sainnhe/gruvbox-material",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      -- set colorscheme
+      vim.cmd.colorscheme(settings.colorscheme)
+    end,
+  },
   {
     -- autopairs
     "echasnovski/mini.pairs",

@@ -1,9 +1,13 @@
--- Creates keymaps
--- Module is loaded by config.init.lua
-
 local function map(mode, lhs, rhs, opts)
   opts = opts or {}
-  opts.silent = opts.silent ~= false
+  opts = vim.tbl_extend("keep", opts, {
+    -- non-recursive map
+    noremap = true,
+    -- do not echo to command line
+    silent = true,
+    -- execute as soon as match found, do not wait for other keys
+    nowait = true,
+  })
   vim.keymap.set(mode, lhs, rhs, opts)
 end
 
@@ -31,9 +35,6 @@ map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 map("i", ",", ",<c-g>u")
 map("i", ".", ".<c-g>u")
 map("i", ";", ";<c-g>u")
-
--- Toggleables ----------------------------------
-map("n", "<leader>uf", "<cmd>ToggleFormatOnSave<cr>", { desc = "Toggle format on save " })
 
 -- File management ------------------------------
 
@@ -74,10 +75,6 @@ map("t", "<C-k>", "<cmd>wincmd k<cr>", { desc = "Go to upper window" })
 map("t", "<C-l>", "<cmd>wincmd l<cr>", { desc = "Go to right window" })
 map("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 
--- Python shell
-map("n", "<C-p>", "<cmd>PythonToggle<cr>", { desc = "Python shell" })
-map("t", "<C-p>", "<cmd>PythonToggle<cr>", { desc = "Python shell" })
-
 -- Panes ----------------------------------------
 
 -- Buffers
@@ -113,9 +110,3 @@ map("n", "<leader><tab>h", "<cmd>tabprevious<cr>", { desc = "Previous tab" })
 
 -- Lazy
 map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
-
--- Location list
-map("n", "<leader>xl", "<cmd>lopen<cr>", { desc = "Location list" })
-
--- Quick fix list
-map("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Quickfix list" })
