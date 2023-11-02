@@ -1,28 +1,3 @@
-local buffer = require("util.buffer")
-local shell = require("util.shell")
-
-local api = vim.api
-
-local function format_lua()
-  local filepath = buffer.filepath()
-  shell.call({ "stylua", filepath })
-end
-
-local function format()
-  api.nvim_command("w")
-
-  local file_type = buffer.file_type()
-  if file_type == "lua" then
-    format_lua()
-  else
-    vim.notify("No formatter available for " .. file_type)
-  end
-
-  api.nvim_command("edit!")
-end
-
-vim.keymap.set("n", "<leader>f", format)
-
 -- manage the buffer number that will hold static analysis output
 local bufnr = -1
 
@@ -105,7 +80,7 @@ end
 local function make_static_analyze_fix(name, command)
   vim.api.nvim_create_user_command(name, function()
     -- save current buffer
-    api.nvim_command("w")
+    vim.api.nvim_command("w")
 
     -- access buffer name to analyze
     local buffer_name = vim.api.nvim_buf_get_name(0)
@@ -115,7 +90,7 @@ local function make_static_analyze_fix(name, command)
       stdout_buffered = true,
       on_exit = function()
         -- load buffer changes
-        api.nvim_command("edit!")
+        vim.api.nvim_command("edit!")
       end,
     })
   end, {})
@@ -152,7 +127,7 @@ vim.api.nvim_create_autocmd(
   }
 )
 
--- make MYPY command
+-- make Mypy command
 make_static_analyze_with_output("Mypy", ". ./venv/bin/activate && mypy")
 -- type check python files
 vim.api.nvim_create_autocmd(
