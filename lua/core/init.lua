@@ -43,6 +43,16 @@ vim.opt.rtp:prepend(lazy_path)
 
 require("lazy").setup({
   {
+    -- buffer line
+    "akinsho/bufferline.nvim",
+    dependencies = {
+      -- display file icons
+      "nvim-tree/nvim-web-devicons",
+    },
+    -- empty opts so lazy.nvim calls Plugin.config
+    opts = {},
+  },
+  {
     -- gruvbox colorscheme with softened palette
     "sainnhe/gruvbox-material",
     lazy = false,
