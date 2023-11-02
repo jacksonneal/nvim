@@ -1,77 +1,121 @@
--- Creates autocomands
--- Module is loaded by config.init.lua
+-- create an autocommand group
+local group = vim.api.nvim_create_augroup("Stardog", {
+  -- clear existing commands if the group already exists
+  clear = true,
+})
 
-local function augroup(name)
-  return vim.api.nvim_create_augroup("Stardog" .. name, { clear = true })
-end
-
--- Check if we need to reload the file when it changed
-vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
-  group = augroup("checktime"),
+-- checks if buffers were changed outside of Vim and need to be reloaded
+vim.api.nvim_create_autocmd({
+  -- Neovim got focus
+  "FocusGained",
+  -- terminal job end
+  "TermClose",
+  -- after leaving terminal mode
+  "TermLeave",
+}, {
+  group = group,
   command = "checktime",
 })
 
--- Highlight content on yank
-vim.api.nvim_create_autocmd("TextYankPost", {
-  group = augroup("highlight_yank"),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-})
+-- highlights content on yank
+vim.api.nvim_create_autocmd(
+  -- after yank
+  "TextYankPost",
+  {
+    group = group,
+    callback = function()
+      vim.highlight.on_yank()
+    end,
+  }
+)
 
--- Resize splits if window got resized
-vim.api.nvim_create_autocmd("VimResized", {
-  group = augroup("resize_splits"),
-  callback = function()
-    vim.cmd("tabdo wincmd =")
-  end,
-})
+-- resizes splits if window got resized
+vim.api.nvim_create_autocmd(
+  -- after Vim window was resized
+  "VimResized",
+  {
+    group = group,
+    callback = function()
+      -- for each tab, make windows equal
+      vim.cmd("tabdo wincmd =")
+    end,
+  }
+)
 
--- Go to last loc when opening a buffer
-vim.api.nvim_create_autocmd("BufReadPost", {
-  group = augroup("last_loc"),
-  callback = function()
-    local mark = vim.api.nvim_buf_get_mark(0, '"')
-    local lcount = vim.api.nvim_buf_line_count(0)
-    if mark[1] > 0 and mark[1] <= lcount then
-      pcall(vim.api.nvim_win_set_cursor, 0, mark)
-    end
-  end,
-})
+-- places cursor at last location when opening a buffer
+vim.api.nvim_create_autocmd(
+  -- when starting to edit a buffer
+  "BufReadPost",
+  {
+    group = group,
+    callback = function()
+      -- (row, col) of last known cursor position
+      local mark = vim.api.nvim_buf_get_mark(0, '"')
+      -- number of lines in buffer
+      local lcount = vim.api.nvim_buf_line_count(0)
+      -- if mark is valid, move to it
+      if mark[1] > 0 and mark[1] <= lcount then
+        pcall(vim.api.nvim_win_set_cursor, 0, mark)
+      end
+    end,
+  }
+)
 
--- Close some filetypes with <q>
-vim.api.nvim_create_autocmd("FileType", {
-  group = augroup("close_with_q"),
-  pattern = {
-    "help",
-    "lspinfo",
-    "qf",
-    "checkhealth",
-  },
-  callback = function(event)
-    vim.bo[event.buf].buflisted = false
-    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
-  end,
-})
+-- closes some filetypes with `q`
+vim.api.nvim_create_autocmd(
+  -- after 'filetype' option has been set
+  "FileType",
+  {
+    group = group,
+    -- relevant file types
+    pattern = {
+      "help",
+      "lspinfo",
+      "qf",
+      "checkhealth",
+    },
+    callback = function(event)
+      vim.keymap.set("n", "q", "<cmd>bd<cr>", {
+        buffer = event.buf,
+        -- non-recursive map
+        noremap = true,
+        -- do not echo to command line
+        silent = true,
+        -- execute as soon as match found, do not wait for other keys
+        nowait = true,
+      })
+    end,
+  }
+)
 
--- Wrap lines and check spelling in text filetypes
-vim.api.nvim_create_autocmd("FileType", {
-  group = augroup("wrap_spell"),
-  pattern = { "gitcommit", "markdown" },
-  callback = function()
-    vim.opt_local.wrap = true
-    vim.opt_local.spell = true
-  end,
-})
+-- wraps lines and checks spelling in text filetypes
+vim.api.nvim_create_autocmd(
+  -- after 'filetype' option has been set
+  "FileType",
+  {
+    group = group,
+    -- relevant file types
+    pattern = { "gitcommit", "markdown" },
+    callback = function()
+      -- enable line wrap on display
+      vim.opt_local.wrap = true
+      -- enable spell checking
+      vim.opt_local.spell = true
+    end,
+  }
+)
 
--- Auto create dir when saving a file, in case some intermediate directory does not exist
-vim.api.nvim_create_autocmd("BufWritePre", {
-  group = augroup("auto_create_dir"),
-  callback = function(event)
-    if event.match:match("^%w%w+://") then
-      return
-    end
-    local file = vim.loop.fs_realpath(event.match) or event.match
-    vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
-  end,
-})
+-- auto creates dir when saving a file, in case some intermediate directory does not exist
+vim.api.nvim_create_autocmd(
+  -- before writing buffer to file
+  "BufWritePre",
+  {
+    group = group,
+    callback = function(event)
+      -- make the directory
+      -- :p - make filename full path
+      -- :h - head is removed, leaving directory of file
+      vim.fn.mkdir(vim.fn.fnamemodify(event.match, ":p:h"), "p")
+    end,
+  }
+)

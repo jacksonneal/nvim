@@ -18,6 +18,7 @@ end
 -- configure vim options
 require("core.options")
 require("core.keymaps")
+-- configure autocommands
 require("core.autocommands")
 require("core.format")
 vim.cmd.colorscheme(settings.colorscheme)
