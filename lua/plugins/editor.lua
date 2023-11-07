@@ -44,19 +44,22 @@ local plugins = {
       "BufReadPost",
       "BufNewFile",
     },
-    opts = {},
+    config = true,
   },
   {
     -- comment lines
     "echasnovski/mini.comment",
-    event = "InsertEnter",
-    opts = {},
+    event = {
+      "BufReadPost",
+      "BufNewFile",
+    },
+    config = true,
   },
   {
     -- autopairs
     "echasnovski/mini.pairs",
     event = "InsertEnter",
-    opts = {},
+    config = true,
   },
 }
 

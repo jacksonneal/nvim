@@ -12,6 +12,8 @@ local function mason_nvim_config(_, opts)
         if not p:is_installed() then
           vim.notify("Installing " .. tool)
           p:install()
+        else
+          vim.notify("Skipping " .. tool .. ", already installed")
         end
       end
     end

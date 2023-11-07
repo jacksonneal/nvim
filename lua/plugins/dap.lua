@@ -1,34 +1,45 @@
 -- Module for DAP plugins.
 
-local function nvim_dap_config()
-  vim.api.nvim_create_user_command("DapBreakpointCondition", function()
-    require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
-  end, {})
+local function set_conditional_breakpoint()
+  require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
+end
 
-  vim.api.nvim_create_user_command("DapBreakpointLog", function()
-    require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
-  end, {})
+local function set_log_breakpoint()
+  require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
+end
 
-  vim.api.nvim_create_user_command("DapReplOpen", function()
-    require("dap").repl.open()
-  end, {})
+local function open_debug_repl()
+  require("dap").repl.open()
+end
+
+local function nvim_dap_init()
+  vim.api.nvim_create_user_command("DapConditionBreakpoint", set_conditional_breakpoint, {})
+  vim.api.nvim_create_user_command("DapLogBreakpoint", set_log_breakpoint, {})
+  vim.api.nvim_create_user_command("DapReplOpen", open_debug_repl, {})
 end
 
 local plugins = {
   {
     "mfussenegger/nvim-dap",
+    cmd = {
+      "DapToggleBreakpoint",
+      "DapTerminate",
+      "DapStepOver",
+      "DapStepInto",
+      "DapStepOut",
+    },
     keys = {
       { "<leader>db", "<cmd>DapToggleBreakpoint<cr>", desc = "Toggle breakpoint" },
       { "<leader>dc", "<cmd>DapBreakpointCondition<cr>", desc = "Conditional breakpoint" },
       { "<leader>dl", "<cmd>DapBreakpointLog<cr>", desc = "Log breakpoint" },
       { "<leader>dr", "<cmd>DapReplOpen<cr>", desc = "Open REPL" },
-      { "<F4>", "<cmd>DapTerminate<cr>", desc = "Terminate" },
-      { "<F5>", "<cmd>DapContinue<cr>", desc = "Continue" },
+      { "<F4>", "<cmd>DapTerminate<cr>", desc = "Debug terminate" },
+      { "<F5>", "<cmd>DapContinue<cr>", desc = "Debug continue" },
       { "<F6>", "<cmd>DapStepOver<cr>", desc = "Step over" },
       { "<F7>", "<cmd>DapStepInto<cr>", desc = "Step into" },
       { "<F8>", "<cmd>DapStepOut<cr>", desc = "Step out" },
     },
-    config = nvim_dap_config,
+    init = nvim_dap_init,
   },
 }
 

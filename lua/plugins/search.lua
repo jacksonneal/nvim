@@ -4,6 +4,7 @@ local plugins = {
   {
     -- search
     "echasnovski/mini.pick",
+    lazy = false,
     keys = {
       { "<leader><leader>", "<cmd>Pick files<cr>", desc = "Search files" },
       { "<leader>F", "<cmd>Pick grep<cr>", desc = "Search global" },
@@ -19,11 +20,12 @@ local plugins = {
   {
     -- extra mini pickers
     "echasnovski/mini.extra",
+    lazy = false,
     keys = {
       { "<leader>s", "<cmd>Pick lsp scope='document_symbol'<cr>", desc = "Search symbols" },
       { "<leader>r", "<cmd>Pick lsp scope='references'<cr>", desc = "Search references" },
     },
-    opts = {},
+    config = true,
   },
 }
 

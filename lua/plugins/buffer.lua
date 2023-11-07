@@ -1,12 +1,11 @@
 -- Module for buffer management plugins.
 
-local mini_bufremove_config = function()
-  local mini_bufremove = require("mini.bufremove")
-  mini_bufremove.setup()
+local function delete_cur_buf()
+  require("mini.bufremove").delete(0, false)
+end
 
-  vim.api.nvim_create_user_command("MiniBufremove", function()
-    mini_bufremove.delete(0, false)
-  end, {})
+local function mini_bufremove_init()
+  vim.api.nvim_create_user_command("MiniBufremove", delete_cur_buf, {})
 end
 
 local plugins = {
@@ -14,19 +13,20 @@ local plugins = {
     -- buffer removal
     "echasnovski/mini.bufremove",
     keys = {
-      { "<leader>bd", "<cmd>MiniBufremove<cr>", desc = "Delete current buffer" },
+      { "<leader>bd", delete_cur_buf, desc = "Delete current buffer" },
     },
-    config = mini_bufremove_config,
+    config = true,
+    init = mini_bufremove_init,
   },
   {
     -- buffer line
     "akinsho/bufferline.nvim",
+    dependencies = {
+      "nvim-web-devicons",
+    },
     event = {
       "BufReadPre",
       "BufNewFile",
-    },
-    dependencies = {
-      "nvim-web-devicons",
     },
     keys = {
       { "<S-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
