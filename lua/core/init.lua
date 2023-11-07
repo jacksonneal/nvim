@@ -127,6 +127,10 @@ require("lazy").setup({
     config = function()
       local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
       require("dap-python").setup(path)
+      require("dap-python").resolve_python = function()
+        local cwd = vim.fn.getcwd()
+        return cwd .. "/venv/bin/python"
+      end
     end,
   },
   {
