@@ -1,17 +1,16 @@
-local file = require("util.file")
-local table = require("util.table")
-
 -- project settings file name
 local settings_file_name = ".stardog.json"
 -- project settings filepath
 local settings_filepath = vim.fn.getcwd() .. "/" .. settings_file_name
 -- default project settings
 local settings = {
-  colorscheme = "gruvbox-material",
+  colorscheme = "habamax",
 }
 -- if project settings file exists, combine with default
-if file.is_file(settings_filepath) then
-  settings = table.merge(settings, file.read_json(settings_filepath))
+if vim.fn.filereadable(settings_filepath) ~= 0 then
+  -- settings = vim.tbl_deep_extend("force", settings, file.read_json(settings_filepath))
+  local data = vim.fn.readfile(settings_filepath)
+  settings = vim.fn.json_decode(data)
 end
 
 -- configure vim options
@@ -26,7 +25,7 @@ require("core.static_analysis")
 -- path to install lazy.nvim
 local lazy_path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 -- bootstrap lazy.nvim package manager
-if not file.is_dir(lazy_path) then
+if vim.fn.isdirectory(lazy_path) == 0 then
   -- clone lazy.nvim repo
   vim.fn.system({
     "git",
