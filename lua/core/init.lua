@@ -17,67 +17,8 @@ require("core.lazy_bootstrap")
 require("lazy").setup({
   { import = "plugins" },
   {
-    "mfussenegger/nvim-dap",
-    keys = {
-      { "<leader>db", "<cmd>DapToggleBreakpoint<cr>", desc = "Toggle breakpoint" },
-      {
-        "<leader>dB",
-        function()
-          require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
-        end,
-        desc = "Conditional breakpoint",
-      },
-      {
-        "<leader>dL",
-        function()
-          require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
-        end,
-        desc = "Log breakpoint",
-      },
-      {
-        "<leader>dR",
-        function()
-          require("dap").repl.open()
-        end,
-        desc = "Open REPL",
-      },
-      {
-        "<F4>",
-        "<cmd>DapTerminate<cr>",
-        desc = "Terminate",
-      },
-      {
-        "<F5>",
-        function()
-          require("dap").continue()
-        end,
-        desc = "Continue",
-      },
-      {
-        "<F6>",
-        function()
-          require("dap").step_over()
-        end,
-        desc = "Step over",
-      },
-      {
-        "<F7>",
-        function()
-          require("dap").step_into()
-        end,
-        desc = "Step into",
-      },
-      {
-        "<F8>",
-        function()
-          require("dap").step_out()
-        end,
-        desc = "Step out",
-      },
-    },
-  },
-  {
     "theHamsta/nvim-dap-virtual-text",
+    lazy = true,
     opts = {},
   },
   {
@@ -132,6 +73,7 @@ require("lazy").setup({
       local dapui = require("dapui")
       dapui.setup()
       dap.listeners.after.event_initialized["dapui_config"] = function()
+        require("nvim-dap-virtual-text")
         dapui.open()
       end
       dap.listeners.after.event_terminated["dapui_config"] = function()

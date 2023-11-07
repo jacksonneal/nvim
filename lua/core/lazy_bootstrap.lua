@@ -2,6 +2,7 @@
 
 -- path to install lazy.nvim
 local lazy_path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+-- check if already present
 if vim.fn.isdirectory(lazy_path) == 0 then
   -- clone lazy.nvim repo
   vim.fn.system({

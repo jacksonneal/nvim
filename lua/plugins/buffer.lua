@@ -14,11 +14,7 @@ local plugins = {
     -- buffer removal
     "echasnovski/mini.bufremove",
     keys = {
-      {
-        "<leader>bd",
-        "<cmd>MiniBufremove<cr>",
-        desc = "Delete current buffer",
-      },
+      { "<leader>bd", "<cmd>MiniBufremove<cr>", desc = "Delete current buffer" },
     },
     config = mini_bufremove_config,
   },
