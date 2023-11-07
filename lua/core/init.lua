@@ -1,5 +1,4 @@
 local file = require("util.file")
-local shell = require("util.shell")
 local table = require("util.table")
 
 -- project settings file name
@@ -8,7 +7,7 @@ local settings_file_name = ".stardog.json"
 local settings_filepath = vim.fn.getcwd() .. "/" .. settings_file_name
 -- default project settings
 local settings = {
-  colorscheme = "habamax",
+  colorscheme = "gruvbox-material",
 }
 -- if project settings file exists, combine with default
 if file.is_file(settings_filepath) then
@@ -29,7 +28,7 @@ local lazy_path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 -- bootstrap lazy.nvim package manager
 if not file.is_dir(lazy_path) then
   -- clone lazy.nvim repo
-  shell.call({
+  vim.fn.system({
     "git",
     "clone",
     "--filter=blob:none",
@@ -43,14 +42,90 @@ vim.opt.rtp:prepend(lazy_path)
 
 require("lazy").setup({
   {
+    -- extra mini pickers
+    "echasnovski/mini.extra",
+    lazy = false,
+    keys = {
+      { "<leader>s", "<cmd>Pick lsp scope='document_symbol'<cr>", desc = "Search symbols" },
+      { "<leader>r", "<cmd>Pick lsp scope='references'<cr>", desc = "Search references" },
+    },
+    -- empty opts so lazy.nvim calls Plugin.config
+    opts = {},
+  },
+  {
+    -- search
+    "echasnovski/mini.pick",
+    lazy = false,
+    keys = {
+      { "<leader>p", "<cmd>Pick files<cr>", desc = "Search files" },
+      { "<leader>P", "<cmd>Pick grep<cr>", desc = "Search global" },
+      { "<leader><leader>p", "<cmd>Pick resume<cr>", desc = "Resume search" },
+    },
+    opts = {
+      mappings = {
+        move_down = "<C-j>",
+        move_up = "<C-k>",
+      },
+    },
+  },
+  {
+    -- syntax highlighting
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      -- supported languages
+      ensure_installed = {
+        "lua",
+        "vim",
+        "vimdoc",
+      },
+    },
+  },
+  {
+    -- buffer removal
+    "echasnovski/mini.bufremove",
+    keys = {
+      -- remove buffer
+      {
+        "<leader>bd",
+        function()
+          require("mini.bufremove").delete(0, false)
+        end,
+        desc = "Delete buffer",
+      },
+    },
+  },
+  {
     -- buffer line
     "akinsho/bufferline.nvim",
+    event = {
+      -- before reading a file into a buffer
+      "BufReadPre",
+      -- before editing a new file
+      "BufNewFile",
+    },
     dependencies = {
       -- display file icons
       "nvim-tree/nvim-web-devicons",
     },
+    keys = {
+      -- cycle to prev buffer
+      { "<S-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
+      -- cycle to next buffer
+      { "<S-l>", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
+    },
     -- empty opts so lazy.nvim calls Plugin.config
-    opts = {},
+    opts = {
+      options = {
+        offsets = {
+          {
+            filetype = "NvimTree",
+            text = "File Explorer",
+            text_align = "left",
+            separator = true,
+          },
+        },
+      },
+    },
   },
   {
     -- gruvbox colorscheme with softened palette
