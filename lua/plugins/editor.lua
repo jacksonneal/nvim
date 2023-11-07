@@ -37,6 +37,27 @@ local plugins = {
     },
     config = nvim_treesitter_config,
   },
+  {
+    -- surround actions
+    "echasnovski/mini.surround",
+    event = {
+      "BufReadPost",
+      "BufNewFile",
+    },
+    opts = {},
+  },
+  {
+    -- comment lines
+    "echasnovski/mini.comment",
+    event = "InsertEnter",
+    opts = {},
+  },
+  {
+    -- autopairs
+    "echasnovski/mini.pairs",
+    event = "InsertEnter",
+    opts = {},
+  },
 }
 
 return plugins

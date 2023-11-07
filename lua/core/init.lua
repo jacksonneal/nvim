@@ -29,8 +29,6 @@ vim.opt.rtp:prepend(lazy_path)
 
 require("lazy").setup({
   { import = "plugins" },
-  { "echasnovski/mini.comment", opts = {} },
-  { "echasnovski/mini.surround", opts = {} },
   {
     "mfussenegger/nvim-dap",
     keys = {
@@ -186,14 +184,6 @@ require("lazy").setup({
         move_up = "<C-k>",
       },
     },
-  },
-  {
-    -- autopairs
-    "echasnovski/mini.pairs",
-    -- just before starting Insert mode
-    event = "InsertEnter",
-    -- empty opts so lazy.nvim calls Plugin.config
-    opts = {},
   },
   {
     -- package manager

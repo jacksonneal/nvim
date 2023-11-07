@@ -6,7 +6,7 @@ local settings_filepath = vim.fn.getcwd() .. "/" .. settings_file_name
 local config = {
   initialized = false,
   settings = {
-    colorscheme = "habamax",
+    colorscheme = "gruvbox-material",
   },
 }
 
