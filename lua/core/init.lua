@@ -159,33 +159,6 @@ require("lazy").setup({
     end,
   },
   {
-    -- extra mini pickers
-    "echasnovski/mini.extra",
-    lazy = false,
-    keys = {
-      { "<leader>s", "<cmd>Pick lsp scope='document_symbol'<cr>", desc = "Search symbols" },
-      { "<leader>r", "<cmd>Pick lsp scope='references'<cr>", desc = "Search references" },
-    },
-    -- empty opts so lazy.nvim calls Plugin.config
-    opts = {},
-  },
-  {
-    -- search
-    "echasnovski/mini.pick",
-    lazy = false,
-    keys = {
-      { "<leader>p", "<cmd>Pick files<cr>", desc = "Search files" },
-      { "<leader>P", "<cmd>Pick grep<cr>", desc = "Search global" },
-      { "<leader><leader>p", "<cmd>Pick resume<cr>", desc = "Resume search" },
-    },
-    opts = {
-      mappings = {
-        move_down = "<C-j>",
-        move_up = "<C-k>",
-      },
-    },
-  },
-  {
     -- configs for neovim LSP client
     "neovim/nvim-lspconfig",
     event = {
