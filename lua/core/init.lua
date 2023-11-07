@@ -186,52 +186,6 @@ require("lazy").setup({
     },
   },
   {
-    -- package manager
-    "williamboman/mason.nvim",
-    -- empty opts so lazy.nvim calls Plugin.config
-    opts = {
-      -- list of dependencies to automatically install
-      ensure_installed = {
-        -- python debugger
-        "debugpy",
-      },
-    },
-    config = function(_, opts)
-      require("mason").setup(opts)
-      local mr = require("mason-registry")
-
-      local function inner()
-        for _, tool in ipairs(opts.ensure_installed) do
-          local p = mr.get_package(tool)
-          if not p:is_installed() then
-            vim.notify("Installing " .. tool)
-            p:install()
-          end
-        end
-      end
-
-      mr.refresh(inner)
-    end,
-  },
-  {
-    -- bridge mason and lspconfig with installation and configuration of LSP servers
-    "williamboman/mason-lspconfig.nvim",
-    dependencies = {
-      "mason.nvim",
-    },
-    opts = {
-      -- list of servers to automatically install
-      ensure_installed = {
-        -- lua-language-server
-        "lua_ls",
-        -- ruff-lsp (python lint/format)
-        "ruff_lsp",
-        -- jedi-language-server (python actions)
-        "jedi_language_server",
-      },
-    },
-  },
-  {
     -- configs for neovim LSP client
     "neovim/nvim-lspconfig",
     event = {
