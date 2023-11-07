@@ -10,23 +10,10 @@ require("core.autocommands")
 -- configure static analysis
 require("core.static_analysis")
 
--- path to install lazy.nvim
-local lazy_path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
--- bootstrap lazy.nvim package manager
-if vim.fn.isdirectory(lazy_path) == 0 then
-  -- clone lazy.nvim repo
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable",
-    lazy_path,
-  })
-end
--- add to runtime path
-vim.opt.rtp:prepend(lazy_path)
+-- bootstrap lazy.nvim
+require("core.lazy_bootstrap")
 
+-- setup plugins
 require("lazy").setup({
   { import = "plugins" },
   {
@@ -91,9 +78,6 @@ require("lazy").setup({
   },
   {
     "theHamsta/nvim-dap-virtual-text",
-    dependencies = {
-      "nvim-dap",
-    },
     opts = {},
   },
   {
