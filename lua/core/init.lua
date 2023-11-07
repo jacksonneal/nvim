@@ -41,6 +41,131 @@ vim.opt.rtp:prepend(lazy_path)
 
 require("lazy").setup({
   {
+    "mfussenegger/nvim-dap",
+    keys = {
+      { "<leader>db", "<cmd>DapToggleBreakpoint<cr>", desc = "Toggle breakpoint" },
+      {
+        "<leader>dB",
+        function()
+          require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
+        end,
+        desc = "Conditional breakpoint",
+      },
+      {
+        "<leader>dL",
+        function()
+          require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
+        end,
+        desc = "Log breakpoint",
+      },
+      {
+        "<leader>dR",
+        function()
+          require("dap").repl.open()
+        end,
+        desc = "Open REPL",
+      },
+      {
+        "<F4>",
+        "<cmd>DapTerminate<cr>",
+        desc = "Terminate",
+      },
+      {
+        "<F5>",
+        function()
+          require("dap").continue()
+        end,
+        desc = "Continue",
+      },
+      {
+        "<F6>",
+        function()
+          require("dap").step_over()
+        end,
+        desc = "Step over",
+      },
+      {
+        "<F7>",
+        function()
+          require("dap").step_into()
+        end,
+        desc = "Step into",
+      },
+      {
+        "<F8>",
+        function()
+          require("dap").step_out()
+        end,
+        desc = "Step out",
+      },
+    },
+  },
+  {
+    "theHamsta/nvim-dap-virtual-text",
+    dependencies = {
+      "nvim-dap",
+    },
+    opts = {},
+  },
+  {
+    "mfussenegger/nvim-dap-python",
+    ft = "python",
+    dependencies = {
+      "mason.nvim",
+      "nvim-dap",
+      "nvim-dap-ui",
+    },
+    keys = {
+      {
+        "<leader>dr",
+        function()
+          require("dap-python").test_method()
+        end,
+        "Test method",
+      },
+    },
+    config = function()
+      local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
+      require("dap-python").setup(path)
+    end,
+  },
+  {
+    "rcarriga/nvim-dap-ui",
+    dependencies = {
+      "nvim-dap",
+    },
+    keys = {
+      {
+        "<F9>",
+        function()
+          local dapui = require("dapui")
+          dapui.close()
+        end,
+      },
+      {
+        "<F10>",
+        function()
+          local dapui = require("dapui")
+          dapui.open()
+        end,
+      },
+    },
+    config = function()
+      local dap = require("dap")
+      local dapui = require("dapui")
+      dapui.setup()
+      dap.listeners.after.event_initialized["dapui_config"] = function()
+        dapui.open()
+      end
+      dap.listeners.after.event_terminated["dapui_config"] = function()
+        -- dapui.close()
+      end
+      dap.listeners.after.event_exited["dapui_config"] = function()
+        -- dapui.close()
+      end
+    end,
+  },
+  {
     -- extra mini pickers
     "echasnovski/mini.extra",
     lazy = false,
@@ -74,10 +199,14 @@ require("lazy").setup({
       -- supported languages
       ensure_installed = {
         "lua",
+        "python",
         "vim",
         "vimdoc",
       },
     },
+    config = function(_, opts)
+      require("nvim-treesitter.configs").setup(opts)
+    end,
   },
   {
     -- buffer removal
@@ -111,6 +240,10 @@ require("lazy").setup({
       { "<S-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
       -- cycle to next buffer
       { "<S-l>", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
+      -- close unpinned buffers
+      { "<leader>bp", "<cmd>BufferLineTogglePin<cr>", desc = "Toggle buffer pin" },
+      -- close unpinned buffers
+      { "<leader>bP", "<cmd>BufferLineGroupClose ungrouped<cr>", desc = "Delete unpinned buffers" },
     },
     -- empty opts so lazy.nvim calls Plugin.config
     opts = {
@@ -159,7 +292,29 @@ require("lazy").setup({
     -- package manager
     "williamboman/mason.nvim",
     -- empty opts so lazy.nvim calls Plugin.config
-    opts = {},
+    opts = {
+      -- list of dependencies to automatically install
+      ensure_installed = {
+        -- python debugger
+        "debugpy",
+      },
+    },
+    config = function(_, opts)
+      require("mason").setup(opts)
+      local mr = require("mason-registry")
+
+      local function inner()
+        for _, tool in ipairs(opts.ensure_installed) do
+          local p = mr.get_package(tool)
+          if not p:is_installed() then
+            vim.notify("Installing " .. tool)
+            p:install()
+          end
+        end
+      end
+
+      mr.refresh(inner)
+    end,
   },
   {
     -- bridge mason and lspconfig with installation and configuration of LSP servers
