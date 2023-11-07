@@ -4,7 +4,7 @@
 
 ### Prerequisites
 
-- [Neovim](https://neovim.io/) >= `v0.9.1`
+- [Neovim](https://neovim.io/) `v0.9.1`
 
 ### Setup
 
@@ -14,4 +14,4 @@
 
 ### Prerequisites
 
-- [pre-commit](https://pre-commit.com/) >= `v3.5.0`
+- [pre-commit](https://pre-commit.com/) `v3.5.0`
