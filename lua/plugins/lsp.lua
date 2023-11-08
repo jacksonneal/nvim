@@ -42,6 +42,16 @@ local function nvim_lspconfig_config()
     capabilities = capabilities,
   })
 
+  -- JSON LSP server
+  local jsonls_capabilities = vim.lsp.protocol.make_client_capabilities()
+  jsonls_capabilities.textDocument.completion.completionItem.snippetSupport = true
+  lspconfig.jsonls.setup({
+    on_attach = function(_, bufnr)
+      on_attach_mappings(bufnr)
+    end,
+    capabilities = jsonls_capabilities,
+  })
+
   setup_diagnostics()
 end
 

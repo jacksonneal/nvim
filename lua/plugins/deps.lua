@@ -43,6 +43,7 @@ local plugins = {
     },
     opts = {
       ensure_installed = {
+        "jsonls",
         "lua_ls",
         "pyright",
         "ruff_lsp",
