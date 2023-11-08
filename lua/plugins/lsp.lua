@@ -30,14 +30,12 @@ local function nvim_lspconfig_config()
 
   -- Python LSP servers
   lspconfig.ruff_lsp.setup({
-    on_attach = function(client, bufnr)
-      on_attach_mappings(bufnr)
+    on_attach = function(client)
       -- defer hover to other LSP server
       client.server_capabilities.hoverProvider = false
     end,
-    capabilities = capabilities,
   })
-  lspconfig.jedi_language_server.setup({
+  lspconfig.pyright.setup({
     on_attach = function(_, bufnr)
       on_attach_mappings(bufnr)
     end,
