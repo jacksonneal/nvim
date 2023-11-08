@@ -17,11 +17,6 @@ require("core.lazy_bootstrap")
 require("lazy").setup({
   { import = "plugins" },
   {
-    "theHamsta/nvim-dap-virtual-text",
-    lazy = true,
-    opts = {},
-  },
-  {
     "mfussenegger/nvim-dap-python",
     ft = "python",
     dependencies = {
@@ -31,7 +26,7 @@ require("lazy").setup({
     },
     keys = {
       {
-        "<leader>dr",
+        "<leader>dpr",
         function()
           require("dap-python").test_method()
         end,
@@ -44,43 +39,6 @@ require("lazy").setup({
       require("dap-python").resolve_python = function()
         local cwd = vim.fn.getcwd()
         return cwd .. "/venv/bin/python"
-      end
-    end,
-  },
-  {
-    "rcarriga/nvim-dap-ui",
-    dependencies = {
-      "nvim-dap",
-    },
-    keys = {
-      {
-        "<F9>",
-        function()
-          local dapui = require("dapui")
-          dapui.close()
-        end,
-      },
-      {
-        "<F10>",
-        function()
-          local dapui = require("dapui")
-          dapui.open()
-        end,
-      },
-    },
-    config = function()
-      local dap = require("dap")
-      local dapui = require("dapui")
-      dapui.setup()
-      dap.listeners.after.event_initialized["dapui_config"] = function()
-        require("nvim-dap-virtual-text")
-        dapui.open()
-      end
-      dap.listeners.after.event_terminated["dapui_config"] = function()
-        -- dapui.close()
-      end
-      dap.listeners.after.event_exited["dapui_config"] = function()
-        -- dapui.close()
       end
     end,
   },

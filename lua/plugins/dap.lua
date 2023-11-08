@@ -18,8 +18,26 @@ local function nvim_dap_init()
   vim.api.nvim_create_user_command("DapReplOpen", open_debug_repl, {})
 end
 
+local function dapui_toggle()
+  require("dapui").toggle()
+end
+
+local function nvim_dapui_config()
+  local dap = require("dap")
+  local dapui = require("dapui")
+  dapui.setup()
+  dap.listeners.after.event_initialized["dapui_config"] = function()
+    dapui.open()
+  end
+end
+
+local function dapui_init()
+  vim.api.nvim_create_user_command("DapuiToggle", dapui_toggle, {})
+end
+
 local plugins = {
   {
+    -- DAP client
     "mfussenegger/nvim-dap",
     cmd = {
       "DapToggleBreakpoint",
@@ -40,6 +58,20 @@ local plugins = {
       { "<F8>", "<cmd>DapStepOut<cr>", desc = "Step out" },
     },
     init = nvim_dap_init,
+  },
+  {
+    -- Debug UI
+    "rcarriga/nvim-dap-ui",
+    dependencies = {
+      "nvim-dap",
+      -- debug virtual text
+      { "theHamsta/nvim-dap-virtual-text", config = true },
+    },
+    keys = {
+      { "<F9>", dapui_toggle, "Toggle DAP UI" },
+    },
+    config = nvim_dapui_config,
+    init = dapui_init,
   },
 }
 
