@@ -12,6 +12,10 @@ local function on_attach_mappings(bufnr)
 
   vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr })
   vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { buffer = bufnr })
+
+  vim.keymap.set("n", "<leader>f", function()
+    vim.lsp.buf.format({ async = true })
+  end, { buffer = bufnr })
 end
 
 local function setup_diagnostics()
