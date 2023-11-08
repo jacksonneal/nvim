@@ -23,41 +23,6 @@ local lspconfig = require("lspconfig")
 -- access completion capabilities
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
--- configure jedi-language-server
-lspconfig.jedi_language_server.setup({})
-
--- configure ruff-lsp
-lspconfig.ruff_lsp.setup({
-  -- set completion capabilities
-  -- capabilities = capabilities,
-  -- on buffer attach
-  on_attach = function(_, bufnr)
-    -- hover info
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr })
-    -- goto definition
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr })
-    -- goto type definition
-    vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = bufnr })
-    -- goto implementation
-    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr })
-
-    -- show line diagnostic
-    vim.keymap.set("n", "<leader>ds", vim.diagnostic.open_float, { buffer = bufnr })
-    -- goto next diagnostic
-    vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, { buffer = bufnr })
-    -- goto previous diagnostic
-    vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, { buffer = bufnr })
-
-    -- show code action
-    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr })
-  end,
-  init_options = {
-    settings = {
-      args = {},
-    },
-  },
-})
-
 -- configure lua-language-server
 lspconfig.lua_ls.setup({
   -- set completion capabilities
@@ -124,10 +89,4 @@ lspconfig.lua_ls.setup({
     end
     return true
   end,
-})
-
--- configure diagnostics
-vim.diagnostic.config({
-  -- no inline virtual diagnostic text
-  virtual_text = false,
 })
