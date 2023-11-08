@@ -1,3 +1,4 @@
+-- configure settings
 local config = require("core.config")
 config.setup()
 
@@ -14,27 +15,7 @@ require("core.static_analysis")
 require("core.lazy_bootstrap")
 
 -- setup plugins
-require("lazy").setup({
-  { import = "plugins" },
-  {
-    -- configs for neovim LSP client
-    "neovim/nvim-lspconfig",
-    event = {
-      -- before reading a file into a buffer
-      "BufReadPre",
-      -- before editing a new file
-      "BufNewFile",
-    },
-    dependencies = {
-      -- package manager
-      "mason.nvim",
-      -- bridge mason and lspconfig with installation and configuration of LSP servers
-      "mason-lspconfig.nvim",
-      -- completion source for neovim LSP client
-      "cmp-nvim-lsp",
-    },
-  },
-})
+require("lazy").setup("plugins")
 
 -- configure LSP servers
 local lspconfig = require("lspconfig")
