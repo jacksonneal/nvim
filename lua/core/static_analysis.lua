@@ -77,55 +77,10 @@ local function make_static_analyze_with_output(name, command)
   end, {})
 end
 
-local function make_static_analyze_fix(name, command)
-  vim.api.nvim_create_user_command(name, function()
-    -- save current buffer
-    vim.api.nvim_command("w")
-
-    -- access buffer name to analyze
-    local buffer_name = vim.api.nvim_buf_get_name(0)
-
-    -- execute command on buffer
-    vim.fn.jobstart(command .. " " .. buffer_name, {
-      stdout_buffered = true,
-      on_exit = function()
-        -- load buffer changes
-        vim.api.nvim_command("edit!")
-      end,
-    })
-  end, {})
-end
-
 local group = vim.api.nvim_create_augroup("StaticAnalysis", {
   -- clear existing commands if the group already exists
   clear = true,
 })
-
--- make StyLua command
-make_static_analyze_fix("StyLua", "stylua")
--- format lua files
-vim.api.nvim_create_autocmd(
-  -- after 'filetype' option has been set
-  "FileType",
-  {
-    group = group,
-    -- relevant file types
-    pattern = {
-      "lua",
-    },
-    callback = function(event)
-      vim.keymap.set("n", "<leader>Q", "<cmd>StyLua<cr>", {
-        buffer = event.buf,
-        -- non-recursive map
-        noremap = true,
-        -- do not echo to command line
-        silent = true,
-        -- execute as soon as match found, do not wait for other keys
-        nowait = true,
-      })
-    end,
-  }
-)
 
 -- make Mypy command
 make_static_analyze_with_output("Mypy", ". ./venv/bin/activate && mypy")
