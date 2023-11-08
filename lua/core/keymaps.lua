@@ -1,3 +1,5 @@
+-- Module for keymaps.
+
 local function map(mode, lhs, rhs, opts)
   opts = opts or {}
   opts = vim.tbl_extend("keep", opts, {

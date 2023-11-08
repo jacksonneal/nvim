@@ -1,3 +1,5 @@
+-- Module for type checking.
+
 local group = vim.api.nvim_create_augroup("TypeCheck", {})
 
 local mypy_command = "<cmd>2TermExec cmd='. ./venv/bin/activate && mypy .'<cr>"
