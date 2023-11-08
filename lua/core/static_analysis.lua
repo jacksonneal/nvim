@@ -114,7 +114,7 @@ vim.api.nvim_create_autocmd(
       "lua",
     },
     callback = function(event)
-      vim.keymap.set("n", "<leader>f", "<cmd>StyLua<cr>", {
+      vim.keymap.set("n", "<leader>Q", "<cmd>StyLua<cr>", {
         buffer = event.buf,
         -- non-recursive map
         noremap = true,

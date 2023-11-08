@@ -34,6 +34,9 @@ lspconfig.lua_ls.setup({
   },
   -- on buffer attach
   on_attach = function(_, bufnr)
+    vim.keymap.set("n", "<leader>f", function()
+      vim.lsp.buf.format({ async = true })
+    end, { buffer = bufnr })
     -- hover info
     vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr })
     -- goto definition
