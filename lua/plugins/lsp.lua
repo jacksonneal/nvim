@@ -30,7 +30,7 @@ end
 
 local function nvim_lspconfig_config()
   local lspconfig = require("lspconfig")
-  local capabilities = require("cmp_nvim_lsp").default_capabilities()
+  -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
   -- Python LSP servers
   lspconfig.ruff_lsp.setup({
@@ -43,7 +43,6 @@ local function nvim_lspconfig_config()
     on_attach = function(_, bufnr)
       on_attach_mappings(bufnr)
     end,
-    capabilities = capabilities,
   })
 
   -- JSON LSP server
