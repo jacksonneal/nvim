@@ -1,21 +1,21 @@
 -- Module for DAP plugins.
 
-local function set_conditional_breakpoint()
+local function dap_set_conditional_breakpoint()
   require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
 end
 
-local function set_log_breakpoint()
+local function dap_set_log_breakpoint()
   require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
 end
 
-local function open_debug_repl()
+local function dap_open_debug_repl()
   require("dap").repl.open()
 end
 
 local function nvim_dap_init()
-  vim.api.nvim_create_user_command("DapConditionBreakpoint", set_conditional_breakpoint, {})
-  vim.api.nvim_create_user_command("DapLogBreakpoint", set_log_breakpoint, {})
-  vim.api.nvim_create_user_command("DapReplOpen", open_debug_repl, {})
+  vim.api.nvim_create_user_command("DapConditionBreakpoint", dap_set_conditional_breakpoint, {})
+  vim.api.nvim_create_user_command("DapLogBreakpoint", dap_set_log_breakpoint, {})
+  vim.api.nvim_create_user_command("DapReplOpen", dap_open_debug_repl, {})
 end
 
 local function dapui_toggle()
@@ -35,6 +35,26 @@ local function dapui_init()
   vim.api.nvim_create_user_command("DapuiToggle", dapui_toggle, {})
 end
 
+local function dap_python_test_method()
+  require("dap-python").test_method()
+end
+
+local function nvim_dap_python_config()
+  local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
+  require("dap-python").setup(path)
+
+  local python_path = vim.fn.getcwd() .. "/venv/bin/python"
+  if vim.fn.executable(python_path) == 1 then
+    require("dap-python").resolve_python = function()
+      return python_path
+    end
+  end
+end
+
+local function nvim_dap_python_init()
+  vim.api.nvim_create_user_command("DapPythonTestMethod", dap_python_test_method, {})
+end
+
 local plugins = {
   {
     -- DAP client
@@ -48,9 +68,9 @@ local plugins = {
     },
     keys = {
       { "<leader>db", "<cmd>DapToggleBreakpoint<cr>", desc = "Toggle breakpoint" },
-      { "<leader>dc", "<cmd>DapBreakpointCondition<cr>", desc = "Conditional breakpoint" },
-      { "<leader>dl", "<cmd>DapBreakpointLog<cr>", desc = "Log breakpoint" },
-      { "<leader>dr", "<cmd>DapReplOpen<cr>", desc = "Open REPL" },
+      { "<leader>dc", dap_set_conditional_breakpoint, desc = "Conditional breakpoint" },
+      { "<leader>dl", dap_set_log_breakpoint, desc = "Log breakpoint" },
+      { "<leader>dr", dap_open_debug_repl, desc = "Open REPL" },
       { "<F4>", "<cmd>DapTerminate<cr>", desc = "Debug terminate" },
       { "<F5>", "<cmd>DapContinue<cr>", desc = "Debug continue" },
       { "<F6>", "<cmd>DapStepOver<cr>", desc = "Step over" },
@@ -72,6 +92,21 @@ local plugins = {
     },
     config = nvim_dapui_config,
     init = dapui_init,
+  },
+  {
+    -- DAP Python config
+    "mfussenegger/nvim-dap-python",
+    dependencies = {
+      "mason.nvim",
+      "nvim-treesitter",
+      "nvim-dap",
+      "nvim-dap-ui",
+    },
+    keys = {
+      { "<leader>dpr", dap_python_test_method, "Test method" },
+    },
+    config = nvim_dap_python_config,
+    init = nvim_dap_python_init,
   },
 }
 

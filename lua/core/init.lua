@@ -17,32 +17,6 @@ require("core.lazy_bootstrap")
 require("lazy").setup({
   { import = "plugins" },
   {
-    "mfussenegger/nvim-dap-python",
-    ft = "python",
-    dependencies = {
-      "mason.nvim",
-      "nvim-dap",
-      "nvim-dap-ui",
-    },
-    keys = {
-      {
-        "<leader>dpr",
-        function()
-          require("dap-python").test_method()
-        end,
-        "Test method",
-      },
-    },
-    config = function()
-      local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
-      require("dap-python").setup(path)
-      require("dap-python").resolve_python = function()
-        local cwd = vim.fn.getcwd()
-        return cwd .. "/venv/bin/python"
-      end
-    end,
-  },
-  {
     -- configs for neovim LSP client
     "neovim/nvim-lspconfig",
     event = {
