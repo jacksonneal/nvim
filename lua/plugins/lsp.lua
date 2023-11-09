@@ -101,6 +101,9 @@ local function configure_json(lspconfig, capabilities)
 end
 
 local function configure_typescript(lspconfig, capabilities)
+  lspconfig.tailwindcss.setup({
+    capabilities = capabilities,
+  })
   lspconfig.tsserver.setup({
     capabilities = capabilities,
     on_attach = function(_, bufnr)

@@ -47,6 +47,7 @@ local plugins = {
         "lua_ls",
         "pyright",
         "ruff_lsp",
+        "tailwindcss",
         "tsserver",
       },
     },
