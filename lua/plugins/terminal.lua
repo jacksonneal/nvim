@@ -3,7 +3,7 @@
 local plugins = {
   {
     "akinsho/toggleterm.nvim",
-    config = {
+    opts = {
       open_mapping = [[<c-\>]],
       size = 18,
     },

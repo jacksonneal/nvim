@@ -1,7 +1,7 @@
 -- Module for dependency and package manager plugins.
 
 local function mason_nvim_config(_, opts)
-  require("mason").setup(opts)
+  require("mason").setup()
 
   local function mason_install_all()
     local mr = require("mason-registry")
