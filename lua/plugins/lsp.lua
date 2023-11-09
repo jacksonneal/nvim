@@ -28,8 +28,9 @@ local function on_attach_mappings(bufnr)
   end, { buffer = bufnr })
 end
 
-local function configure_lua(lspconfig)
+local function configure_lua(lspconfig, capabilities)
   lspconfig.lua_ls.setup({
+    capabilities = capabilities,
     diagnostics = {
       -- names to allow for unused variables
       unusedLocalExclude = { "_" },
@@ -75,7 +76,7 @@ local function configure_lua(lspconfig)
   })
 end
 
-local function configure_python(lspconfig)
+local function configure_python(lspconfig, capabilities)
   lspconfig.ruff_lsp.setup({
     on_attach = function(client)
       -- defer hover to other LSP server
@@ -83,25 +84,25 @@ local function configure_python(lspconfig)
     end,
   })
   lspconfig.pyright.setup({
+    capabilities = capabilities,
     on_attach = function(_, bufnr)
       on_attach_mappings(bufnr)
     end,
   })
 end
 
-local function configure_json(lspconfig)
-  local jsonls_capabilities = vim.lsp.protocol.make_client_capabilities()
-  jsonls_capabilities.textDocument.completion.completionItem.snippetSupport = true
+local function configure_json(lspconfig, capabilities)
   lspconfig.jsonls.setup({
+    capabilities = capabilities,
     on_attach = function(_, bufnr)
       on_attach_mappings(bufnr)
     end,
-    capabilities = jsonls_capabilities,
   })
 end
 
-local function configure_typescript(lspconfig)
+local function configure_typescript(lspconfig, capabilities)
   lspconfig.tsserver.setup({
+    capabilities = capabilities,
     on_attach = function(_, bufnr)
       on_attach_mappings(bufnr)
     end,
@@ -112,10 +113,11 @@ local function nvim_lspconfig_config()
   configure_diagnostics()
 
   local lspconfig = require("lspconfig")
-  configure_json(lspconfig)
-  configure_lua(lspconfig)
-  configure_python(lspconfig)
-  configure_typescript(lspconfig)
+  local capabilities = require("cmp_nvim_lsp").default_capabilities()
+  configure_json(lspconfig, capabilities)
+  configure_lua(lspconfig, capabilities)
+  configure_python(lspconfig, capabilities)
+  configure_typescript(lspconfig, capabilities)
 end
 
 local plugins = {
