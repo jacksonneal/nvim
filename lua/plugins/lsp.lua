@@ -1,5 +1,15 @@
 -- Module for LSP plugins.
 
+local function configure_diagnostics()
+  vim.keymap.set("n", "<leader>ds", vim.diagnostic.open_float)
+  vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next)
+  vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev)
+  vim.keymap.set("n", "<leader>da", vim.diagnostic.setloclist)
+  vim.diagnostic.config({
+    virtual_text = false,
+  })
+end
+
 local function on_attach_mappings(bufnr)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr })
   vim.keymap.set("n", "<C-K>", vim.lsp.buf.signature_help, { buffer = bufnr })
@@ -90,22 +100,22 @@ local function configure_json(lspconfig)
   })
 end
 
-local function configure_diagnostics()
-  vim.keymap.set("n", "<leader>ds", vim.diagnostic.open_float)
-  vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next)
-  vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev)
-  vim.keymap.set("n", "<leader>da", vim.diagnostic.setloclist)
-  vim.diagnostic.config({
-    virtual_text = false,
+local function configure_typescript(lspconfig)
+  lspconfig.tsserver.setup({
+    on_attach = function(_, bufnr)
+      on_attach_mappings(bufnr)
+    end,
   })
 end
 
 local function nvim_lspconfig_config()
+  configure_diagnostics()
+
   local lspconfig = require("lspconfig")
+  configure_json(lspconfig)
   configure_lua(lspconfig)
   configure_python(lspconfig)
-  configure_json(lspconfig)
-  configure_diagnostics()
+  configure_typescript(lspconfig)
 end
 
 local plugins = {

@@ -14,6 +14,7 @@ local plugins = {
     },
     opts = {
       ensure_installed = {
+        "javascript",
         "json",
         "lua",
         "luadoc",
@@ -21,6 +22,8 @@ local plugins = {
         "markdown",
         "python",
         "toml",
+        "tsx",
+        "typescript",
         "vim",
         "vimdoc",
         "yaml",
