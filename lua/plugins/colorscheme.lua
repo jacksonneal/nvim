@@ -2,6 +2,10 @@
 
 local settings = require("core.config").settings
 
+local function set_colorscheme()
+  vim.cmd.colorscheme(settings.colorscheme)
+end
+
 local function gruvbox_material_config()
   vim.g.gruvbox_material_better_performance = 1
 
@@ -14,7 +18,7 @@ local function gruvbox_material_config()
   vim.g.gruvbox_material_ui_contrast = "high"
   vim.g.gruvbox_material_float_style = "dim"
 
-  vim.cmd.colorscheme(settings.colorscheme)
+  set_colorscheme()
 end
 
 local plugins = {
@@ -25,6 +29,14 @@ local plugins = {
     lazy = false,
     priority = 1000,
     config = gruvbox_material_config,
+  },
+  {
+    -- nord vim
+    "nordtheme/vim",
+    enabled = settings.colorscheme == "nord",
+    lazy = false,
+    priority = 1000,
+    config = set_colorscheme,
   },
 }
 
