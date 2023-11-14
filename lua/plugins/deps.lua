@@ -49,6 +49,7 @@ local plugins = {
         "ruff_lsp",
         "tailwindcss",
         "tsserver",
+        "volar",
       },
     },
   },

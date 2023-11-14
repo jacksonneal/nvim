@@ -26,6 +26,7 @@ local plugins = {
         "typescript",
         "vim",
         "vimdoc",
+        "vue",
         "yaml",
       },
       incremental_selection = {
