@@ -130,7 +130,7 @@ local function nvim_lspconfig_config()
   configure_lua(lspconfig, capabilities)
   configure_python(lspconfig, capabilities)
   configure_typescript(lspconfig, capabilities)
-  -- configure_vue(lspconfig, capabilities)
+  configure_vue(lspconfig, capabilities)
 end
 
 local plugins = {
