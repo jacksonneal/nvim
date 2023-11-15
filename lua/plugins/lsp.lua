@@ -1,5 +1,7 @@
 -- Module for LSP plugins.
 
+local settings = require("core.config").settings
+
 local function configure_diagnostics()
   vim.keymap.set("n", "<leader>ds", vim.diagnostic.open_float)
   vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next)
@@ -100,10 +102,17 @@ local function configure_json(lspconfig, capabilities)
   })
 end
 
-local function configure_typescript(lspconfig, capabilities)
+local function configure_tailwind(lspconfig, capabilities)
   lspconfig.tailwindcss.setup({
     capabilities = capabilities,
   })
+end
+
+local function configure_typescript(lspconfig, capabilities)
+  if settings.tsserver.disable then
+    return
+  end
+
   lspconfig.tsserver.setup({
     capabilities = capabilities,
     on_attach = function(_, bufnr)
@@ -115,6 +124,7 @@ end
 local function configure_vue(lspconfig, capabilities)
   lspconfig.volar.setup({
     capabilities = capabilities,
+    filetypes = { 'vue', 'typescript', 'javascript' },
     on_attach = function(_, bufnr)
       on_attach_mappings(bufnr)
     end
@@ -129,6 +139,7 @@ local function nvim_lspconfig_config()
   configure_json(lspconfig, capabilities)
   configure_lua(lspconfig, capabilities)
   configure_python(lspconfig, capabilities)
+  configure_tailwind(lspconfig, capabilities)
   configure_typescript(lspconfig, capabilities)
   configure_vue(lspconfig, capabilities)
 end

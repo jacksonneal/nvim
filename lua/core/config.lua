@@ -3,15 +3,18 @@
 local settings_file_name = ".stardog.json"
 local settings_filepath = vim.fn.getcwd() .. "/" .. settings_file_name
 
+local initialized = false
 local config = {
-  initialized = false,
   settings = {
     colorscheme = "gruvbox-material",
+    tsserver = {
+      disable = false,
+    }
   },
 }
 
 function config.setup()
-  if config.initialized then
+  if initialized then
     return
   end
 
@@ -24,7 +27,8 @@ function config.setup()
     config.settings,
     vim.fn.json_decode(vim.fn.readfile(settings_filepath))
   )
-  config.initialized = true
+
+  initialized = true
 end
 
 return config
