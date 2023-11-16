@@ -14,6 +14,7 @@ local plugins = {
     },
     opts = {
       ensure_installed = {
+        "html",
         "javascript",
         "json",
         "lua",
