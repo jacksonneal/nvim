@@ -9,7 +9,10 @@ local config = {
     colorscheme = "gruvbox-material",
     tsserver = {
       disable = false,
-    }
+    },
+    volar = {
+      disable = true,
+    },
   },
 }
 

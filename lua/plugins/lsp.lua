@@ -44,9 +44,9 @@ local function configure_lua(lspconfig, capabilities)
       -- access workspace path
       local path = client.workspace_folders[1].name
       if
-      -- there is no workspace level config for lua-language-server
-          not vim.loop.fs_stat(path .. "/.luarc.json")
-          and not vim.loop.fs_stat(path .. "/.luarc.jsonc")
+        -- there is no workspace level config for lua-language-server
+        not vim.loop.fs_stat(path .. "/.luarc.json")
+        and not vim.loop.fs_stat(path .. "/.luarc.jsonc")
       then
         -- setup server for neovim and config editing
         client.config.settings = vim.tbl_deep_extend("force", client.config.settings, {
@@ -122,12 +122,16 @@ local function configure_typescript(lspconfig, capabilities)
 end
 
 local function configure_vue(lspconfig, capabilities)
+  if settings.volar.disable then
+    return
+  end
+
   lspconfig.volar.setup({
     capabilities = capabilities,
-    filetypes = { 'vue', 'typescript', 'javascript' },
+    filetypes = { "vue", "typescript", "javascript" },
     on_attach = function(_, bufnr)
       on_attach_mappings(bufnr)
-    end
+    end,
   })
 end
 
