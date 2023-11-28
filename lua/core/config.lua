@@ -7,6 +7,9 @@ local initialized = false
 local config = {
   settings = {
     colorscheme = "gruvbox-material",
+    tailwindcss = {
+      disable = false,
+    },
     tsserver = {
       disable = false,
     },

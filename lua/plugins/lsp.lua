@@ -103,6 +103,10 @@ local function configure_json(lspconfig, capabilities)
 end
 
 local function configure_tailwind(lspconfig, capabilities)
+  if settings.tailwindcss.disable then
+    return
+  end
+
   lspconfig.tailwindcss.setup({
     capabilities = capabilities,
   })
