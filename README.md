@@ -1,4 +1,4 @@
-# Stardog Neovim Config
+# Neovim Config
 
 ## Usage
 
