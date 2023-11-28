@@ -7,8 +7,8 @@ local plugins = {
     lazy = false,
     keys = {
       { "<leader><leader>", "<cmd>Pick files<cr>", desc = "Search files" },
-      { "<leader>F", "<cmd>Pick grep<cr>", desc = "Search global" },
-      { "<leader>r", "<cmd>Pick resume<cr>", desc = "Resume search" },
+      { "<leader>/", "<cmd>Pick grep<cr>", desc = "Search global" },
+      { "<leader>R", "<cmd>Pick resume<cr>", desc = "Resume search" },
     },
     opts = {
       mappings = {
