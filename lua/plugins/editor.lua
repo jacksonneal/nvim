@@ -13,6 +13,9 @@ local plugins = {
       "BufNewFile",
     },
     opts = {
+      highlight = {
+        enable = true,
+      },
       ensure_installed = {
         "html",
         "javascript",
