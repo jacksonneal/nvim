@@ -25,6 +25,7 @@ local plugins = {
         "luap",
         "markdown",
         "python",
+        "scss",
         "toml",
         "tsx",
         "typescript",
