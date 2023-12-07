@@ -8,8 +8,6 @@ require("core.options")
 require("core.keymaps")
 -- configure autocommands
 require("core.autocommands")
--- configure type check
-require("core.type_check")
 
 -- bootstrap lazy.nvim
 require("core.lazy_bootstrap")
