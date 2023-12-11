@@ -147,7 +147,7 @@ local function configure_vue(lspconfig, capabilities)
   local function get_typescript_server_path(root_dir)
     local found_ts = nil
     local function check_dir(path)
-      found_ts =  util.path.join(path, 'node_modules', 'typescript', 'lib')
+      found_ts = util.path.join(path, 'node_modules', 'typescript', 'lib')
       if util.path.exists(found_ts) then
         return path
       end
@@ -162,7 +162,9 @@ local function configure_vue(lspconfig, capabilities)
   lspconfig.volar.setup({
     capabilities = capabilities,
     filetypes = { "vue", "typescript", "javascript" },
-    on_attach = function(_, bufnr)
+    on_attach = function(client, bufnr)
+      client.server_capabilities.documentFormattingProvider = false
+      client.server_capabilities.documentRangeFormattingProvider = false
       on_attach_mappings(bufnr)
     end,
     on_new_config = function(config, root_dir)
