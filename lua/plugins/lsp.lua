@@ -44,9 +44,9 @@ local function configure_lua(lspconfig, capabilities)
       -- access workspace path
       local path = client.workspace_folders[1].name
       if
-        -- there is no workspace level config for lua-language-server
-        not vim.loop.fs_stat(path .. "/.luarc.json")
-        and not vim.loop.fs_stat(path .. "/.luarc.jsonc")
+      -- there is no workspace level config for lua-language-server
+          not vim.loop.fs_stat(path .. "/.luarc.json")
+          and not vim.loop.fs_stat(path .. "/.luarc.jsonc")
       then
         -- setup server for neovim and config editing
         client.config.settings = vim.tbl_deep_extend("force", client.config.settings, {
@@ -143,12 +143,31 @@ local function configure_vue(lspconfig, capabilities)
     return
   end
 
+  local util = require("lspconfig.util")
+  local function get_typescript_server_path(root_dir)
+    local found_ts = nil
+    local function check_dir(path)
+      found_ts =  util.path.join(path, 'node_modules', 'typescript', 'lib')
+      if util.path.exists(found_ts) then
+        return path
+      end
+    end
+    if util.search_ancestors(root_dir, check_dir) then
+      return found_ts
+    else
+      error("Could not find tsserver install")
+    end
+  end
+
   lspconfig.volar.setup({
     capabilities = capabilities,
     filetypes = { "vue", "typescript", "javascript" },
     on_attach = function(_, bufnr)
       on_attach_mappings(bufnr)
     end,
+    on_new_config = function(config, root_dir)
+      config.init_options.typescript.tsdk = get_typescript_server_path(root_dir)
+    end
   })
 end
 
