@@ -93,6 +93,19 @@ local function configure_python(lspconfig, capabilities)
   })
 end
 
+local function configure_eslint(lspconfig, capabilities)
+  lspconfig.eslint.setup({
+    capabilities = capabilities,
+    on_attach = function(_, bufnr)
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        buffer = bufnr,
+        command = "EslintFixAll",
+      })
+      on_attach_mappings(bufnr)
+    end,
+  })
+end
+
 local function configure_json(lspconfig, capabilities)
   lspconfig.jsonls.setup({
     capabilities = capabilities,
@@ -144,6 +157,7 @@ local function nvim_lspconfig_config()
 
   local lspconfig = require("lspconfig")
   local capabilities = require("cmp_nvim_lsp").default_capabilities()
+  configure_eslint(lspconfig, capabilities)
   configure_json(lspconfig, capabilities)
   configure_lua(lspconfig, capabilities)
   configure_python(lspconfig, capabilities)
