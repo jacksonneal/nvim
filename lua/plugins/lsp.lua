@@ -1,6 +1,7 @@
 -- Module for LSP plugins.
 
 local settings = require("core.config").settings
+local diagnostics = require("modules.diagnostics")
 
 local function configure_diagnostics()
   vim.keymap.set("n", "<leader>ds", vim.diagnostic.open_float)
@@ -39,6 +40,7 @@ local function configure_lua(lspconfig, capabilities)
     },
     on_attach = function(_, bufnr)
       on_attach_mappings(bufnr)
+      diagnostics.on_attach_diagnostics(bufnr)
     end,
     on_init = function(client)
       -- access workspace path
