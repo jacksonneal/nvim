@@ -15,6 +15,8 @@ local plugins = {
     opts = {
       highlight = {
         enable = true,
+        -- TODO: tsx highlight seems broken
+        disable = { "tsx" },
       },
       ensure_installed = {
         "html",
