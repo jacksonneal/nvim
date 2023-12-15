@@ -1,7 +1,7 @@
 -- Module for LSP plugins.
 
 local settings = require("core.config").settings
--- local diagnostics = require("modules.diagnostics")
+local diagnostic = require("modules.diagnostic")
 
 local function configure_diagnostics()
   vim.keymap.set("n", "<leader>ds", vim.diagnostic.open_float)
@@ -31,6 +31,11 @@ local function on_attach_mappings(bufnr)
   end, { buffer = bufnr })
 end
 
+local function on_attach(bufnr)
+  diagnostic.on_attach_diagnostic(bufnr)
+  on_attach_mappings(bufnr)
+end
+
 local function configure_lua(lspconfig, capabilities)
   lspconfig.lua_ls.setup({
     capabilities = capabilities,
@@ -39,8 +44,7 @@ local function configure_lua(lspconfig, capabilities)
       unusedLocalExclude = { "_" },
     },
     on_attach = function(_, bufnr)
-      on_attach_mappings(bufnr)
-      -- diagnostics.on_attach_diagnostics(bufnr)
+      on_attach(bufnr)
     end,
     on_init = function(client)
       -- access workspace path
@@ -90,7 +94,7 @@ local function configure_python(lspconfig, capabilities)
   lspconfig.pyright.setup({
     capabilities = capabilities,
     on_attach = function(_, bufnr)
-      on_attach_mappings(bufnr)
+      on_attach(bufnr)
     end,
   })
 end
@@ -103,7 +107,7 @@ local function configure_eslint(lspconfig, capabilities)
         buffer = bufnr,
         command = "EslintFixAll",
       })
-      on_attach_mappings(bufnr)
+      on_attach(bufnr)
     end,
   })
 end
@@ -112,7 +116,7 @@ local function configure_json(lspconfig, capabilities)
   lspconfig.jsonls.setup({
     capabilities = capabilities,
     on_attach = function(_, bufnr)
-      on_attach_mappings(bufnr)
+      on_attach(bufnr)
     end,
   })
 end
@@ -135,7 +139,7 @@ local function configure_typescript(lspconfig, capabilities)
   lspconfig.tsserver.setup({
     capabilities = capabilities,
     on_attach = function(_, bufnr)
-      on_attach_mappings(bufnr)
+      on_attach(bufnr)
     end,
   })
 end
@@ -167,7 +171,7 @@ local function configure_vue(lspconfig, capabilities)
     on_attach = function(client, bufnr)
       client.server_capabilities.documentFormattingProvider = false
       client.server_capabilities.documentRangeFormattingProvider = false
-      on_attach_mappings(bufnr)
+      on_attach(bufnr)
     end,
     on_new_config = function(config, root_dir)
       config.init_options.typescript.tsdk = get_typescript_server_path(root_dir)

@@ -16,33 +16,22 @@ local function most_severe_diagnostic(diagnostics)
   return msd
 end
 
-local ns = vim.api.nvim_create_namespace("current_line_virtual_text")
+local ns = vim.api.nvim_create_namespace("current_line_diagnostic_virtual_text")
 
-vim.diagnostic.handlers.current_line_virt = {
-  show = function(_, bufnr, diagnostics, _)
-    local diagnostic = most_severe_diagnostic(diagnostics)
-    if not diagnostic then
-      return
-    end
+local function show_current_line_diagnostic(bufnr)
+  local diagnostic = most_severe_diagnostic(current_line_diagnostics())
+  vim.diagnostic.handlers.virtual_text.show(ns, bufnr, { diagnostic })
+end
 
-    pcall(
-      vim.diagnostic.handlers.virtual_text.show,
-      ns,
-      bufnr,
-      { diagnostic }
-    )
-  end,
-  hide = function(_, bufnr)
-    bufnr = bufnr or vim.api.nvim_get_current_buf()
-    vim.diagnostic.handlers.virtual_text.hide(ns, bufnr or 0)
-  end,
-}
+local function hide_current_line_diagnostic(bufnr)
+  vim.diagnostic.handlers.virtual_text.hide(ns, bufnr)
+end
 
 vim.api.nvim_create_augroup("lsp_diagnostic_current_line", {
   clear = true,
 })
 
-function M.on_attach_diagnostics(bufnr)
+function M.on_attach_diagnostic(bufnr)
   vim.api.nvim_clear_autocmds {
     buffer = bufnr,
     group = "lsp_diagnostic_current_line",
@@ -52,14 +41,8 @@ function M.on_attach_diagnostics(bufnr)
     group = "lsp_diagnostic_current_line",
     buffer = bufnr,
     callback = function()
-      print("cursor hold")
-      vim.diagnostic.handlers.current_line_virt.hide(nil, nil)
-      vim.diagnostic.handlers.current_line_virt.show(
-        nil,
-        0,
-        current_line_diagnostics(),
-        nil
-      )
+      hide_current_line_diagnostic(bufnr)
+      show_current_line_diagnostic(bufnr)
     end,
   })
 
@@ -67,8 +50,7 @@ function M.on_attach_diagnostics(bufnr)
     group = "lsp_diagnostic_current_line",
     buffer = bufnr,
     callback = function()
-      print("cursor moved")
-      vim.diagnostic.handlers.current_line_virt.hide(nil, nil)
+      hide_current_line_diagnostic(bufnr)
     end,
   })
 end
