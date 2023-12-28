@@ -35,6 +35,7 @@ local plugins = {
         "vimdoc",
         "vue",
         "yaml",
+        "zig",
       },
       incremental_selection = {
         enable = true,

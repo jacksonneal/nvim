@@ -50,9 +50,9 @@ local function configure_lua(lspconfig, capabilities)
       -- access workspace path
       local path = client.workspace_folders[1].name
       if
-      -- there is no workspace level config for lua-language-server
-          not vim.loop.fs_stat(path .. "/.luarc.json")
-          and not vim.loop.fs_stat(path .. "/.luarc.jsonc")
+        -- there is no workspace level config for lua-language-server
+        not vim.loop.fs_stat(path .. "/.luarc.json")
+        and not vim.loop.fs_stat(path .. "/.luarc.jsonc")
       then
         -- setup server for neovim and config editing
         client.config.settings = vim.tbl_deep_extend("force", client.config.settings, {
@@ -153,7 +153,7 @@ local function configure_vue(lspconfig, capabilities)
   local function get_typescript_server_path(root_dir)
     local found_ts = nil
     local function check_dir(path)
-      found_ts = util.path.join(path, 'node_modules', 'typescript', 'lib')
+      found_ts = util.path.join(path, "node_modules", "typescript", "lib")
       if util.path.exists(found_ts) then
         return path
       end
@@ -175,7 +175,16 @@ local function configure_vue(lspconfig, capabilities)
     end,
     on_new_config = function(config, root_dir)
       config.init_options.typescript.tsdk = get_typescript_server_path(root_dir)
-    end
+    end,
+  })
+end
+
+local function configure_zig(lspconfig, capabilities)
+  lspconfig.zls.setup({
+    capabilities = capabilities,
+    on_attach = function(_, bufnr)
+      on_attach(bufnr)
+    end,
   })
 end
 
@@ -184,6 +193,7 @@ local function nvim_lspconfig_config()
 
   local lspconfig = require("lspconfig")
   local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
   configure_eslint(lspconfig, capabilities)
   configure_json(lspconfig, capabilities)
   configure_lua(lspconfig, capabilities)
@@ -191,6 +201,7 @@ local function nvim_lspconfig_config()
   configure_tailwind(lspconfig, capabilities)
   configure_typescript(lspconfig, capabilities)
   configure_vue(lspconfig, capabilities)
+  configure_zig(lspconfig, capabilities)
 end
 
 local plugins = {
