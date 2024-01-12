@@ -30,6 +30,7 @@ local plugins = {
         "markdown",
         "python",
         "scss",
+        "terraform",
         "toml",
         "tsx",
         "typescript",
