@@ -19,6 +19,7 @@ local plugins = {
         disable = { "tsx" },
       },
       ensure_installed = {
+        "haskell",
         "html",
         "javascript",
         "json",
