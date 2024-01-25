@@ -15,7 +15,8 @@ end
 
 local function on_attach_mappings(bufnr)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr })
-  vim.keymap.set("n", "<C-K>", vim.lsp.buf.signature_help, { buffer = bufnr })
+  -- TODO: conflicts with window navigation
+  -- vim.keymap.set("n", "<C-K>", vim.lsp.buf.signature_help, { buffer = bufnr })
 
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr })
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr })
