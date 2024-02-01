@@ -1,7 +1,7 @@
 -- Module for LSP plugins.
 
 local settings = require("core.config").settings
-local diagnostic = require("modules.diagnostic")
+local diagnostic = require("jax.cur-line-dx")
 
 local function configure_diagnostics()
   vim.keymap.set("n", "<leader>ds", vim.diagnostic.open_float)

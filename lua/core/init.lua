@@ -14,4 +14,9 @@ require("core.autocommands")
 -- bootstrap lazy.nvim
 require("core.lazy_bootstrap")
 -- setup plugins
-require("lazy").setup("plugins")
+require("lazy").setup("plugins", {
+  dev = {
+    path = "~/.config/nvim/jacksonneal",
+    pattern = { "jacksonneal" },
+  },
+})

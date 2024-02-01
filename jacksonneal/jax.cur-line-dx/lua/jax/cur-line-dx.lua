@@ -1,4 +1,4 @@
--- Module for diagnostics.
+-- Current line diagnostics.
 
 local M = {}
 
@@ -32,10 +32,10 @@ vim.api.nvim_create_augroup("lsp_diagnostic_current_line", {
 })
 
 function M.on_attach_diagnostic(bufnr)
-  vim.api.nvim_clear_autocmds {
+  vim.api.nvim_clear_autocmds({
     buffer = bufnr,
     group = "lsp_diagnostic_current_line",
-  }
+  })
 
   vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
     group = "lsp_diagnostic_current_line",
