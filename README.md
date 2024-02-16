@@ -15,3 +15,8 @@
 ### Prerequisites
 
 - [pre-commit](https://pre-commit.com/) `v3.5.0`
+
+## TODO
+
+- [ ] status line
+- [ ] doc and formalize cur-line-dx
