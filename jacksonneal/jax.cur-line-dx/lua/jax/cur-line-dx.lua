@@ -2,10 +2,12 @@
 
 local M = {}
 
+-- Access the current line diagnostics.
 local function current_line_diagnostics()
   return vim.diagnostic.get(0, { ["lnum"] = vim.api.nvim_win_get_cursor(0)[1] - 1 })
 end
 
+-- Access the most severe diagnostic from the given list.
 local function most_severe_diagnostic(diagnostics)
   local msd = nil
   for _, curd in pairs(diagnostics) do
