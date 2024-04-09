@@ -17,7 +17,7 @@ Enables virtual text diagnostics on your current cursor line.
 
 
                                                                 *cur_ln_dx.ns*
-cur_ln_dx.nx
+cur_ln_dx.ns
 
   Namespace for current line virtual text.
 
@@ -26,14 +26,14 @@ cur_ln_dx.hide({bufnr})
 
   Hide current line diagnostic virtual text.
 
-  {bufnr} integer|nil - to hide diagnostics for
+  {bufnr} integer - to hide diagnostics for
 
                                                             *cur_ln_dx.show()*
 cur_ln_dx.show({bufnr})
 
   Show current line diagnostic virtual text.
 
-  {bufnr} integer|nil - to show diagnostics for
+  {bufnr} integer - to show diagnostics for
 
                                                            *cur_ln_dx.augroup*
 cur_ln_dx.augroup
