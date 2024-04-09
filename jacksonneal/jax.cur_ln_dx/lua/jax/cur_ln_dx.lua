@@ -57,12 +57,13 @@ function M.show(bufnr)
   vim.diagnostic.handlers.virtual_text.show(M.ns, bufnr, { diagnostic })
 end
 
--- Autocommand group for current line virtual text.
+-- Autocommand group for current line diagnostics virtual text.
 M.augroup = vim.api.nvim_create_augroup("cur_ln_dx_virtual_text", {
   clear = true,
 })
 
--- Configure autocommands for current line virtual text for the given buffer.
+-- Configure autocommands for current line diagnostics virtual text
+-- for the given buffer.
 --
 ---@param bufnr integer - to configure autocommands for
 function M.on_attach_dx(bufnr)

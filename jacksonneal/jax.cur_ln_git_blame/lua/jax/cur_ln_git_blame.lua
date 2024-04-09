@@ -67,45 +67,76 @@ local function format(blame)
   return author .. " - " .. date .. " - " .. short_sha .. " "
 end
 
--- Namespace for git blame virtual text.
-M.ns = vim.api.nvim_create_namespace("git_blame_virtual_text")
+-- Namespace for current line git blame virtual text.
+M.ns = vim.api.nvim_create_namespace("cur_ln_git_blame_virtual_text")
 
-function M.git_blame(bufnr)
-  local buf_name = vim.api.nvim_buf_get_name(bufnr)
-  local line = vim.api.nvim_win_get_cursor(0)[1]
-  local cmd = table.concat({
-    "git",
-    "blame",
-    "--porcelain",
-    buf_name,
-    "-L",
-    line .. ",+1",
-  }, " ")
-  local ns_id = vim.api.nvim_create_namespace("MyVirtualText")
-  run_bash_cmd_async(cmd, function(output)
-    print("output: ", output)
-    local vt = format(output)
-    -- Get the current buffer and window
-    -- local bufnr = vim.api.nvim_get_current_buf()
-    -- local winid = vim.api.nvim_get_current_win()
+-- Extmark id.
+M.extmark_id = nil
 
-    -- Get the current cursor position
-    -- local cursor = vim.api.nvim_win_get_cursor(0)
-    -- local ln = cursor[1] - 1 -- Lua uses 0-based indexing
-
-    -- Set the virtual text for the current line
-    vim.schedule(function()
-      vim.api.nvim_buf_set_extmark(
-        bufnr,
-        ns_id,
-        line - 1,
-        0,
-        { virt_text = { { vt, "Comment" } }, virt_text_pos = "right_align", hl_mode = "combine" }
-      )
-    end)
-  end)
+-- Hide current line git blame virtual text.
+function M.hide()
+  if M.extmark_id == nil then
+    return
+  end
+  vim.api.nvim_buf_del_extmark(0, M.ns, M.extmark_id)
 end
 
-M.git_blame(0)
+-- Show current line git blame virtual text.
+function M.show()
+  -- remove preexisting virtual text
+  M.hide()
+  -- access buffer filepath and cursor line
+  local fp = vim.api.nvim_buf_get_name(0)
+  local ln = vim.api.nvim_win_get_cursor(0)[1]
+  -- get git blame
+  run_bash_cmd_async(
+    table.concat({
+      "git",
+      "blame",
+      "--porcelain",
+      fp,
+      "-L",
+      ln .. ",+1",
+    }, " "),
+    function(output)
+      local vt = format(output)
+      vim.schedule(function()
+        -- set virtual text
+        M.extmark_id = vim.api.nvim_buf_set_extmark(
+          0,
+          M.ns,
+          ln - 1,
+          0,
+          { virt_text = { { vt, "Comment" } }, virt_text_pos = "right_align", hl_mode = "combine" }
+        )
+      end)
+    end
+  )
+end
+
+-- Autocommand group for current line git blame virtual text.
+M.augroup = vim.api.nvim_create_augroup("cur_ln_git_blame_virtual_text", {
+  clear = true,
+})
+
+-- Configure autocommands for current line virtual text for the given buffer.
+function M.setup()
+  -- clear preexisting autocommands
+  vim.api.nvim_clear_autocmds({
+    group = "cur_ln_git_blame_virtual_text",
+  })
+
+  -- hide when moving windows
+  vim.api.nvim_create_autocmd("CursorMoved", {
+    group = "cur_ln_git_blame_virtual_text",
+    callback = M.hide,
+  })
+
+  -- show when cursor stagnates
+  vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+    group = "cur_ln_git_blame_virtual_text",
+    callback = M.show,
+  })
+end
 
 return M

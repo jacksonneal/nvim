@@ -1,4 +1,4 @@
-local plugins = {
+return {
   {
     "jacksonneal/jax.cur_ln_dx",
     dev = true,
@@ -6,7 +6,8 @@ local plugins = {
   {
     "jacksonneal/jax.cur_ln_git_blame",
     dev = true,
+    config = function()
+      require("jax.cur_ln_git_blame").setup()
+    end,
   },
 }
-
-return plugins
