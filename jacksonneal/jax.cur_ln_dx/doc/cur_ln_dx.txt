@@ -41,7 +41,7 @@ cur_ln_dx.augroup
   Autocommand group for current line virtual text.
 
                                              *cur_ln_dx.on_attach_diagnostics()*
-cur_ln_dx.on_attach_dx
+cur_ln_dx.on_attach_dx({bufnr})
 
   Configure autocommands for current line virtual text for the given buffer.
 
