@@ -5,9 +5,8 @@ return {
   },
   {
     "jacksonneal/jax.cur_ln_git_blame",
+    main = "jax.cur_ln_git_blame",
     dev = true,
-    config = function()
-      require("jax.cur_ln_git_blame").setup()
-    end,
+    config = true,
   },
 }
