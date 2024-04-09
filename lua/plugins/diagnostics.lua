@@ -1,6 +1,6 @@
 local plugins = {
   {
-    "jacksonneal/jax.cur-line-dx",
+    "jacksonneal/jax.cur_ln_dx",
     dev = true,
   },
 }

@@ -1,0 +1,6 @@
+cur_ln_dx.augroup	cur_ln_dx.txt	/*cur_ln_dx.augroup*
+cur_ln_dx.hide()	cur_ln_dx.txt	/*cur_ln_dx.hide()*
+cur_ln_dx.ns	cur_ln_dx.txt	/*cur_ln_dx.ns*
+cur_ln_dx.nvim	cur_ln_dx.txt	/*cur_ln_dx.nvim*
+cur_ln_dx.on_attach_diagnostics()	cur_ln_dx.txt	/*cur_ln_dx.on_attach_diagnostics()*
+cur_ln_dx.show()	cur_ln_dx.txt	/*cur_ln_dx.show()*

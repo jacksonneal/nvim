@@ -1,7 +1,7 @@
 -- Module for LSP plugins.
 
 local settings = require("core.config").settings
-local diagnostic = require("jax.cur-line-dx")
+local cur_ln_dx = require("jax.cur_ln_dx")
 
 local function configure_diagnostics()
   vim.keymap.set("n", "<leader>ds", vim.diagnostic.open_float)
@@ -33,7 +33,7 @@ local function on_attach_mappings(bufnr)
 end
 
 local function on_attach(bufnr)
-  diagnostic.on_attach_diagnostic(bufnr)
+  cur_ln_dx.on_attach_dx(bufnr)
   on_attach_mappings(bufnr)
 end
 

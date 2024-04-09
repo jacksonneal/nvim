@@ -15,8 +15,12 @@ local plugins = {
     opts = {
       highlight = {
         enable = true,
-        -- TODO: tsx highlight seems broken
-        disable = { "tsx" },
+        disable = {
+          -- tsx highlight is broken
+          "tsx",
+          -- vimdoc highlight looks aweful
+          "vimdoc",
+        },
       },
       ensure_installed = {
         "haskell",

@@ -30,14 +30,6 @@ local plugins = {
     priority = 1000,
     config = gruvbox_material_config,
   },
-  {
-    -- nord vim
-    "nordtheme/vim",
-    enabled = settings.colorscheme == "nord",
-    lazy = false,
-    priority = 1000,
-    config = set_colorscheme,
-  },
 }
 
 return plugins
