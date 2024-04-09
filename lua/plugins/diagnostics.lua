@@ -4,7 +4,7 @@ local plugins = {
     dev = true,
   },
   {
-    "jacksonneal/jax.git_blame",
+    "jacksonneal/jax.cur_ln_git_blame",
     dev = true,
   },
 }

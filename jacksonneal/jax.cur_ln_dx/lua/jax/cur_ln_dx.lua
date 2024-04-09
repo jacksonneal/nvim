@@ -37,7 +37,7 @@ local function most_severe_dx(dx)
   return ms_dx
 end
 
--- Namespace for current line virtual text.
+-- Namespace for current line diagnostic virtual text.
 M.ns = vim.api.nvim_create_namespace("cur_ln_dx_virtual_text")
 
 -- Hide current line diagnostic virtual text of the given buffer.

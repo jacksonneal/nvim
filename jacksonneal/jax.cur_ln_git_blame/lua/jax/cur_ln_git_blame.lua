@@ -3,10 +3,10 @@
 local M = {}
 
 -- Run the given shell command asynchronously,
--- calling the given callback with stdout.
+-- forwarding stdout data to the given callback.
 --
 ---@param cmd string - to execute
----@param callback function - to pass stdout data
+---@param callback function - forward stdout data to
 local function run_bash_cmd_async(cmd, callback)
   local uv = vim.loop
 
@@ -66,6 +66,9 @@ local function format(blame)
   local date = os.date("%Y-%m-%d", timestamp)
   return author .. " - " .. date .. " - " .. short_sha .. " "
 end
+
+-- Namespace for git blame virtual text.
+M.ns = vim.api.nvim_create_namespace("git_blame_virtual_text")
 
 function M.git_blame(bufnr)
   local buf_name = vim.api.nvim_buf_get_name(bufnr)
