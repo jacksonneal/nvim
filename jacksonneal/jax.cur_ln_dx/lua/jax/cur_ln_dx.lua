@@ -74,7 +74,7 @@ function M.on_attach_dx(bufnr)
 
   -- hide when moving windows
   vim.api.nvim_create_autocmd("CursorMoved", {
-    group = "lsp_diagnostic_current_line",
+    group = "cur_ln_dx_virtual_text",
     buffer = bufnr,
     callback = function()
       M.hide(bufnr)
