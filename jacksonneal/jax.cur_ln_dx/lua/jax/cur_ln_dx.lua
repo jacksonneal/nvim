@@ -2,7 +2,7 @@
 
 local M = {}
 
--- Iterator over the values of the given table.
+-- Make iterator over the values of the given table.
 --
 ---@generic V - table value type
 ---@param t table<_, V> - to iterate over values of
