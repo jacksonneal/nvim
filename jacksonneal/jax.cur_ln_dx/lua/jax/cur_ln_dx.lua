@@ -26,7 +26,7 @@ end
 -- Select the most severe diagnostic from the given list.
 --
 ---@param dx Diagnostic[] - to select most sever from
----@return Diagnostic|nil - most severe diagnostic
+---@return Diagnostic | nil - most severe diagnostic
 local function most_severe_dx(dx)
   local ms_dx = nil
   for cur_dx in values(dx) do
@@ -51,8 +51,6 @@ end
 --
 ---@param bufnr integer - to show diagnostics for
 function M.show(bufnr)
-  -- remove preexisting virtual text
-  M.hide(bufnr)
   local diagnostic = most_severe_dx(cur_ln_dx(bufnr))
   vim.diagnostic.handlers.virtual_text.show(M.ns, bufnr, { diagnostic })
 end
@@ -73,20 +71,13 @@ function M.on_attach_dx(bufnr)
     group = "cur_ln_dx_virtual_text",
   })
 
-  -- hide when moving windows
-  vim.api.nvim_create_autocmd("CursorMoved", {
-    group = "cur_ln_dx_virtual_text",
-    buffer = bufnr,
-    callback = function()
-      M.hide(bufnr)
-    end,
-  })
-
   -- show when cursor stagnates
   vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
     group = "cur_ln_dx_virtual_text",
     buffer = bufnr,
     callback = function()
+      -- remove preexisting virtual text
+      M.hide(bufnr)
       M.show(bufnr)
     end,
   })

@@ -70,23 +70,25 @@ end
 -- Namespace for current line git blame virtual text.
 M.ns = vim.api.nvim_create_namespace("cur_ln_git_blame_virtual_text")
 
--- Extmark id.
-M.extmark_id = nil
+-- Extmark { id, bufn }
+---@type { [1]: integer, [2]: integer } | nil
+M.extmark = nil
 
 -- Hide current line git blame virtual text.
 function M.hide()
-  if M.extmark_id == nil then
+  if M.extmark == nil then
     return
   end
-  vim.api.nvim_buf_del_extmark(0, M.ns, M.extmark_id)
+  local id, bufnr = unpack(M.extmark)
+  vim.api.nvim_buf_del_extmark(bufnr, M.ns, id)
+  M.extmark = nil
 end
 
 -- Show current line git blame virtual text.
 function M.show()
-  -- remove preexisting virtual text
-  M.hide()
-  -- access buffer filepath and cursor line
+  -- access current buffer filepath, current buffer, and current window cursor line
   local fp = vim.api.nvim_buf_get_name(0)
+  local bufnr = vim.api.nvim_win_get_buf(0)
   local ln = vim.api.nvim_win_get_cursor(0)[1]
   -- get git blame
   run_bash_cmd_async(
@@ -102,13 +104,13 @@ function M.show()
       local vt = format(output)
       vim.schedule(function()
         -- set virtual text
-        M.extmark_id = vim.api.nvim_buf_set_extmark(
-          0,
+        M.extmark = { vim.api.nvim_buf_set_extmark(
+          bufnr,
           M.ns,
           ln - 1,
           0,
           { virt_text = { { vt, "Comment" } }, virt_text_pos = "right_align", hl_mode = "combine" }
-        )
+        ), bufnr }
       end)
     end
   )
@@ -119,24 +121,44 @@ M.augroup = vim.api.nvim_create_augroup("cur_ln_git_blame_virtual_text", {
   clear = true,
 })
 
--- Configure autocommands for current line virtual text for the given buffer.
-function M.setup()
-  -- clear preexisting autocommands
+-- Clear autocommands for current line git blame virtual text.
+function M.clear_autocmds()
   vim.api.nvim_clear_autocmds({
     group = "cur_ln_git_blame_virtual_text",
   })
+end
 
-  -- hide when moving windows
-  vim.api.nvim_create_autocmd("CursorMoved", {
-    group = "cur_ln_git_blame_virtual_text",
-    callback = M.hide,
-  })
+-- Create autocommands for current line git blame virtual text.
+function M.create_autocmds()
+  -- clear preexisting autocommands
+  M.clear_autocmds()
 
   -- show when cursor stagnates
   vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
     group = "cur_ln_git_blame_virtual_text",
-    callback = M.show,
+    callback = function()
+      -- remove preexisting virtual text
+      M.hide()
+      M.show()
+    end,
   })
+end
+
+-- Whether we are showing current line git blame virtual text.
+M.is_shown = false
+
+function M.setup()
+  -- Create user command to toggle current line
+  vim.api.nvim_create_user_command("CurLnGitBlameToggle", function()
+    if M.is_shown then
+      M.clear_autocmds()
+      M.hide()
+      M.is_shown = false
+    else
+      M.create_autocmds()
+      M.is_shown = true
+    end
+  end, {})
 end
 
 return M
