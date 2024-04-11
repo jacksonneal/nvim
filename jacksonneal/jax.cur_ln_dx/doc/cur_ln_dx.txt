@@ -3,9 +3,10 @@
 
 Enables virtual text diagnostics on your current cursor line.
 
-  Configure with your LSP: >
+  Call setup, configure with your LSP `on_attach`: >
 
     local cur_ln_dx = require("jax.cur_ln_dx")
+    cur_ln_dx.setup({ is_enabled = true })
 
     lspconfig.lua_ls.setup({
       on_attach = function(_, bufnr)
@@ -40,12 +41,20 @@ cur_ln_dx.augroup
 
   Autocommand group for current line virtual text.
 
-                                             *cur_ln_dx.on_attach_diagnostics()*
+                                           *cur_ln_dx.on_attach_diagnostics()*
 cur_ln_dx.on_attach_dx({bufnr})
 
   Configure autocommands for current line virtual text for the given buffer.
 
   {bufnr} integer - to configure autocommands for
+
+
+                                                           *cur_ln_dx.setup()*
+cur_ln_dx.setup({opts})
+
+  Setup plugin with options.
+
+  {opts} CurLnDxOpts - to configure plugin
 
 
  vim:ft=help:cole=0:

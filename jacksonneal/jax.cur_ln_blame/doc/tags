@@ -1,0 +1,10 @@
+cur_ln_blame.augroup	cur_ln_blame.txt	/*cur_ln_blame.augroup*
+cur_ln_blame.clear_autocmds()	cur_ln_blame.txt	/*cur_ln_blame.clear_autocmds()*
+cur_ln_blame.create_autocmds()	cur_ln_blame.txt	/*cur_ln_blame.create_autocmds()*
+cur_ln_blame.extmark	cur_ln_blame.txt	/*cur_ln_blame.extmark*
+cur_ln_blame.hide()	cur_ln_blame.txt	/*cur_ln_blame.hide()*
+cur_ln_blame.is_enabled	cur_ln_blame.txt	/*cur_ln_blame.is_enabled*
+cur_ln_blame.ns	cur_ln_blame.txt	/*cur_ln_blame.ns*
+cur_ln_blame.nvim	cur_ln_blame.txt	/*cur_ln_blame.nvim*
+cur_ln_blame.setup()	cur_ln_blame.txt	/*cur_ln_blame.setup()*
+cur_ln_blame.show()	cur_ln_blame.txt	/*cur_ln_blame.show()*

@@ -104,13 +104,14 @@ function M.show()
       local vt = format(output)
       vim.schedule(function()
         -- set virtual text
-        M.extmark = { vim.api.nvim_buf_set_extmark(
+        M.extmark = {
+          vim.api.nvim_buf_set_extmark(bufnr, M.ns, ln - 1, 0, {
+            virt_text = { { vt, "Comment" } },
+            virt_text_pos = "right_align",
+            hl_mode = "combine",
+          }),
           bufnr,
-          M.ns,
-          ln - 1,
-          0,
-          { virt_text = { { vt, "Comment" } }, virt_text_pos = "right_align", hl_mode = "combine" }
-        ), bufnr }
+        }
       end)
     end
   )
@@ -144,16 +145,17 @@ function M.create_autocmds()
   })
 end
 
--- Whether we are showing current line git blame virtual text.
-M.is_shown = false
+-- Whether current line git blame virtual text is enabled.
+M.is_enabled = false
 
+-- Plugin entrypoint.
 function M.setup()
-  -- Create user command to toggle current line
-  vim.api.nvim_create_user_command("CurLnGitBlameToggle", function()
-    if M.is_shown then
+  -- create user command to toggle current line git blame virtual text
+  vim.api.nvim_create_user_command("CurLnBlameToggle", function()
+    if M.is_enabled then
       M.clear_autocmds()
       M.hide()
-      M.is_shown = false
+      M.is_enabled = false
     else
       M.create_autocmds()
       M.is_shown = true

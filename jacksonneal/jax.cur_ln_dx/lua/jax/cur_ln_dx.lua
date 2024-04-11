@@ -60,6 +60,9 @@ M.augroup = vim.api.nvim_create_augroup("cur_ln_dx_virtual_text", {
   clear = true,
 })
 
+-- Whether current line diagnostic virtual text is enabled.
+M.is_enabled = false
+
 -- Configure autocommands for current line diagnostics virtual text
 -- for the given buffer.
 --
@@ -78,9 +81,25 @@ function M.on_attach_dx(bufnr)
     callback = function()
       -- remove preexisting virtual text
       M.hide(bufnr)
-      M.show(bufnr)
+      if M.is_enabled then
+        M.show(bufnr)
+      end
     end,
   })
+end
+
+---@class CurLnDxOpts
+---@field is_enabled boolean | nil
+
+-- Plugin entrypoint.
+--
+---@param opts CurLnDxOpts - to configure
+function M.setup(opts)
+  M.is_enabled = opts.is_enabled or false
+  -- create user command to toggle current line diagnostics virtual text
+  vim.api.nvim_create_user_command("CurLnDxToggle", function()
+    M.is_enabled = not M.is_enabled
+  end, {})
 end
 
 return M

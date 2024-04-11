@@ -1,0 +1,63 @@
+===============================================================================
+                                                           *cur_ln_blame.nvim*
+
+Enables virtual text git blame on your current cursor line.
+
+  Call setup: >
+
+    local cur_ln_blame = require("jax.cur_ln_blame")
+    cur_ln_blame.setup()
+<
+
+
+                                                             *cur_ln_blame.ns*
+cur_ln_blame.ns
+
+  Namespace for current line virtual text.
+
+                                                        *cur_ln_blame.extmark*
+cur_ln_blame.extmark
+
+  Extmark id and buffer displaying git blame virtual text.
+
+                                                         *cur_ln_blame.hide()*
+cur_ln_blame.hide({bufnr})
+
+  Hide current line diagnostic virtual text.
+
+  {bufnr} integer - to hide diagnostics for
+
+                                                         *cur_ln_blame.show()*
+cur_ln_blame.show({bufnr})
+
+  Show current line diagnostic virtual text.
+
+  {bufnr} integer - to show diagnostics for
+
+                                                        *cur_ln_blame.augroup*
+cur_ln_blame.augroup
+
+  Autocommand group for current line git blame virtual text.
+
+                                               *cur_ln_blame.clear_autocmds()*
+cur_ln_blame.clear_autocmds()
+
+  Clear autocommands for displaying current line git blame virtual text.
+
+                                              *cur_ln_blame.create_autocmds()*
+cur_ln_blame.creatd_autocmds()
+
+  Create autocommands for displaying current line git blame virtual text.
+
+                                                     *cur_ln_blame.is_enabled*
+cur_ln_blame.is_enabled
+
+  Whether current line git blame virtual text is enabled.
+
+                                                        *cur_ln_blame.setup()*
+cur_ln_blame.setup()
+
+  Setup plugin.
+
+
+ vim:ft=help:cole=0:
