@@ -155,11 +155,10 @@ function M.setup()
     if M.is_enabled then
       M.clear_autocmds()
       M.hide()
-      M.is_enabled = false
     else
       M.create_autocmds()
-      M.is_shown = true
     end
+    M.is_enabled = not M.is_enabled
   end, {})
 end
 
