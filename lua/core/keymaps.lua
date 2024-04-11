@@ -38,6 +38,9 @@ map("i", ",", ",<c-g>u")
 map("i", ".", ".<c-g>u")
 map("i", ";", ";<c-g>u")
 
+-- Avoid yank on paste
+map("x", "p", "P")
+
 -- File management ------------------------------
 
 -- New file
