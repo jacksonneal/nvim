@@ -19,4 +19,3 @@
 ## TODO
 
 - [ ] status line
-- [ ] doc and formalize cur-line-dx
