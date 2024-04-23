@@ -1,4 +1,4 @@
--- Module for search plugins.
+-- Search plugins.
 
 local plugins = {
   {
@@ -18,7 +18,7 @@ local plugins = {
     },
   },
   {
-    -- extra mini pickers
+    -- extra pickers
     "echasnovski/mini.extra",
     lazy = false,
     keys = {
