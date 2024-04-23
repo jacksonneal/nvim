@@ -7,7 +7,7 @@ local plugins = {
     lazy = false,
     keys = {
       { "<leader><leader>", "<cmd>Pick files tool='git'<cr>", desc = "Search files" },
-      { "<leader>/", "<cmd>Pick grep<cr>", desc = "Search global" },
+      { "<leader>/", "<cmd>Pick grep tool='rg'<cr>", desc = "Search global" },
       { "<leader>R", "<cmd>Pick resume<cr>", desc = "Resume search" },
     },
     opts = {
