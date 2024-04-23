@@ -12,6 +12,12 @@ local function nvim_tree_opts()
 
   return {
     on_attach = on_attach,
+    filters = {
+      -- do not show
+      custom = { "^.git$" },
+      -- exclude from filters (always show)
+      exclude = { "^.env*" }
+    }
   }
 end
 
@@ -29,7 +35,7 @@ local plugins = {
     },
     keys = {
       { "<leader>e", "<cmd>NvimTreeToggle<cr>", "Toggle tree" },
-      { "<leader>E", "<cmd>NvimTreeFocus<cr>", "Focus tree" },
+      { "<leader>E", "<cmd>NvimTreeFocus<cr>",  "Focus tree" },
     },
     opts = nvim_tree_opts,
   },
