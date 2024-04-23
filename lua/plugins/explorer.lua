@@ -1,4 +1,4 @@
--- Module for file explorer plugins.
+-- File explorer plugins.
 
 local function nvim_tree_opts()
   local function on_attach(bufnr)
@@ -13,15 +13,20 @@ local function nvim_tree_opts()
   return {
     on_attach = on_attach,
     filters = {
-      -- do not show
+      -- hide by regex
       custom = { "^.git$" },
+      -- hide dotfiles (leading '.')
+      dotfiles = true,
       -- exclude from filters (always show)
-      exclude = { "^.env*" }
+      exclude = {
+        ".env",
+        ".yml",
+      }
     }
   }
 end
 
-local plugins = {
+return {
   {
     -- file explorer
     "nvim-tree/nvim-tree.lua",
@@ -40,5 +45,3 @@ local plugins = {
     opts = nvim_tree_opts,
   },
 }
-
-return plugins
