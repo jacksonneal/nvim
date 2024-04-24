@@ -59,8 +59,8 @@ local function format(blame)
   for line in blame:gmatch("[^\r\n]+") do
     if line:match("^author ") then
       author = line:match("^author (.+)$")
-    elseif line:match("^author-time ") then
-      timestamp = tonumber(line:match("^author-time (.+)$"))
+    elseif line:match("^author%-time ") then
+      timestamp = tonumber(line:match("^author%-time (.+)$"))
     end
   end
   local date = os.date("%Y-%m-%d", timestamp)
