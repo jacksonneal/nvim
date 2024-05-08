@@ -51,6 +51,7 @@ local plugins = {
         "tailwindcss",
         "tsserver",
         "volar",
+        "zls",
       },
     },
   },
