@@ -24,4 +24,15 @@ return {
       vim.cmd.colorscheme("gruvbox-material")
     end,
   },
+  {
+    -- natural pine, faux fur, soho vibe
+    "rose-pine/neovim",
+    name = "rose-pine",
+    enabled = settings.colorscheme == "rose-pine-dawn",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme("rose-pine-dawn")
+    end,
+  }
 }

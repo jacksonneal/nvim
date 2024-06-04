@@ -16,6 +16,10 @@ local plugins = {
         move_up = "<C-k>",
       },
     },
+    config = function(_, opts)
+      require("mini.pick").setup(opts)
+      vim.api.nvim_set_hl(0, 'MiniPickMatchCurrent', { link = "Normal"})
+    end
   },
   {
     -- extra pickers
@@ -28,7 +32,5 @@ local plugins = {
     config = true,
   },
 }
-
-vim.api.nvim_set_hl(0, 'MiniPickMatchCurrent', { link = "Normal"})
 
 return plugins
