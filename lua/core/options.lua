@@ -10,6 +10,8 @@ vim.g.markdown_recommended_style = 0
 
 -- enable autowrite on file modification
 vim.opt.autowrite = true
+-- adjust default color groups for background (used by colorscheme)
+vim.opt.background = "light"
 -- sync copy content to system clipboard
 vim.opt.clipboard = "unnamedplus"
 -- 'Insert' mode completion menu settings
@@ -57,8 +59,8 @@ vim.opt.number = true
 vim.opt.pumblend = 15
 -- maximum entries in a popup
 vim.opt.pumheight = 10
--- show relative line numbers
-vim.opt.relativenumber = true
+-- show/hide relative line numbers
+vim.opt.relativenumber = false
 -- keep context lines above and below cursor
 vim.opt.scrolloff = 6
 -- enable saving and restoring items using sessions
