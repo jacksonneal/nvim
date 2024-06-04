@@ -29,4 +29,6 @@ local plugins = {
   },
 }
 
+vim.api.nvim_set_hl(0, 'MiniPickMatchCurrent', { link = "Normal"})
+
 return plugins
