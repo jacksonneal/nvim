@@ -19,8 +19,8 @@ vim.opt.clipboard = "unnamedplus"
 -- menuone - use menu even if only one match
 -- noselect - do not auto-select an item in the menu
 vim.opt.completeopt = "menu,menuone,noselect"
--- hide text with "conceal" attribute (e.g. `*` markup for bold and italic)
-vim.opt.conceallevel = 3
+-- do not hide text with "conceal" attribute (e.g. `*` markup for bold and italic)
+vim.opt.conceallevel = 0
 -- confirm changes for operations that would normally fail on unsaved changed (e.g. `:q`)
 vim.opt.confirm = true
 -- column highlight, relative to 'textwidth'
