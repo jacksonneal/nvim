@@ -31,6 +31,8 @@ local function run_bash_cmd_async(cmd, callback)
     assert(not err, err)
     if data then
       callback(data)
+    else
+      stdout:close()
     end
   end)
 
@@ -39,6 +41,8 @@ local function run_bash_cmd_async(cmd, callback)
     assert(not err, err)
     if data then
       print("stderr chunk", stderr, data)
+    else
+      stderr:close()
     end
   end)
 
