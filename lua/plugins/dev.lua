@@ -1,4 +1,4 @@
--- Dev plugins.
+-- Module for local dev plugins.
 
 return {
   {
@@ -11,6 +11,13 @@ return {
     "jacksonneal/jax.cur_ln_blame",
     main = "jax.cur_ln_blame",
     dev = true,
+    keys = {
+      {
+        "<leader>gb",
+        "<cmd>CurLnBlameToggle<cr>",
+        desc = "Toggle current line git blame",
+      },
+    },
     config = true,
   },
 }
