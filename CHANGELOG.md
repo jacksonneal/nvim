@@ -8,6 +8,9 @@ All notable changes to this project will be documented in this file.
 - Python DAP test runner uses `pytest`
 - Python DAP venv expected at `./.venv`
 
+### Added
+- Debug keymap documentation
+
 ## 07-03-2024
 
 ### Added
