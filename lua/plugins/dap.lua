@@ -43,12 +43,14 @@ local function nvim_dap_python_config()
   local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
   require("dap-python").setup(path)
 
-  local python_path = vim.fn.getcwd() .. "/venv/bin/python"
+  local python_path = vim.fn.getcwd() .. "/.venv/bin/python"
   if vim.fn.executable(python_path) == 1 then
     require("dap-python").resolve_python = function()
       return python_path
     end
   end
+
+  require("dap-python").test_runner = "pytest"
 end
 
 local function nvim_dap_python_init()

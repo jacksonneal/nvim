@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## 07-11-2024
+
+### Changed
+- Python DAP test runner uses `pytest`
+- Python DAP venv expected at `./.venv`
+
 ## 07-03-2024
 
 ### Added
