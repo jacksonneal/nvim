@@ -20,7 +20,7 @@
 
 ### Python
 
-Debugging in Python is supported through [nvim-dap-python][nvim-dap-python-repo] plugin, which
+Debugging in Python is supported through the [nvim-dap-python][nvim-dap-python-repo] plugin, which
 is configured to use a virtual environment located at `./.venv` and [pytest][pytest-repo] as a
 test runner.
 
