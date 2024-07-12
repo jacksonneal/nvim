@@ -1,30 +1,24 @@
-# Neovim Config
+# nvim
+
+My Neovim config.
 
 ## Usage
 
 ### Prerequisites
 
-- [Neovim](https://neovim.io/) `v0.9.1`
+- [Neovim][neovim-home] `v0.9.5`
 
 ### Setup
 
 - Clone this project into your Neovim config directory (`~/.config/nvim` by default)
 
-## Development
+### DAP
 
-### Prerequisites
-
-- [pre-commit](https://pre-commit.com/) `v3.5.0`
-
-## DAP
-
-### Python
+#### Python
 
 Debugging in Python is supported through the [nvim-dap-python][nvim-dap-python-repo] plugin, which
 is configured to use a virtual environment located at `./.venv` and [pytest][pytest-repo] as a
 test runner.
-
-#### Usage
 
 | Keymap        | Command                  |
 | ------------- | ------------------------ |
@@ -33,7 +27,13 @@ test runner.
 | `<leader>db`  | Toggle breakpoint        |
 | `F5`          | Continue from breakpoint |
 
+## Development
+
+### Prerequisites
+
+- [pre-commit](https://pre-commit.com/) `v3.5.0`
 
 
+[neovim-home]: https://neovim.io
 [nvim-dap-python-repo]: https://github.com/mfussenegger/nvim-dap-python
 [pytest-repo]: https://github.com/pytest-dev/pytest
