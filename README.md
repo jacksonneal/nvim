@@ -12,12 +12,12 @@ My Neovim config.
 
 - Clone this project into the Neovim config directory (`~/.config/nvim`).
 
-### Config
+#### Config
 
 Configuration settings are driven by the `core.config` module, which contains all defaults. You
-may set global overrides in a `~/.confing/nvim.json` file.  Project's may also provide there own
+may set global overrides in a `~/.config/nvim.json` file.  Projects may also provide their own
 overrides in an `nvim.json` at the root of the project (where you open it with Neovim).  The
-schema for `nvim.json` files is located in [./nvim.schema.json][./nvim.schema.json].
+schema for `nvim.json` files is located in [./nvim.schema.json](./nvim.schema.json).
 
 ### DAP
 
