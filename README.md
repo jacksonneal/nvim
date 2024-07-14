@@ -7,6 +7,7 @@ My Neovim config.
 ### Prerequisites
 
 - [Neovim][neovim-home] `v0.9.5`
+- [pre-commit][pre-commit-home] `v3.5.0`
 
 ### Setup
 
@@ -34,13 +35,8 @@ test runner.
 | `<leader>db`  | Toggle breakpoint        |
 | `F5`          | Continue from breakpoint |
 
-## Development
-
-### Prerequisites
-
-- [pre-commit](https://pre-commit.com/) `v3.5.0`
-
 
 [neovim-home]: https://neovim.io
 [nvim-dap-python-repo]: https://github.com/mfussenegger/nvim-dap-python
+[pre-commit-home]: https://pre-commit.com
 [pytest-repo]: https://github.com/pytest-dev/pytest
