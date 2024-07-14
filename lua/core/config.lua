@@ -22,7 +22,7 @@ local PROJECT_SETTINGS_FILEPATH = vim.fn.getcwd() .. "/" .. SETTINGS_FILE_NAME
 ---| '"rose-pine-dawn"'
 
 ---@type Config
-local M = {
+return {
   initialized = false,
   settings = {
     colorscheme = "rose-pine-dawn",
@@ -56,5 +56,3 @@ local M = {
     self.initialized = true
   end
 }
-
-return M

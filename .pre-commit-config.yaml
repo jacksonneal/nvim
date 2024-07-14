@@ -4,10 +4,10 @@ repos:
     hooks:
       - id: check-added-large-files
       - id: trailing-whitespace
-  - repo: local
+  - repo: https://github.com/JohnnyMorganz/StyLua
+    rev: v0.20.0
     hooks:
       - id: stylua
-        name: StyLua
-        language: system
-        entry: stylua
-        types: [lua]
+        args:
+          - --respect-ignores
+
