@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "My Neovim config settings",
+  "type": "object",
+  "properties": {
+    "colorscheme": {
+      "type": "string",
+      "enum": [
+        "gruvbox-material",
+        "rose-pine-dawn"
+      ]
+    },
+    "additionalProperties": false
+  }
+}

@@ -1,6 +1,4 @@
--- configure settings
-local config = require("core.config")
-config.setup()
+require("core.config"):setup()
 
 -- configure vim options
 require("core.options")

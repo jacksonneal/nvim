@@ -21,8 +21,8 @@ local function nvim_tree_opts()
       exclude = {
         ".env",
         ".yml",
-      }
-    }
+      },
+    },
   }
 end
 
@@ -40,7 +40,7 @@ return {
     },
     keys = {
       { "<leader>e", "<cmd>NvimTreeToggle<cr>", "Toggle tree" },
-      { "<leader>E", "<cmd>NvimTreeFocus<cr>",  "Focus tree" },
+      { "<leader>E", "<cmd>NvimTreeFocus<cr>", "Focus tree" },
     },
     opts = nvim_tree_opts,
   },
