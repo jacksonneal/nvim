@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 07-14-2024
+
+### Fixed
+- Update instructions for running `stylua` with Lua `v5.2`
+
 ## 07-13-2024
 
 ### Changed

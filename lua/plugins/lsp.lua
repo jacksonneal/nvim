@@ -60,10 +60,10 @@ local function configure_lua(lspconfig, capabilities)
           Lua = {
             runtime = {
               -- tell the language server which version of Lua you're using
-              -- (most likely LuaJIT in the case of Neovim)
+              -- (most likely LuaJIT in the case of neovim)
               version = "LuaJIT",
             },
-            -- make the server aware of Neovim runtime files
+            -- make the server aware of neovim runtime files
             workspace = {
               checkThirdParty = false,
               library = {

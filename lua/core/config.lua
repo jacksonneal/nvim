@@ -44,15 +44,11 @@ return {
       end
 
       local settings = vim.fn.json_decode(vim.fn.readfile(setting_override_path))
-      self.settings = vim.tbl_deep_extend(
-        "force",
-        self.settings,
-        settings
-      )
+      self.settings = vim.tbl_deep_extend("force", self.settings, settings)
 
       ::continue::
     end
 
     self.initialized = true
-  end
+  end,
 }

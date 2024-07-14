@@ -8,7 +8,7 @@ local group = vim.api.nvim_create_augroup("Default", {
 
 -- checks if buffers were changed outside of Vim and need to be reloaded
 vim.api.nvim_create_autocmd({
-  -- Neovim got focus
+  -- neovim got focus
   "FocusGained",
   -- terminal job end
   "TermClose",
