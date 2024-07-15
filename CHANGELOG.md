@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 07-15-2024
+### Add
+- LSP enable/disable to settings schema
+
 ## 07-14-2024
 
 ### Fixed

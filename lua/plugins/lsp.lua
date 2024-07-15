@@ -1,4 +1,4 @@
--- Module for LSP plugins.
+-- Module for LSP plugins
 
 local settings = require("core.config").settings
 
@@ -205,7 +205,7 @@ local function nvim_lspconfig_config()
   configure_zig(lspconfig, capabilities)
 end
 
-local plugins = {
+return {
   {
     -- configs for neovim LSP client
     "neovim/nvim-lspconfig",
@@ -221,5 +221,3 @@ local plugins = {
     config = nvim_lspconfig_config,
   },
 }
-
-return plugins

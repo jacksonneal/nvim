@@ -10,6 +10,27 @@
         "rose-pine-dawn"
       ]
     },
+    "tailwindcss": {
+      "$ref": "#/$defs/lspSettings"
+    },
+    "tsserver": {
+      "$ref": "#/$defs/lspSettings"
+    },
+    "volar": {
+      "$ref": "#/$defs/lspSettings"
+    },
     "additionalProperties": false
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "lspSettings": {
+      "type": "object",
+      "properties": {
+        "disable": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    }
   }
 }

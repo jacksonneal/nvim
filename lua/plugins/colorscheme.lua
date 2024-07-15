@@ -1,4 +1,4 @@
--- Colorscheme plugins.
+-- Module for colorscheme plugins.
 
 local settings = require("core.config").settings
 

@@ -1,4 +1,4 @@
--- Module for config settings.
+-- Module for config settings
 
 local iter = require("core.iter")
 
@@ -6,20 +6,27 @@ local SETTINGS_FILE_NAME = "nvim.json"
 local GLOBAL_SETTINGS_FILEPATH = "~/.config/nvim" .. "/" .. SETTINGS_FILE_NAME
 local PROJECT_SETTINGS_FILEPATH = vim.fn.getcwd() .. "/" .. SETTINGS_FILE_NAME
 
----Config settings module.
+---Config settings module
 ---@class Config
 ---@field initialized boolean
 ---@field settings Settings
 ---@field setup fun(self): nil
 
----Config settings.
+---Config settings
 ---@class Settings
 ---@field colorscheme Colorscheme
+---@field tailwindcss LspSettings
+---@field tsserver LspSettings
+---@field volar LspSettings
 
----Colorschemes.
+---Colorschemes
 ---@alias Colorscheme
 ---| '"gruvbox-material"
 ---| '"rose-pine-dawn"'
+
+---LSP settings
+---@class LspSettings
+---@field disable boolean
 
 ---@type Config
 return {
