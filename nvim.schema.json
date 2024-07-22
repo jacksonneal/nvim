@@ -18,10 +18,8 @@
     },
     "volar": {
       "$ref": "#/$defs/lspSettings"
-    },
-    "additionalProperties": false
+    }
   },
-  "additionalProperties": false,
   "$defs": {
     "lspSettings": {
       "type": "object",
