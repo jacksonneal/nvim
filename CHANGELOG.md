@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 07-25-2024
+
+### Added
+- `nvim.json` example file in `README.md`.
+
 ## 07-22-2024
 ### Changed
 - Allow additional properties in root of `nvim.schema.json`.  Allows for meta keys like `$schema`.
