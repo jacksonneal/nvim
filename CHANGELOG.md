@@ -6,8 +6,10 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 - `nvim.json` example file in `README.md`.
+- Recognize ".hell" files as type "haskell".
 
 ## 07-22-2024
+
 ### Changed
 - Allow additional properties in root of `nvim.schema.json`.  Allows for meta keys like `$schema`.
 
