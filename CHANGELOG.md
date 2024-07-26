@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 07-26-2024
+
+### Added
+- Support for `pyright.pythonPath` setting.
+
 ## 07-25-2024
 
 ### Added

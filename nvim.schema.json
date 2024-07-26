@@ -10,6 +10,15 @@
         "rose-pine-dawn"
       ]
     },
+    "pyright": {
+      "type": "object",
+      "properties": {
+        "pythonPath": {
+          "type": ["string", "null"]
+        }
+      },
+      "additionalProperties": false
+    },
     "tailwindcss": {
       "$ref": "#/$defs/lspSettings"
     },
