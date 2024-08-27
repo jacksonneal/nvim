@@ -44,7 +44,7 @@ M.ns = vim.api.nvim_create_namespace("cur_ln_dx_virtual_text")
 --
 ---@param bufnr integer - to hide diagnostics for
 function M.hide(bufnr)
-  vim.diagnostic.handlers.virtual_text.hide(M.ns, bufnr)
+  vim.diagnostic.hide(M.ns, bufnr)
 end
 
 -- Show current line diagnostic virtual text.
@@ -52,7 +52,7 @@ end
 ---@param bufnr integer - to show diagnostics for
 function M.show(bufnr)
   local diagnostic = most_severe_dx(cur_ln_dx(bufnr))
-  vim.diagnostic.handlers.virtual_text.show(M.ns, bufnr, { diagnostic })
+  vim.diagnostic.show(M.ns, bufnr, { diagnostic }, { virtual_text=true })
 end
 
 -- Autocommand group for current line diagnostics virtual text.
