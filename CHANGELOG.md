@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## 08-29-2024
+
+### Added
+- Treesitter graphql support
+
+## 08-28-2024
+
+### Fixed
+- Neovim `v0.10` support
+
 ## 07-26-2024
 
 ### Added
