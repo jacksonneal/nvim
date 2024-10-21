@@ -115,6 +115,10 @@ local function configure_deno(lspconfig, capabilities)
 end
 
 local function configure_eslint(lspconfig, capabilities)
+  if settings.eslint.disable then
+    return
+  end
+
   lspconfig.eslint.setup({
     capabilities = capabilities,
     on_attach = function(_, bufnr)

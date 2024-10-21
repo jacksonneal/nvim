@@ -16,6 +16,7 @@ local PROJECT_SETTINGS_FILEPATH = vim.fn.getcwd() .. "/" .. SETTINGS_FILE_NAME
 ---@class Settings
 ---@field colorscheme Colorscheme
 ---@field pyright PyrightSettings
+---@field eslint LspSettings
 ---@field tailwindcss LspSettings
 ---@field tsserver LspSettings
 ---@field volar LspSettings
@@ -40,6 +41,9 @@ return {
     colorscheme = "rose-pine-dawn",
     pyright = {
       pythonPath = nil,
+    },
+    eslint = {
+      disable = false,
     },
     tailwindcss = {
       disable = false,
