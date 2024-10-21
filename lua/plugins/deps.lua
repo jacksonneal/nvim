@@ -43,6 +43,7 @@ local plugins = {
     },
     opts = {
       ensure_installed = {
+        "denols",
         "eslint",
         "jsonls",
         "lua_ls",

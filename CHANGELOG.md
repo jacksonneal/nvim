@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 10-20-2024
+
+### Added
+- Deno support
+
 ## 08-29-2024
 
 ### Added

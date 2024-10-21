@@ -105,6 +105,15 @@ local function configure_python(lspconfig, capabilities)
   })
 end
 
+local function configure_deno(lspconfig, capabilities)
+  lspconfig.denols.setup({
+    capabilities = capabilities,
+    on_attach = function(_, bufnr)
+      on_attach(bufnr)
+    end,
+  })
+end
+
 local function configure_eslint(lspconfig, capabilities)
   lspconfig.eslint.setup({
     capabilities = capabilities,
@@ -200,6 +209,7 @@ local function nvim_lspconfig_config()
   local lspconfig = require("lspconfig")
   local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+  configure_deno(lspconfig, capabilities)
   configure_eslint(lspconfig, capabilities)
   configure_json(lspconfig, capabilities)
   configure_lua(lspconfig, capabilities)
