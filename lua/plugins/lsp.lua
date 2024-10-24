@@ -106,6 +106,10 @@ local function configure_python(lspconfig, capabilities)
 end
 
 local function configure_deno(lspconfig, capabilities)
+  if settings.denols.disable then
+    return
+  end
+
   lspconfig.denols.setup({
     capabilities = capabilities,
     on_attach = function(_, bufnr)

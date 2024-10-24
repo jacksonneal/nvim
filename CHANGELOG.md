@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 10-24-2024
+
+### Added
+- Ability to disable denols, disabled by default
+
 ## 10-20-2024
 
 ### Added
