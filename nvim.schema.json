@@ -10,11 +10,20 @@
         "rose-pine-dawn"
       ]
     },
+    "denols": {
+      "$ref": "#/$defs/lspSettings"
+    },
+    "eslint": {
+      "$ref": "#/$defs/lspSettings"
+    },
     "pyright": {
       "type": "object",
       "properties": {
         "pythonPath": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         }
       },
       "additionalProperties": false
