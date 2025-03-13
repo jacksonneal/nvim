@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 03-13-2025
+
+### Changed
+- Disabled Eslint fix on write.
+
 ## 10-24-2024
 
 ### Added
