@@ -52,7 +52,7 @@ end
 ---@param bufnr integer - to show diagnostics for
 function M.show(bufnr)
   local diagnostic = most_severe_dx(cur_ln_dx(bufnr))
-  vim.diagnostic.show(M.ns, bufnr, { diagnostic }, { virtual_text=true })
+  vim.diagnostic.show(M.ns, bufnr, { diagnostic }, { virtual_text = true })
 end
 
 -- Autocommand group for current line diagnostics virtual text.

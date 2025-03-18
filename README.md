@@ -1,15 +1,16 @@
 # nvim
 
-My neovim config
+My neovim config.
 
 ## Usage
 
 ### Prerequisites
 
-- [neovim][neovim-home] `v0.9.5`
-- [cargo][cargo-repo] `v1.73.0`
-- [stylua][stylua-repo] `v0.20.0`: Install with `cargo` and `--features lua52`
-- [pre-commit][pre-commit-home] `v3.5.0`
+- [neovim][neovim-home] `v0.10.4`
+- [cargo][cargo-repo] `v1.85.0`
+- [stylua][stylua-repo] `v2.0.2`
+  - install via `cargo install stylua --features lua52`
+- [pre-commit][pre-commit-home] `v4.0.1`
 
 ### Setup
 
