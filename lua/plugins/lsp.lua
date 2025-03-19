@@ -37,54 +37,6 @@ local function on_attach(bufnr)
   on_attach_mappings(bufnr)
 end
 
-local function configure_lua(lspconfig, capabilities)
-  lspconfig.lua_ls.setup({
-    capabilities = capabilities,
-    diagnostics = {
-      -- names to allow for unused variables
-      unusedLocalExclude = { "_" },
-    },
-    on_attach = function(_, bufnr)
-      on_attach(bufnr)
-    end,
-    on_init = function(client)
-      -- access workspace path
-      local path = client.workspace_folders[1].name
-      if
-        -- there is no workspace level config for lua-language-server
-        not vim.loop.fs_stat(path .. "/.luarc.json")
-        and not vim.loop.fs_stat(path .. "/.luarc.jsonc")
-      then
-        -- setup server for neovim and config editing
-        client.config.settings = vim.tbl_deep_extend("force", client.config.settings, {
-          Lua = {
-            runtime = {
-              -- tell the language server which version of Lua you're using
-              -- (most likely LuaJIT in the case of neovim)
-              version = "LuaJIT",
-            },
-            -- make the server aware of neovim runtime files
-            workspace = {
-              checkThirdParty = false,
-              library = {
-                vim.env.VIMRUNTIME,
-                -- "${3rd}/luv/library"
-                -- "${3rd}/busted/library",
-              },
-              -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
-              -- library = vim.api.nvim_get_runtime_file("", true)
-            },
-          },
-        })
-
-        -- notify client of new config
-        client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
-      end
-      return true
-    end,
-  })
-end
-
 local function configure_python(lspconfig, capabilities)
   lspconfig.ruff_lsp.setup({
     on_attach = function(client)
@@ -217,10 +169,13 @@ local function nvim_lspconfig_config()
   local lspconfig = require("lspconfig")
   local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+  -- configure lua_ls
+  -- use empty config here, lazydev.nvim sets config
+  lspconfig.lua_ls.setup({})
+
   configure_deno(lspconfig, capabilities)
   configure_eslint(lspconfig, capabilities)
   configure_json(lspconfig, capabilities)
-  configure_lua(lspconfig, capabilities)
   configure_python(lspconfig, capabilities)
   configure_tailwind(lspconfig, capabilities)
   configure_typescript(lspconfig, capabilities)
@@ -229,6 +184,15 @@ local function nvim_lspconfig_config()
 end
 
 return {
+  {
+    "folke/lazydev.nvim",
+    ft = "lua",
+    opts = {
+      library = {
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
+    },
+  },
   {
     -- configs for neovim LSP client
     "neovim/nvim-lspconfig",
