@@ -171,7 +171,12 @@ local function nvim_lspconfig_config()
 
   -- configure lua_ls
   -- use empty config here, lazydev.nvim sets config
-  lspconfig.lua_ls.setup({})
+  lspconfig.lua_ls.setup({
+    capabilities = capabilities,
+    on_attach = function(_, bufnr)
+      on_attach(bufnr)
+    end,
+  })
 
   configure_deno(lspconfig, capabilities)
   configure_eslint(lspconfig, capabilities)
@@ -184,15 +189,6 @@ local function nvim_lspconfig_config()
 end
 
 return {
-  {
-    "folke/lazydev.nvim",
-    ft = "lua",
-    opts = {
-      library = {
-        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-      },
-    },
-  },
   {
     -- configs for neovim LSP client
     "neovim/nvim-lspconfig",

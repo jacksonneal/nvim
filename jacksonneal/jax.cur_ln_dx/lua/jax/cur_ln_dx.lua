@@ -20,7 +20,10 @@ end
 ---@param bufnr integer - to access diagnostics for
 ---@return Diagnostic[] - list of diagnostic entries
 local function cur_ln_dx(bufnr)
-  return vim.diagnostic.get(bufnr, { ["lnum"] = vim.api.nvim_win_get_cursor(0)[1] - 1 })
+  return vim.diagnostic.get(
+    bufnr,
+    { ["lnum"] = vim.api.nvim_win_get_cursor(0)[1] - 1 }
+  )
 end
 
 -- Select the most severe diagnostic from the given list.

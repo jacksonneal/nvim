@@ -13,8 +13,16 @@ local function dap_open_debug_repl()
 end
 
 local function nvim_dap_init()
-  vim.api.nvim_create_user_command("DapConditionBreakpoint", dap_set_conditional_breakpoint, {})
-  vim.api.nvim_create_user_command("DapLogBreakpoint", dap_set_log_breakpoint, {})
+  vim.api.nvim_create_user_command(
+    "DapConditionBreakpoint",
+    dap_set_conditional_breakpoint,
+    {}
+  )
+  vim.api.nvim_create_user_command(
+    "DapLogBreakpoint",
+    dap_set_log_breakpoint,
+    {}
+  )
   vim.api.nvim_create_user_command("DapReplOpen", dap_open_debug_repl, {})
 end
 
@@ -54,7 +62,11 @@ local function nvim_dap_python_config()
 end
 
 local function nvim_dap_python_init()
-  vim.api.nvim_create_user_command("DapPythonTestMethod", dap_python_test_method, {})
+  vim.api.nvim_create_user_command(
+    "DapPythonTestMethod",
+    dap_python_test_method,
+    {}
+  )
 end
 
 local plugins = {
@@ -69,8 +81,16 @@ local plugins = {
       "DapStepOut",
     },
     keys = {
-      { "<leader>db", "<cmd>DapToggleBreakpoint<cr>", desc = "Toggle breakpoint" },
-      { "<leader>dc", dap_set_conditional_breakpoint, desc = "Conditional breakpoint" },
+      {
+        "<leader>db",
+        "<cmd>DapToggleBreakpoint<cr>",
+        desc = "Toggle breakpoint",
+      },
+      {
+        "<leader>dc",
+        dap_set_conditional_breakpoint,
+        desc = "Conditional breakpoint",
+      },
       { "<leader>dl", dap_set_log_breakpoint, desc = "Log breakpoint" },
       { "<leader>dr", dap_open_debug_repl, desc = "Open REPL" },
       { "<F4>", "<cmd>DapTerminate<cr>", desc = "Debug terminate" },
