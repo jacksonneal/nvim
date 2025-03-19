@@ -7,6 +7,9 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - Updated `README.md` prerequisite versions.
 
+### Added
+- Repository CI checks.
+
 ## 03-13-2025
 
 ### Changed

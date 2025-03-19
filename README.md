@@ -16,7 +16,7 @@ My neovim config.
 
 ### Setup
 
-Clone this project into the neovim config directory (`~/.config/nvim`).
+Clone this project into your neovim user config directory (see [initialization #7][nvim-doc-initialization]).
 
 #### Config
 
@@ -53,6 +53,7 @@ test runner.
 [cargo-repo]: https://github.com/rust-lang/cargo
 [neovim-home]: https://neovim.io
 [nvim-dap-python-repo]: https://github.com/mfussenegger/nvim-dap-python
+[nvim-doc-initialization]: https://neovim.io/doc/user/starting.html#initialization
 [pre-commit-home]: https://pre-commit.com
 [pytest-repo]: https://github.com/pytest-dev/pytest
 [python-downloads]: https://www.python.org/downloads/
