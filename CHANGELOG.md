@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 03-19-2025
+
+### Added
+- Use `lazydev.nvim` for `lua_ls` configuration.
+
 ## 03-18-2025
 
 ### Changed
