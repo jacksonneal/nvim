@@ -27,6 +27,7 @@ local nvim_cmp_opts = function()
       { name = "luasnip" },
       { name = "nvim_lua" },
       { name = "nvim_lsp" },
+      { name = "lazydev" },
     }),
     -- custom mappings
     mapping = {
