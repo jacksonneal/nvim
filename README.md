@@ -1,19 +1,22 @@
 # nvim
 
-My neovim config
+My neovim config.
 
 ## Usage
 
 ### Prerequisites
 
-- [neovim][neovim-home] `v0.9.5`
-- [cargo][cargo-repo] `v1.73.0`
-- [stylua][stylua-repo] `v0.20.0`: Install with `cargo` and `--features lua52`
-- [pre-commit][pre-commit-home] `v3.5.0`
+- [neovim][neovim-home] `v0.10.4`
+- [cargo][cargo-repo] `v1.85.0`
+- [stylua][stylua-repo] `v2.0.2`
+  - install via `cargo install stylua --features lua52`
+- [python][python-downloads] `v3.12.0`
+- [pre-commit][pre-commit-home] `v4.0.1`
+  - install via `pip install pre-commit`
 
 ### Setup
 
-Clone this project into the neovim config directory (`~/.config/nvim`).
+Clone this project into your neovim user config directory (see [initialization #7][nvim-doc-initialization]).
 
 #### Config
 
@@ -50,6 +53,8 @@ test runner.
 [cargo-repo]: https://github.com/rust-lang/cargo
 [neovim-home]: https://neovim.io
 [nvim-dap-python-repo]: https://github.com/mfussenegger/nvim-dap-python
+[nvim-doc-initialization]: https://neovim.io/doc/user/starting.html#initialization
 [pre-commit-home]: https://pre-commit.com
 [pytest-repo]: https://github.com/pytest-dev/pytest
+[python-downloads]: https://www.python.org/downloads/
 [stylua-repo]: https://github.com/JohnnyMorganz/StyLua

@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pre-commit-checks:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repo 🤖
+        uses: actions/checkout@v4
+      - name: Install stylua with cargo 🌟
+        uses: baptiste0928/cargo-install@v3
+        with:
+          crate: stylua
+          version: 2.0.2
+          features: lua52
+      - name: Install python 🐍
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.12.5
+      - name: Run pre-commit ✅
+        uses: pre-commit/action@v3.0.1
