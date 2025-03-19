@@ -10,7 +10,9 @@ My neovim config.
 - [cargo][cargo-repo] `v1.85.0`
 - [stylua][stylua-repo] `v2.0.2`
   - install via `cargo install stylua --features lua52`
+- [python][python-downloads] `v3.12.0`
 - [pre-commit][pre-commit-home] `v4.0.1`
+  - install via `pip install pre-commit`
 
 ### Setup
 
@@ -53,4 +55,5 @@ test runner.
 [nvim-dap-python-repo]: https://github.com/mfussenegger/nvim-dap-python
 [pre-commit-home]: https://pre-commit.com
 [pytest-repo]: https://github.com/pytest-dev/pytest
+[python-downloads]: https://www.python.org/downloads/
 [stylua-repo]: https://github.com/JohnnyMorganz/StyLua
