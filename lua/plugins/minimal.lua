@@ -18,6 +18,12 @@ return {
     end,
   },
   {
+    -- manage global and local project settings
+    "folke/neoconf.nvim",
+    -- execute empty `setup()`
+    config = true,
+  },
+  {
     -- LuaLS configuration for editing neovim config
     "folke/lazydev.nvim",
     -- lazy load on lua files
