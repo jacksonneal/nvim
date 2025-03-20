@@ -7,6 +7,7 @@ My neovim config.
 ### Prerequisites
 
 - [neovim][neovim-home] `v0.10.4`
+  - [build from source][nvim-build] with debug info
 - [cargo][cargo-repo] `v1.85.0`
 - [stylua][stylua-repo] `v2.0.2`
   - install via `cargo install stylua --features lua52`
@@ -34,6 +35,27 @@ Example `nvim.json`:
 }
 ```
 
+## Features
+
+### LSP Support
+
+- lua
+  - LuaLS (for editing neovim config only)
+
+### Keymaps
+
+> __Note__: This is only a subset of commonly used keymaps.  A complete list of keymaps
+> can be accessed for each mode via `:nmap`, `:imap`, and `:vmap`.
+
+| Keymap        | Description                |
+| ------------- | -------------------------- |
+| `C-\`         | Toggle terminal.           |
+| `S-h`         | Cycle to previous buffer.  |
+| `S-l`         | Cycle to next buffer.      |
+| `<leader>-bp` | Toggle current buffer pin. |
+| `<leader>-bP` | Close unpinned buffers.    |
+| `<leader>-bd` | Close current buffer.      |
+
 ### DAP
 
 #### Python
@@ -52,6 +74,7 @@ test runner.
 
 [cargo-repo]: https://github.com/rust-lang/cargo
 [neovim-home]: https://neovim.io
+[nvim-build]: https://github.com/neovim/neovim/blob/master/BUILD.md
 [nvim-dap-python-repo]: https://github.com/mfussenegger/nvim-dap-python
 [nvim-doc-initialization]: https://neovim.io/doc/user/starting.html#initialization
 [pre-commit-home]: https://pre-commit.com

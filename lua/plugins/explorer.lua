@@ -5,9 +5,24 @@ local function nvim_tree_opts()
     local api = require("nvim-tree.api")
     api.config.mappings.default_on_attach(bufnr)
 
-    vim.keymap.set("n", "l", api.node.open.edit, { buffer = bufnr, desc = "Open node" })
-    vim.keymap.set("n", "v", api.node.open.vertical, { buffer = bufnr, desc = "Open v-split" })
-    vim.keymap.set("n", "h", api.node.navigate.parent_close, { buffer = bufnr, desc = "Collapse" })
+    vim.keymap.set(
+      "n",
+      "l",
+      api.node.open.edit,
+      { buffer = bufnr, desc = "Open node" }
+    )
+    vim.keymap.set(
+      "n",
+      "v",
+      api.node.open.vertical,
+      { buffer = bufnr, desc = "Open v-split" }
+    )
+    vim.keymap.set(
+      "n",
+      "h",
+      api.node.navigate.parent_close,
+      { buffer = bufnr, desc = "Collapse" }
+    )
   end
 
   return {

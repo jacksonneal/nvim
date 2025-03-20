@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 - Use `lazydev.nvim` for `lua_ls` configuration.
+- Consolidate plugin modules.
 
 ## 03-18-2025
 

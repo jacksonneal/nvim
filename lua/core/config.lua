@@ -60,13 +60,15 @@ return {
     },
   },
   setup = function(self)
-    local setting_override_paths = { GLOBAL_SETTINGS_FILEPATH, PROJECT_SETTINGS_FILEPATH }
+    local setting_override_paths =
+      { GLOBAL_SETTINGS_FILEPATH, PROJECT_SETTINGS_FILEPATH }
     for setting_override_path in iter.list_iter(setting_override_paths) do
       if vim.fn.filereadable(setting_override_path) == 0 then
         goto continue
       end
 
-      local settings = vim.fn.json_decode(vim.fn.readfile(setting_override_path))
+      local settings =
+        vim.fn.json_decode(vim.fn.readfile(setting_override_path))
       self.settings = vim.tbl_deep_extend("force", self.settings, settings)
 
       ::continue::
