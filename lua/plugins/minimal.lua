@@ -4,6 +4,20 @@ local keymaps = require("core.keymaps") ---@module "core.keymaps"
 
 return {
   {
+    -- natural pine, faux fur, soho vibe colorscheme
+    "rose-pine/neovim",
+    -- alias so name is not "neovim"
+    name = "rose-pine",
+    -- load main colorscheme on startup
+    lazy = false,
+    -- ensure load before all other start plugins
+    priority = 1000,
+    -- Set colorscheme.
+    config = function()
+      vim.cmd.colorscheme("rose-pine-dawn")
+    end,
+  },
+  {
     -- LuaLS configuration for editing neovim config
     "folke/lazydev.nvim",
     -- lazy load on lua files

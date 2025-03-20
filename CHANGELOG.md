@@ -2,11 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## 03-20-2025
+
+### Changed
+- Consolidate colorsheme plugin modules.
+
 ## 03-19-2025
+
+### Changed
+- Consolidate buffer plugin modules.
 
 ### Added
 - Use `lazydev.nvim` for `lua_ls` configuration.
-- Consolidate plugin modules.
 
 ## 03-18-2025
 
