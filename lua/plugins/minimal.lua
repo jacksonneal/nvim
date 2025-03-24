@@ -20,10 +20,8 @@ return {
   {
     -- manage global and local project settings
     "folke/neoconf.nvim",
-    -- load config on startup
-    -- lazy = false,
-    -- ensure load before all other start plugins
-    -- priority = 1000,
+    -- lazy load on command
+    cmd = "Neoconf",
     -- execute empty `setup()`
     config = true,
   },
