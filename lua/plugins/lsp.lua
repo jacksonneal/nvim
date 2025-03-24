@@ -200,6 +200,7 @@ return {
       "mason.nvim",
       "mason-lspconfig.nvim",
       "cmp-nvim-lsp",
+      "folke/neoconf.nvim",
     },
     config = nvim_lspconfig_config,
   },

@@ -28,6 +28,7 @@ local plugins = {
         "html",
         "javascript",
         "json",
+        "jsonc",
         "latex",
         "lua",
         "luadoc",
