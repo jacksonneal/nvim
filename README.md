@@ -19,6 +19,10 @@ My neovim config.
 
 Clone this project into your neovim user config directory (see [initialization #7][nvim-doc-initialization]).
 
+### Config
+
+Configuration is handled by [neoconf.nvim][neoconf.nvim-repo].
+
 ## Features
 
 ### LSP Support
@@ -57,6 +61,7 @@ test runner.
 
 
 [cargo-repo]: https://github.com/rust-lang/cargo
+[neoconf.nvim-repo]: https://github.com/folke/neoconf.nvim
 [neovim-home]: https://neovim.io
 [nvim-build]: https://github.com/neovim/neovim/blob/master/BUILD.md
 [nvim-dap-python-repo]: https://github.com/mfussenegger/nvim-dap-python
