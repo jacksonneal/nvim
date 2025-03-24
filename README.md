@@ -19,22 +19,6 @@ My neovim config.
 
 Clone this project into your neovim user config directory (see [initialization #7][nvim-doc-initialization]).
 
-#### Config
-
-Configuration settings are driven by the `core.config` module, which contains all defaults. You
-may set global overrides in a `~/.config/nvim/nvim.json` file.  Projects may also provide their own
-local overrides in an `nvim.json` at the root of the project.  The schema for `nvim.json` files
-is [nvim.schema.json](./nvim.schema.json).
-
-Example `nvim.json`:
-
-```json
-{
-  "$schema": "https://raw.githubusercontent.com/jacksonneal/nvim/minimal/nvim.schema.json",
-  "colorscheme": "rose-pine-dawn"
-}
-```
-
 ## Features
 
 ### LSP Support

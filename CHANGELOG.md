@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 03-24-2025
+
+### Changed
+- Config via `neoconf.nvim`.
+
 ## 03-20-2025
 
 ### Changed
