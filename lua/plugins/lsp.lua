@@ -49,11 +49,11 @@ local function configure_python(lspconfig, capabilities)
     on_attach = function(_, bufnr)
       on_attach(bufnr)
     end,
-    settings = {
-      python = {
-        pythonPath = settings.pyright.pythonPath or vim.fn.exepath("python"),
-      },
-    },
+    -- settings = {
+    --   python = {
+    --     pythonPath = settings.pyright.pythonPath or vim.fn.exepath("python"),
+    --   },
+    -- },
   })
 end
 
