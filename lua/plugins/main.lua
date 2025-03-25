@@ -1,4 +1,4 @@
--- Module for plugin configurations.
+-- Module for main plugin configurations.
 
 local keymaps = require("core.keymaps") ---@module "core.keymaps"
 
@@ -28,7 +28,7 @@ return {
   {
     -- LuaLS configuration for editing neovim config
     "folke/lazydev.nvim",
-    -- lazy load on lua files
+    -- lazy load on lua file
     ft = "lua",
     -- pass to `setup()`
     opts = {
@@ -37,6 +37,17 @@ return {
         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
       },
     },
+  },
+  {
+    -- status line
+    "nvim-lualine/lualine.nvim",
+    -- load dependencies first
+    dependencies = {
+      -- file type icons and colors
+      "nvim-tree/nvim-web-devicons",
+    },
+    -- execute empty `setup()`
+    config = true,
   },
   {
     -- toggle and persist terminal windows
@@ -50,10 +61,59 @@ return {
     },
   },
   {
+    -- file explorer
+    "nvim-tree/nvim-tree.lua",
+    -- load dependencies first
+    dependencies = {
+      -- file type icons and colors
+      "nvim-tree/nvim-web-devicons",
+    },
+    -- lazy load on keymap
+    keys = {
+      { "<leader>e", ":NvimTreeToggle<CR>", "Toggle tree." },
+    },
+    -- pass to `setup()`
+    opts = function()
+      local api = require("nvim-tree.api")
+
+      -- Register keymaps for file tree buffer.
+      ---@param bufnr number - buffer number of file explorer
+      local function on_attach(bufnr)
+        -- setup default mappings
+        api.config.mappings.default_on_attach(bufnr)
+
+        -- setup custom mappings
+        keymaps.map(
+          { "n" },
+          "l",
+          api.node.open.edit,
+          { buffer = bufnr, desc = "Open node." }
+        )
+        vim.keymap.set(
+          "n",
+          "v",
+          api.node.open.vertical,
+          { buffer = bufnr, desc = "Open node in vsplit" }
+        )
+        keymaps.map(
+          { "n" },
+          "h",
+          api.node.navigate.parent_close,
+          { buffer = bufnr, desc = "Collapse node." }
+        )
+      end
+
+      return { on_attach = on_attach }
+    end,
+  },
+  {
     -- buffer header line
     "akinsho/bufferline.nvim",
-    -- require icons for file types
-    dependencies = "nvim-web-devicons",
+    -- load dependencies first
+    dependencies = {
+      -- file type icons and colors
+      "nvim-tree/nvim-web-devicons",
+    },
     -- lazy load on buffer read or new file buffer
     event = { "BufReadPre", "BufNewFile" },
     -- execute on startup
@@ -114,7 +174,7 @@ return {
   {
     -- buffer removal with intelligent selection of replacement buffer
     "echasnovski/mini.bufremove",
-    -- lazy load on keymaps
+    -- lazy load on keymap
     keys = {
       {
         "<leader>bd",

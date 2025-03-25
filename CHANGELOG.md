@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - Config via `neoconf.nvim`.
+- Consolidate status line and file explorer plugins.
 
 ## 03-20-2025
 
