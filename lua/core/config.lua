@@ -41,7 +41,7 @@ return {
   settings = {
     colorscheme = "rose-pine-dawn",
     denols = {
-      disable = true,
+      disable = false,
     },
     eslint = {
       disable = false,
@@ -50,10 +50,10 @@ return {
       pythonPath = nil,
     },
     tailwindcss = {
-      disable = false,
+      disable = true,
     },
     tsserver = {
-      disable = false,
+      disable = true,
     },
     volar = {
       disable = true,
