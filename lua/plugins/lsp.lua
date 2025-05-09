@@ -1,7 +1,5 @@
 -- Module for LSP plugins
 
-local settings = require("core.config").settings
-
 local function configure_diagnostics()
   vim.keymap.set("n", "<leader>ds", vim.diagnostic.open_float)
   vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next)
@@ -58,6 +56,7 @@ local function configure_python(lspconfig, capabilities)
 end
 
 local function configure_deno(lspconfig, capabilities)
+  local settings = require("core.config").settings
   if settings.denols.disable then
     return
   end
@@ -71,6 +70,7 @@ local function configure_deno(lspconfig, capabilities)
 end
 
 local function configure_eslint(lspconfig, capabilities)
+  local settings = require("core.config").settings
   if settings.eslint.disable then
     return
   end
@@ -97,6 +97,7 @@ local function configure_json(lspconfig, capabilities)
 end
 
 local function configure_tailwind(lspconfig, capabilities)
+  local settings = require("core.config").settings
   if settings.tailwindcss.disable then
     return
   end
@@ -107,6 +108,7 @@ local function configure_tailwind(lspconfig, capabilities)
 end
 
 local function configure_typescript(lspconfig, capabilities)
+  local settings = require("core.config").settings
   if settings.tsserver.disable then
     return
   end
@@ -120,6 +122,7 @@ local function configure_typescript(lspconfig, capabilities)
 end
 
 local function configure_vue(lspconfig, capabilities)
+  local settings = require("core.config").settings
   if settings.volar.disable then
     return
   end

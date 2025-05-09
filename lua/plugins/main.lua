@@ -22,8 +22,11 @@ return {
     "folke/neoconf.nvim",
     -- lazy load on command
     cmd = "Neoconf",
-    -- execute empty `setup()`
-    config = true,
+    config = function()
+      require("neoconf").setup()
+      -- load global settings
+      require("core.config")
+    end,
   },
   {
     -- LuaLS configuration for editing neovim config
