@@ -18,5 +18,3 @@ require("lazy").setup("plugins", {
     pattern = { "jacksonneal" },
   },
 })
-
--- require("core.config")
