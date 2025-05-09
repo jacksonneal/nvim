@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 05-09-2025
+
+### Changed
+- Enable `denols` by default.
+
+### Removed
+- Legacy config module.
+
 ## 03-24-2025
 
 ### Changed
