@@ -1,5 +1,3 @@
-require("core.config"):setup()
-
 -- configure vim options
 require("core.options")
 -- configure file type detection
@@ -20,3 +18,5 @@ require("lazy").setup("plugins", {
     pattern = { "jacksonneal" },
   },
 })
+
+-- require("core.config")
