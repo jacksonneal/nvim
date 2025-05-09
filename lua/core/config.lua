@@ -58,5 +58,5 @@ require("neoconf.plugins").register({
 
 ---@type ConfigSettingsModule
 return {
-  settings = require("neoconf").get("config-settings", defaults)
+  settings = require("neoconf").get("config-settings", defaults),
 }
