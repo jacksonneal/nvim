@@ -23,6 +23,7 @@ return {
     -- lazy load on command
     cmd = "Neoconf",
     config = function()
+      -- setup settings plugin
       require("neoconf").setup()
       -- load global settings
       require("core.config")
@@ -157,8 +158,8 @@ return {
         ---@param level string
         diagnostics_indicator = function(count, level)
           local icon = level == "error" and " "
-            or level == "warning" and " "
-            or " "
+              or level == "warning" and " "
+              or " "
           return " " .. icon .. count
         end,
         -- sloped style buffer separators
