@@ -23,6 +23,7 @@ local plugins = {
         },
       },
       ensure_installed = {
+        "cpp",
         "graphql",
         "haskell",
         "html",

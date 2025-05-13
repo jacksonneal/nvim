@@ -30,6 +30,7 @@ local plugins = {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
+        "codelldb",
         "debugpy",
       },
     },
@@ -43,6 +44,7 @@ local plugins = {
     },
     opts = {
       ensure_installed = {
+        "clangd",
         "denols",
         "eslint",
         "jsonls",
