@@ -55,6 +55,15 @@ local function configure_python(lspconfig, capabilities)
   })
 end
 
+local function configure_cpp(lspconfig, capabilities)
+  lspconfig.clangd.setup({
+    capabilities = capabilities,
+    on_attach = function(_, bufnr)
+      on_attach(bufnr)
+    end,
+  })
+end
+
 local function configure_deno(lspconfig, capabilities)
   local settings = require("core.config").settings
   if settings.denols.disable then
@@ -181,6 +190,7 @@ local function nvim_lspconfig_config()
     end,
   })
 
+  configure_cpp(lspconfig, capabilities)
   configure_deno(lspconfig, capabilities)
   configure_eslint(lspconfig, capabilities)
   configure_json(lspconfig, capabilities)

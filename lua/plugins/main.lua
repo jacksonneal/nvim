@@ -22,7 +22,9 @@ return {
     "folke/neoconf.nvim",
     -- lazy load on command
     cmd = "Neoconf",
+    -- Setup plugin.
     config = function()
+      -- setup neoconf
       require("neoconf").setup()
       -- load global settings
       require("core.config")
@@ -96,7 +98,7 @@ return {
           "n",
           "v",
           api.node.open.vertical,
-          { buffer = bufnr, desc = "Open node in vsplit" }
+          { buffer = bufnr, desc = "Open node in vsplit." }
         )
         keymaps.map(
           { "n" },
@@ -189,5 +191,41 @@ return {
     },
     -- execute empty `setup()`
     config = true,
+  },
+  {
+    -- search
+    "echasnovski/mini.pick",
+    -- load search on startup
+    lazy = false,
+    -- keymaps
+    keys = {
+      {
+        "<leader><leader>",
+        ":Pick files tool='rg'<CR>",
+        desc = "Search files.",
+      },
+      {
+        "<leader>b",
+        ":Pick buffers<CR>",
+        desc = "Search buffers.",
+      },
+      {
+        "<leader>/",
+        ":Pick grep tool='rg'<CR>",
+        desc = "Search global.",
+      },
+      {
+        "<leader>R",
+        ":Pick resume<CR>",
+        desc = "Resume search.",
+      },
+    },
+    -- pass to `setup()`
+    opts = {
+      mappings = {
+        move_down = "<C-j>",
+        move_up = "<C-k>",
+      },
+    },
   },
 }
