@@ -91,14 +91,14 @@ local plugins = {
         dap_set_conditional_breakpoint,
         desc = "Conditional breakpoint",
       },
-      { "<leader>dl", dap_set_log_breakpoint,  desc = "Log breakpoint" },
-      { "<leader>dr", dap_open_debug_repl,     desc = "Open REPL" },
-      { "<F4>",       "<cmd>DapTerminate<cr>", desc = "Debug terminate" },
-      { "<F5>",       "<cmd>DapContinue<cr>",  desc = "Debug continue" },
-      { "<leader>dR", "<cmd>DapContinue<cr>",  desc = "Debug continue" },
-      { "<F6>",       "<cmd>DapStepOver<cr>",  desc = "Step over" },
-      { "<F7>",       "<cmd>DapStepInto<cr>",  desc = "Step into" },
-      { "<F8>",       "<cmd>DapStepOut<cr>",   desc = "Step out" },
+      { "<leader>dl", dap_set_log_breakpoint, desc = "Log breakpoint" },
+      { "<leader>dr", dap_open_debug_repl, desc = "Open REPL" },
+      { "<F4>", "<cmd>DapTerminate<cr>", desc = "Debug terminate" },
+      { "<F5>", "<cmd>DapContinue<cr>", desc = "Debug continue" },
+      { "<leader>dR", "<cmd>DapContinue<cr>", desc = "Debug continue" },
+      { "<F6>", "<cmd>DapStepOver<cr>", desc = "Step over" },
+      { "<F7>", "<cmd>DapStepInto<cr>", desc = "Step into" },
+      { "<F8>", "<cmd>DapStepOut<cr>", desc = "Step out" },
     },
     init = nvim_dap_init,
   },
@@ -140,9 +140,9 @@ local plugins = {
       "nvim-dap",
     },
     opts = {
-      handlers = {}
-    }
-  }
+      handlers = {},
+    },
+  },
 }
 
 return plugins
