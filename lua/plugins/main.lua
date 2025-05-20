@@ -86,7 +86,6 @@ return {
       local function on_attach(bufnr)
         -- setup default mappings
         api.config.mappings.default_on_attach(bufnr)
-
         -- setup custom mappings
         keymaps.map(
           { "n" },
@@ -120,7 +119,10 @@ return {
       "nvim-tree/nvim-web-devicons",
     },
     -- lazy load on buffer read or new file buffer
-    event = { "BufReadPre", "BufNewFile" },
+    event = {
+      "BufReadPre",
+      "BufNewFile",
+    },
     -- execute on startup
     init = function()
       -- register keymaps
@@ -227,5 +229,35 @@ return {
         move_up = "<C-k>",
       },
     },
+  },
+  {
+    -- surround actions
+    "echasnovski/mini.surround",
+    -- lazy load on buffer read or new file buffer
+    event = {
+      "BufReadPost",
+      "BufNewFile",
+    },
+    -- execute empty `setup()`
+    config = true,
+  },
+  {
+    -- comment lines
+    "echasnovski/mini.comment",
+    -- lazy load on buffer read or new file buffer
+    event = {
+      "BufReadPost",
+      "BufNewFile",
+    },
+    -- execute empty `setup()`
+    config = true,
+  },
+  {
+    -- autopairs
+    "echasnovski/mini.pairs",
+    -- lazy load on insert mode
+    event = "InsertEnter",
+    -- execute empty `setup()`
+    config = true,
   },
 }
