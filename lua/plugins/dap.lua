@@ -95,6 +95,7 @@ local plugins = {
       { "<leader>dr", dap_open_debug_repl, desc = "Open REPL" },
       { "<F4>", "<cmd>DapTerminate<cr>", desc = "Debug terminate" },
       { "<F5>", "<cmd>DapContinue<cr>", desc = "Debug continue" },
+      { "<leader>dR", "<cmd>DapContinue<cr>", desc = "Debug continue" },
       { "<F6>", "<cmd>DapStepOver<cr>", desc = "Step over" },
       { "<F7>", "<cmd>DapStepInto<cr>", desc = "Step into" },
       { "<F8>", "<cmd>DapStepOut<cr>", desc = "Step out" },
@@ -129,6 +130,18 @@ local plugins = {
     },
     config = nvim_dap_python_config,
     init = nvim_dap_python_init,
+  },
+  {
+    -- mason and nvim-dap connect
+    "jay-babu/mason-nvim-dap.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "mason.nvim",
+      "nvim-dap",
+    },
+    opts = {
+      handlers = {},
+    },
   },
 }
 
