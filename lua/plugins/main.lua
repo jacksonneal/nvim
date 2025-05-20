@@ -260,4 +260,69 @@ return {
     -- execute empty `setup()`
     config = true,
   },
+  {
+    -- syntax highlighting
+    "nvim-treesitter/nvim-treesitter",
+    -- lazy load on buffer read or new file buffer
+    event = {
+      "BufReadPost",
+      "BufNewFile",
+    },
+    -- pass to `setup()`
+    opts = {
+      highlight = {
+        -- enable syntax highlighting
+        enable = true,
+        -- disable parsers
+        disable = {
+          -- tsx highlight is broken
+          "tsx",
+          -- vimdoc highlight looks awful
+          "vimdoc",
+        },
+      },
+      -- install language parsers
+      ensure_installed = {
+        "cpp",
+        "graphql",
+        "haskell",
+        "html",
+        "javascript",
+        "json",
+        "jsonc",
+        "latex",
+        "lua",
+        "luadoc",
+        "luap",
+        "make",
+        "markdown",
+        "python",
+        "scss",
+        "sql",
+        "terraform",
+        "toml",
+        "tsx",
+        "typescript",
+        "vim",
+        "vimdoc",
+        "vue",
+        "yaml",
+        "zig",
+      },
+      -- node selection
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "<C-space>",
+          node_incremental = "<C-space>",
+          scope_incremental = false,
+          node_decremental = "<bs>",
+        },
+      },
+    },
+    -- override to call setup on correct module
+    config = function(_, opts)
+      require("nvim-treesitter.configs").setup(opts)
+    end,
+  },
 }
