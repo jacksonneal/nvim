@@ -161,8 +161,8 @@ return {
         ---@param level string
         diagnostics_indicator = function(count, level)
           local icon = level == "error" and " "
-              or level == "warning" and " "
-              or " "
+            or level == "warning" and " "
+            or " "
           return " " .. icon .. count
         end,
         -- sloped style buffer separators
@@ -330,14 +330,22 @@ return {
     "mfussenegger/nvim-dap",
     -- lazy load on keymap
     keys = {
-      { "<leader>db", ":DapToggleBreakpoint<CR>",    desc = "Toggle breakpoint." },
-      { "<leader>dl", ":DapLogBreakpoint<CR>",       desc = "Log breakpoint." },
-      { "<leader>dc", ":DapConditionBreakpoint<CR>", desc = "Conditional breakpoint." },
-      { "<leader>di", ":DapStepInto<CR>",            desc = "Step into." },
-      { "<leader>dp", ":DapStepOver<CR>",            desc = "Step over." },
-      { "<leader>dP", ":DapContinue<CR>",            desc = "Continue." },
-      { "<leader>dr", ":DapRestart<CR>",             desc = "Restart." },
-      { "<leader>dq", ":DapTerminate<CR>",           desc = "Terminate." },
+      {
+        "<leader>db",
+        ":DapToggleBreakpoint<CR>",
+        desc = "Toggle breakpoint.",
+      },
+      { "<leader>dl", ":DapLogBreakpoint<CR>", desc = "Log breakpoint." },
+      {
+        "<leader>dc",
+        ":DapConditionBreakpoint<CR>",
+        desc = "Conditional breakpoint.",
+      },
+      { "<leader>di", ":DapStepInto<CR>", desc = "Step into." },
+      { "<leader>dp", ":DapStepOver<CR>", desc = "Step over." },
+      { "<leader>dP", ":DapContinue<CR>", desc = "Continue." },
+      { "<leader>dr", ":DapRestart<CR>", desc = "Restart." },
+      { "<leader>dq", ":DapTerminate<CR>", desc = "Terminate." },
     },
     -- setup plugin
     config = function()
@@ -347,7 +355,7 @@ return {
       dap.adapters.python = {
         type = "executable",
         command = vim.fn.stdpath("data")
-            .. "/mason/packages/debugpy/venv/bin/python",
+          .. "/mason/packages/debugpy/venv/bin/python",
         args = { "-m", "debugpy.adapter" },
       }
       dap.configurations.python = {
@@ -360,7 +368,7 @@ return {
             return vim.fn.getcwd() .. "/.venv/bin/python"
           end,
           env = {
-            PYTHONPATH = vim.fn.getcwd(), -- or wherever `my_module` lives
+            PYTHONPATH = vim.fn.getcwd(),
           },
         },
       }
@@ -369,37 +377,25 @@ return {
     init = function()
       local dap = require("dap")
       -- user command to set conditional breakpoint
-      vim.api.nvim_create_user_command(
-        "DapConditionBreakpoint",
-        function()
-          dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
-        end,
-        {}
-      )
+      vim.api.nvim_create_user_command("DapConditionBreakpoint", function()
+        dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
+      end, {})
       -- user command to set log breakpoint
-      vim.api.nvim_create_user_command(
-        "DapLogBreakpoint",
-        function()
-          dap.set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
-        end,
-        {}
-      )
+      vim.api.nvim_create_user_command("DapLogBreakpoint", function()
+        dap.set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
+      end, {})
       -- user command to restart active session
-      vim.api.nvim_create_user_command(
-        "DapRestart",
-        function()
-          local restarted = false
-          dap.terminate()
-          dap.listeners.after.event_terminated["restart_dap"] = function()
-            if not restarted then
-              restarted = true
-              dap.run_last()
-            end
+      vim.api.nvim_create_user_command("DapRestart", function()
+        local restarted = false
+        dap.terminate()
+        dap.listeners.after.event_terminated["restart_dap"] = function()
+          if not restarted then
+            restarted = true
+            dap.run_last()
           end
-        end,
-        {}
-      )
-    end
+        end
+      end, {})
+    end,
   },
   {
     -- DAP UI
@@ -420,9 +416,9 @@ return {
       layouts = {
         {
           elements = {
-            { id = "scopes",      size = 0.45 },
+            { id = "scopes", size = 0.45 },
             { id = "breakpoints", size = 0.30 },
-            { id = "stacks",      size = 0.25 },
+            { id = "stacks", size = 0.25 },
           },
           size = 50,
           position = "right",
@@ -434,7 +430,7 @@ return {
           size = 18,
           position = "bottom",
         },
-      }
+      },
     },
     -- execute on startup
     init = function()
@@ -447,14 +443,10 @@ return {
       end
 
       -- user command to toggle DAP UI
-      vim.api.nvim_create_user_command(
-        "DapUiToggle",
-        function()
-          require("dapui").toggle()
-        end,
-        {}
-      )
-    end
+      vim.api.nvim_create_user_command("DapUiToggle", function()
+        require("dapui").toggle()
+      end, {})
+    end,
   },
   {
     -- DAP virtual text
@@ -462,38 +454,4 @@ return {
     -- execute empty `setup()`
     config = true,
   },
-  {
-    -- DAP Python configs
-    "mfussenegger/nvim-dap-python",
-    -- load dependencies first
-    dependencies = {
-      -- DAP client
-      "mfussenegger/nvim-dap",
-    },
-    -- lazy load on keymap
-    keys = {
-      { "<leader>dt", ":DapPythonTestMethod<CR>", "Test method." },
-    },
-    -- setup plugin
-    config = function()
-      local path = vim.fn.stdpath("data")
-          .. "/mason/packages/debugpy/venv/bin/python"
-      require("dap-python").setup(path)
-
-      local python_path = vim.fn.getcwd() .. "/.venv/bin/python"
-      require("dap-python").resolve_python = function()
-        return python_path
-      end
-
-      require("dap-python").test_runner = "pytest"
-    end,
-    -- execute on startup
-    init = function()
-      vim.api.nvim_create_user_command(
-        "DapPythonTestMethod",
-        require("dap-python").test_method,
-        {}
-      )
-    end
-  }
 }
