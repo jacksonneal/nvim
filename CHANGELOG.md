@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 06-01-2025
+
+### Changed
+- Improved and simplified DAP configuration for Python.
+
 ## 05-09-2025
 
 ### Changed
