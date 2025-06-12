@@ -454,4 +454,28 @@ return {
     -- execute empty `setup()`
     config = true,
   },
+  {
+    -- Current line diagnostic virtual text.
+    "jacksonneal/jax.cur_ln_dx",
+    -- local module
+    main = "jax.cur_ln_dx",
+    dev = true,
+    opts = { is_enabled = true },
+  },
+  {
+    -- Current line git blame virtual text.
+    "jacksonneal/jax.cur_ln_blame",
+    -- local module
+    main = "jax.cur_ln_blame",
+    dev = true,
+    -- lazy load on keymap
+    keys = {
+      {
+        "<leader>gb",
+        "<cmd>CurLnBlameToggle<cr>",
+        desc = "Toggle current line git blame",
+      },
+    },
+    config = true,
+  },
 }
