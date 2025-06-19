@@ -534,4 +534,10 @@ return {
       },
     },
   },
+  {
+    -- Haskell tooling
+    "mrcjkb/haskell-tools.nvim",
+    -- lazy load on these file types
+    ft = { "haskell", "lhaskell", "cabal", "cabalproject" },
+  },
 }
