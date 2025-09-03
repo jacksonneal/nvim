@@ -221,6 +221,155 @@ return {
         ":Pick resume<CR>",
         desc = "Resume search.",
       },
+      {
+        "<leader>f<leader>",
+        function()
+          vim.ui.input(
+            { prompt = "File/path pattern (e.g., api, *.lua, src/**/test): " },
+            function(pattern)
+              if pattern and pattern ~= "" then
+                local pick = require("mini.pick")
+
+                -- Smart pattern expansion for path matching
+                local glob_pattern = pattern
+                -- If pattern doesn't contain path separators or glob syntax, make it match paths too
+                if not pattern:match("[/%*%?%[%]]") then
+                  -- Simple word like "api" becomes "**/*api*/**/*"
+                  glob_pattern = "**/*" .. pattern .. "*/**/*"
+                elseif pattern:match("^%*[^/]+%*$") then
+                  -- Pattern like "*api*" becomes "**/*api*/**/*"
+                  local word = pattern:match("^%*(.+)%*$")
+                  glob_pattern = "**/*" .. word .. "*/**/*"
+                end
+
+                -- Try both the expanded pattern and the original filename pattern
+                local cmd
+                if glob_pattern ~= pattern then
+                  -- Use both patterns to match files in matching dirs AND files with matching names
+                  cmd = {
+                    "rg",
+                    "--files",
+                    "--color=never",
+                    "--no-heading",
+                    "--with-filename",
+                    "-g",
+                    glob_pattern,
+                    "-g",
+                    pattern,
+                  }
+                else
+                  -- User provided specific pattern, use as-is
+                  cmd = {
+                    "rg",
+                    "--files",
+                    "--color=never",
+                    "--no-heading",
+                    "--with-filename",
+                    "-g",
+                    pattern,
+                  }
+                end
+
+                pick.builtin.cli({
+                  command = cmd,
+                  spawn_opts = { cwd = vim.fn.getcwd() },
+                }, {
+                  source = {
+                    name = string.format("Files matching: %s", pattern),
+                    show = pick.default_show,
+                    choose = pick.default_choose,
+                  },
+                })
+              end
+            end
+          )
+        end,
+        desc = "Search files by glob pattern (matches paths and filenames).",
+      },
+      {
+        "<leader>f/",
+        function()
+          vim.ui.input(
+            { prompt = "File/path pattern (e.g., api, *.lua, src/**/test): " },
+            function(pattern)
+              if pattern and pattern ~= "" then
+                vim.ui.input({ prompt = "Search pattern: " }, function(search)
+                  if search and search ~= "" then
+                    local pick = require("mini.pick")
+
+                    -- Smart pattern expansion for path matching
+                    local glob_pattern = pattern
+                    -- If pattern doesn't contain path separators or glob syntax, make it match paths too
+                    if not pattern:match("[/%*%?%[%]]") then
+                      -- Simple word like "api" becomes "**/*api*/**/*"
+                      glob_pattern = "**/*" .. pattern .. "*/**/*"
+                    elseif pattern:match("^%*[^/]+%*$") then
+                      -- Pattern like "*api*" becomes "**/*api*/**/*"
+                      local word = pattern:match("^%*(.+)%*$")
+                      glob_pattern = "**/*" .. word .. "*/**/*"
+                    end
+
+                    -- Build ripgrep command with glob filter
+                    local cmd = {
+                      "rg",
+                      "--column",
+                      "--line-number",
+                      "--no-heading",
+                      "--smart-case",
+                      "--color=never",
+                    }
+
+                    if glob_pattern ~= pattern then
+                      -- Use both patterns to match files in matching dirs AND files with matching names
+                      table.insert(cmd, "-g")
+                      table.insert(cmd, glob_pattern)
+                      table.insert(cmd, "-g")
+                      table.insert(cmd, pattern)
+                    else
+                      -- User provided specific pattern, use as-is
+                      table.insert(cmd, "-g")
+                      table.insert(cmd, pattern)
+                    end
+
+                    table.insert(cmd, "--")
+                    table.insert(cmd, search)
+
+                    pick.builtin.cli({
+                      command = cmd,
+                      spawn_opts = { cwd = vim.fn.getcwd() },
+                    }, {
+                      source = {
+                        name = string.format(
+                          "Grep '%s' in: %s",
+                          search,
+                          pattern
+                        ),
+                        show = pick.default_show,
+                        choose = function(item)
+                          if item == nil then
+                            return
+                          end
+                          -- Parse the grep output (file:line:col:text)
+                          local parts = vim.split(item, ":")
+                          if #parts >= 3 then
+                            local file = parts[1]
+                            local line = tonumber(parts[2]) or 1
+                            local col = tonumber(parts[3]) or 1
+                            -- Open the file and jump to position
+                            vim.cmd("edit " .. file)
+                            vim.api.nvim_win_set_cursor(0, { line, col - 1 })
+                          end
+                        end,
+                      },
+                    })
+                  end
+                end)
+              end
+            end
+          )
+        end,
+        desc = "Grep in files matching glob pattern (matches paths and filenames).",
+      },
     },
     -- pass to `setup()`
     opts = {
