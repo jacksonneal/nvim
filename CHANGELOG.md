@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 09-03-2025
+
+### Added
+- Ability to search using file matchers.
+
 ## 06-01-2025
 
 ### Changed
