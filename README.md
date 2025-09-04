@@ -6,7 +6,7 @@ My neovim config.
 
 ### Prerequisites
 
-- [neovim][neovim-home] `v0.10.4`
+- [neovim][neovim-home] `v0.11.4`
   - [build from source][nvim-build] with debug info
 - [cargo][cargo-repo] `v1.85.0`
 - [stylua][stylua-repo] `v2.0.2`
