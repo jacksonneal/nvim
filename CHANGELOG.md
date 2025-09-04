@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ## 09-03-2025
 
+### Upgrade
+- Neovim to `v0.11.4`
+
 ### Added
 - Ability to search using file matchers.
 
