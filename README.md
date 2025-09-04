@@ -8,6 +8,7 @@ My neovim config.
 
 - [neovim][neovim-home] `v0.11.4`
   - [build from source][nvim-build] with debug info
+- [luacheck][luacheck-repo] `v1.2.0`
 - [cargo][cargo-repo] `v1.85.0`
 - [stylua][stylua-repo] `v2.0.2`
   - install via `cargo install stylua --features lua52`
@@ -25,6 +26,7 @@ Configuration is handled by [neoconf.nvim][neoconf.nvim-repo].
 
 
 [cargo-repo]: https://github.com/rust-lang/cargo
+[luacheck-repo]: https://github.com/mpeterv/luacheck
 [neoconf.nvim-repo]: https://github.com/folke/neoconf.nvim
 [neovim-home]: https://neovim.io
 [nvim-build]: https://github.com/neovim/neovim/blob/master/BUILD.md
