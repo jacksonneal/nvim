@@ -7,8 +7,6 @@ require("core.keymaps")
 -- configure autocommands
 require("core.autocommands")
 
-require("core.globals")
-
 -- bootstrap lazy.nvim
 require("core.lazy_bootstrap")
 -- setup plugins
