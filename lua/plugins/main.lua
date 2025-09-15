@@ -355,9 +355,17 @@ return {
                             local file = parts[1]
                             local line = tonumber(parts[2]) or 1
                             local col = tonumber(parts[3]) or 1
-                            -- Open the file and jump to position
-                            vim.cmd("edit " .. file)
-                            vim.api.nvim_win_set_cursor(0, { line, col - 1 })
+                            -- Schedule the file opening to happen after picker closes
+                            vim.schedule(function()
+                              -- Open the file with proper escaping
+                              vim.cmd.edit(vim.fn.fnameescape(file))
+                              -- Set cursor position after file is loaded
+                              vim.api.nvim_win_set_cursor(0, { line, col - 1 })
+                              -- Center the view on the cursor line
+                              vim.cmd("normal! zz")
+                              -- Force redraw to ensure focus
+                              vim.cmd("redraw!")
+                            end)
                           end
                         end,
                       },
