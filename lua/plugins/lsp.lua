@@ -166,7 +166,7 @@ local function configure_zig(lspconfig, capabilities)
 end
 
 local function nvim_lspconfig_config()
-  vim.lsp.enable({ "eslint", "ruff", "tailwindcss", "ts_ls" })
+  vim.lsp.enable({ "eslint", "pyright", "ruff", "tailwindcss", "ts_ls" })
 
   -- local lspconfig = require("lspconfig")
   -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
