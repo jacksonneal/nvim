@@ -7,7 +7,7 @@ require("core.keymaps")
 -- configure autocommands
 require("core.autocommands")
 -- configure diagnostics
-require("diagnostics").setup()
+require("modules.diagnostics").setup()
 
 -- bootstrap lazy.nvim
 require("core.lazy_bootstrap")

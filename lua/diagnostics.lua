@@ -25,7 +25,7 @@ local M = {}
 
 ---State tracking for virtual lines on current line
 ---@type boolean
-local virtual_lines_enabled = true
+local virtual_lines_enabled = false
 
 ---Toggle virtual lines display for the current line.
 ---@return nil
@@ -33,6 +33,7 @@ function M.toggle_virtual_lines()
   virtual_lines_enabled = not virtual_lines_enabled
   vim.diagnostic.config({
     virtual_lines = { current_line = virtual_lines_enabled },
+    virtual_text = false,
   })
 
   local status = virtual_lines_enabled and "enabled" or "disabled"
@@ -43,7 +44,7 @@ end
 ---@return nil
 function M.setup()
   vim.diagnostic.config({
-    virtual_lines = { current_line = true },
+    virtual_lines = { current_line = virtual_lines_enabled },
     virtual_text = false,
   })
 
