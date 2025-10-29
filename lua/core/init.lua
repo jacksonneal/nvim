@@ -8,6 +8,8 @@ require("core.keymaps")
 require("core.autocommands")
 -- configure diagnostics
 require("modules.diagnostics").setup()
+-- configure LSP
+require("modules.lsp").setup()
 
 -- bootstrap lazy.nvim
 require("core.lazy_bootstrap")
