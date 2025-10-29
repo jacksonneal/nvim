@@ -612,14 +612,6 @@ return {
     config = true,
   },
   {
-    -- Current line diagnostic virtual text.
-    "jacksonneal/jax.cur_ln_dx",
-    -- local module
-    main = "jax.cur_ln_dx",
-    dev = true,
-    opts = { is_enabled = true },
-  },
-  {
     -- Current line git blame virtual text.
     "jacksonneal/jax.cur_ln_blame",
     -- local module

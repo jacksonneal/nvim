@@ -1,15 +1,5 @@
 -- Module for LSP plugins
 
-local function configure_diagnostics()
-  vim.keymap.set("n", "<leader>ds", vim.diagnostic.open_float)
-  vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next)
-  vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev)
-  vim.keymap.set("n", "<leader>da", vim.diagnostic.setloclist)
-  vim.diagnostic.config({
-    virtual_text = false,
-  })
-end
-
 local function on_attach_mappings(bufnr)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr })
   -- TODO: conflicts with window navigation
@@ -176,12 +166,10 @@ local function configure_zig(lspconfig, capabilities)
 end
 
 local function nvim_lspconfig_config()
-  configure_diagnostics()
-
   vim.lsp.enable({ "eslint", "tailwindcss", "ts_ls" })
 
-  local lspconfig = require("lspconfig")
-  local capabilities = require("cmp_nvim_lsp").default_capabilities()
+  -- local lspconfig = require("lspconfig")
+  -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
   -- configure lua_ls
   -- use empty config here, lazydev.nvim sets config
