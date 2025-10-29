@@ -19,7 +19,7 @@
 local M = {}
 
 ---Namespace for virtual lines shown on diagnostic jump
-local virt_lines_ns = vim.api.nvim_create_namespace('on_diagnostic_jump')
+local virt_lines_ns = vim.api.nvim_create_namespace("on_diagnostic_jump")
 
 ---Callback to show virtual lines when jumping to a diagnostic.
 ---@param diagnostic vim.Diagnostic?
