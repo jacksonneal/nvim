@@ -178,32 +178,34 @@ end
 local function nvim_lspconfig_config()
   configure_diagnostics()
 
+  vim.lsp.enable({ "eslint", "tailwindcss", "ts_ls" })
+
   local lspconfig = require("lspconfig")
   local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
   -- configure lua_ls
   -- use empty config here, lazydev.nvim sets config
-  lspconfig.lua_ls.setup({
-    capabilities = capabilities,
-    on_attach = function(_, bufnr)
-      on_attach(bufnr)
-    end,
-  })
+  -- lspconfig.lua_ls.setup({
+  --   capabilities = capabilities,
+  --   on_attach = function(_, bufnr)
+  --     on_attach(bufnr)
+  --   end,
+  -- })
 
-  configure_cpp(lspconfig, capabilities)
-  configure_deno(lspconfig, capabilities)
-  configure_eslint(lspconfig, capabilities)
-  configure_json(lspconfig, capabilities)
-  configure_python(lspconfig, capabilities)
-  configure_tailwind(lspconfig, capabilities)
-  configure_typescript(lspconfig, capabilities)
-  configure_vue(lspconfig, capabilities)
-  configure_zig(lspconfig, capabilities)
+  -- configure_cpp(lspconfig, capabilities)
+  -- configure_deno(lspconfig, capabilities)
+  -- configure_eslint(lspconfig, capabilities)
+  -- configure_json(lspconfig, capabilities)
+  -- configure_python(lspconfig, capabilities)
+  -- configure_tailwind(lspconfig, capabilities)
+  -- configure_typescript(lspconfig, capabilities)
+  -- configure_vue(lspconfig, capabilities)
+  -- configure_zig(lspconfig, capabilities)
 end
 
 return {
   {
-    -- configs for neovim LSP client
+    -- LSP server configurations for Nvim LSP client
     "neovim/nvim-lspconfig",
     event = {
       "BufReadPre",
