@@ -1,9 +1,10 @@
 ---@module 'modules.lsp'
 ---LSP configuration for Neovim.
 ---
----Provides buffer-local keymaps that are set when an LSP client attaches to a
----buffer. This module should be called during core initialization to ensure the
----LspAttach autocommand is registered before any LSP servers start.
+---Configures enhanced completion capabilities for all LSP servers and provides
+---buffer-local keymaps that are set when an LSP client attaches to a buffer.
+---This module should be called during core initialization to ensure capabilities
+---and the LspAttach autocommand are registered before any LSP servers start.
 ---
 ---Keymaps (buffer-local, set on LSP attach):
 --- - `gd`: Go to definition
@@ -55,9 +56,18 @@ local function setup_keymaps(bufnr)
   end, { buffer = bufnr, desc = "Format buffer" })
 end
 
----Setup LSP keymaps via LspAttach autocommand.
+---Setup LSP capabilities and keymaps.
+---
+---Configures enhanced completion capabilities for all LSP servers via cmp-nvim-lsp
+---and sets up the LspAttach autocommand for buffer-local keymaps.
+---
 ---@return nil
 function M.setup()
+  -- Configure enhanced completion capabilities for all LSP servers
+  local capabilities = require("cmp_nvim_lsp").default_capabilities()
+  vim.lsp.config("*", { capabilities = capabilities })
+
+  -- Setup keymaps when LSP attaches to a buffer
   vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)
       local bufnr = args.buf

@@ -8,8 +8,6 @@ require("core.keymaps")
 require("core.autocommands")
 -- configure diagnostics
 require("modules.diagnostics").setup()
--- configure LSP
-require("modules.lsp").setup()
 
 -- bootstrap lazy.nvim
 require("core.lazy_bootstrap")
@@ -20,3 +18,6 @@ require("lazy").setup("plugins", {
     pattern = { "jacksonneal" },
   },
 })
+
+-- configure LSP (after plugins are loaded)
+require("modules.lsp").setup()

@@ -40,6 +40,7 @@ end
 ---Configure diagnostic keymaps and display.
 ---@return nil
 function M.setup()
+  -- Setup display of virtual text on the current line when jumping to a diagnostic
   vim.diagnostic.config({
     jump = { on_jump = on_jump },
   })
