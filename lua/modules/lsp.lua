@@ -3,8 +3,8 @@
 ---
 ---Configures enhanced completion capabilities for all LSP servers and provides
 ---buffer-local keymaps that are set when an LSP client attaches to a buffer.
----This module should be called during core initialization to ensure capabilities
----and the LspAttach autocommand are registered before any LSP servers start.
+---This module should be called after plugins are loaded to ensure cmp_nvim_lsp
+---is available, but before any LSP servers start.
 ---
 ---Keymaps (buffer-local, set on LSP attach):
 --- - `gd`: Go to definition
