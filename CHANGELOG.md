@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 10-29-2025
+
+### Change
+- Use latest vim.lsp API.
+
 ## 09-03-2025
 
 ### Upgrade

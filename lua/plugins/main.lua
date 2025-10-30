@@ -612,14 +612,6 @@ return {
     config = true,
   },
   {
-    -- Current line diagnostic virtual text.
-    "jacksonneal/jax.cur_ln_dx",
-    -- local module
-    main = "jax.cur_ln_dx",
-    dev = true,
-    opts = { is_enabled = true },
-  },
-  {
     -- Current line git blame virtual text.
     "jacksonneal/jax.cur_ln_blame",
     -- local module
@@ -689,6 +681,20 @@ return {
         "volar",
         "zls",
       },
+    },
+  },
+  {
+    -- LSP server configurations for Nvim LSP client
+    "neovim/nvim-lspconfig",
+    event = {
+      "BufReadPre",
+      "BufNewFile",
+    },
+    dependencies = {
+      "mason.nvim",
+      "mason-lspconfig.nvim",
+      "cmp-nvim-lsp",
+      "folke/neoconf.nvim",
     },
   },
   {
