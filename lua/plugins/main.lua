@@ -684,6 +684,20 @@ return {
     },
   },
   {
+    -- LSP server configurations for Nvim LSP client
+    "neovim/nvim-lspconfig",
+    event = {
+      "BufReadPre",
+      "BufNewFile",
+    },
+    dependencies = {
+      "mason.nvim",
+      "mason-lspconfig.nvim",
+      "cmp-nvim-lsp",
+      "folke/neoconf.nvim",
+    },
+  },
+  {
     -- Haskell tooling
     "mrcjkb/haskell-tools.nvim",
     -- lazy load on these file types

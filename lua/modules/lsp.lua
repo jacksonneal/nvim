@@ -67,6 +67,18 @@ function M.setup()
   local capabilities = require("cmp_nvim_lsp").default_capabilities()
   vim.lsp.config("*", { capabilities = capabilities })
 
+  -- Enable LSP servers
+  vim.lsp.enable({
+    "denols",
+    "eslint",
+    "jsonls",
+    "lua_ls",
+    "pyright",
+    "ruff",
+    "tailwindcss",
+    "ts_ls",
+  })
+
   -- Setup keymaps when LSP attaches to a buffer
   vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)
