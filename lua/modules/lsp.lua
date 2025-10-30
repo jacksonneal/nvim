@@ -70,7 +70,7 @@ function M.setup()
 
   -- Enable LSP servers
   vim.lsp.enable({
-    "denols",
+    -- "denols",
     "eslint",
     "jsonls",
     "lua_ls",
