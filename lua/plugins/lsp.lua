@@ -5,20 +5,6 @@ local function on_attach(bufnr)
   cur_ln_dx.on_attach_dx(bufnr)
 end
 
-local function configure_deno(lspconfig, capabilities)
-  local settings = require("core.config").settings
-  if settings.denols.disable then
-    return
-  end
-
-  lspconfig.denols.setup({
-    capabilities = capabilities,
-    on_attach = function(_, bufnr)
-      on_attach(bufnr)
-    end,
-  })
-end
-
 local function configure_json(lspconfig, capabilities)
   lspconfig.jsonls.setup({
     capabilities = capabilities,
@@ -29,7 +15,16 @@ local function configure_json(lspconfig, capabilities)
 end
 
 local function nvim_lspconfig_config()
-  vim.lsp.enable({ "eslint", "pyright", "ruff", "tailwindcss", "ts_ls" })
+  vim.lsp.enable({
+    "denols",
+    "eslint",
+    "jsonls",
+    "lua_ls",
+    "pyright",
+    "ruff",
+    "tailwindcss",
+    "ts_ls",
+  })
 
   -- local lspconfig = require("lspconfig")
   -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
