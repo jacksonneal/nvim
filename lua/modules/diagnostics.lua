@@ -51,18 +51,12 @@ function M.setup()
     vim.diagnostic.open_float,
     { desc = "Open diagnostic float window" }
   )
-  vim.keymap.set(
-    "n",
-    "<leader>dj",
-    vim.diagnostic.goto_next,
-    { desc = "Go to next diagnostic" }
-  )
-  vim.keymap.set(
-    "n",
-    "<leader>dk",
-    vim.diagnostic.goto_prev,
-    { desc = "Go to previous diagnostic" }
-  )
+  vim.keymap.set("n", "<leader>dj", function()
+    vim.diagnostic.jump({ count = 1 })
+  end, { desc = "Go to next diagnostic" })
+  vim.keymap.set("n", "<leader>dk", function()
+    vim.diagnostic.jump({ count = -1 })
+  end, { desc = "Go to previous diagnostic" })
   vim.keymap.set(
     "n",
     "<leader>da",
