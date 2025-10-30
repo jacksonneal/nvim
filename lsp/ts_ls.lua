@@ -1,4 +1,4 @@
----@module 'lsp.tsserver_ls'
+---@module 'lsp.ts_ls'
 ---TypeScript language server configuration overrides.
 ---
 ---This configuration is automatically loaded by vim.lsp.config() and merged

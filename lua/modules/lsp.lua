@@ -1,10 +1,10 @@
 ---@module 'modules.lsp'
 ---LSP configuration for Neovim.
 ---
----Configures enhanced completion capabilities for all LSP servers and provides
----buffer-local keymaps that are set when an LSP client attaches to a buffer.
----This module should be called after plugins are loaded to ensure cmp_nvim_lsp
----is available, but before any LSP servers start.
+---Enables LSP servers, configures enhanced completion capabilities for all LSP
+---servers, and provides buffer-local keymaps that are set when an LSP client
+---attaches to a buffer. This module should be called after plugins are loaded
+---to ensure cmp_nvim_lsp is available.
 ---
 ---Keymaps (buffer-local, set on LSP attach):
 --- - `gd`: Go to definition
@@ -56,10 +56,11 @@ local function setup_keymaps(bufnr)
   end, { buffer = bufnr, desc = "Format buffer" })
 end
 
----Setup LSP capabilities and keymaps.
+---Setup LSP servers, capabilities, and keymaps.
 ---
----Configures enhanced completion capabilities for all LSP servers via cmp-nvim-lsp
----and sets up the LspAttach autocommand for buffer-local keymaps.
+---Configures enhanced completion capabilities for all LSP servers via cmp-nvim-lsp,
+---enables configured LSP servers, and sets up the LspAttach autocommand for
+---buffer-local keymaps.
 ---
 ---@return nil
 function M.setup()
