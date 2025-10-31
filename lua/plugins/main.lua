@@ -675,7 +675,6 @@ return {
         "jsonls",
         "lua_ls",
         "pyright",
-        "ruff_lsp",
         "tailwindcss",
         "tsserver",
         "volar",
