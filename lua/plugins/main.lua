@@ -27,7 +27,7 @@ return {
       -- setup neoconf
       require("neoconf").setup()
       -- load global settings
-      require("core.config")
+      require("modules.config")
     end,
   },
   {

@@ -59,8 +59,8 @@ end
 ---Setup LSP servers, capabilities, and keymaps.
 ---
 ---Configures enhanced completion capabilities for all LSP servers via cmp-nvim-lsp,
----enables configured LSP servers, and sets up the LspAttach autocommand for
----buffer-local keymaps.
+---enables configured LSP servers based on config settings, and sets up the LspAttach
+---autocommand for buffer-local keymaps.
 ---
 ---@return nil
 function M.setup()
@@ -68,17 +68,22 @@ function M.setup()
   local capabilities = require("cmp_nvim_lsp").default_capabilities()
   vim.lsp.config("*", { capabilities = capabilities })
 
+  -- Load config settings
+  local config = require("modules.config")
+  local settings = config.settings
+
+  -- Build list of enabled LSP servers based on config
+  local enabled_servers = {}
+  for server, opts in pairs(settings) do
+    if opts.enable then
+      table.insert(enabled_servers, server)
+    end
+  end
+
   -- Enable LSP servers
-  vim.lsp.enable({
-    -- "denols",
-    "eslint",
-    "jsonls",
-    "lua_ls",
-    "pyright",
-    "ruff",
-    "tailwindcss",
-    "ts_ls",
-  })
+  if #enabled_servers > 0 then
+    vim.lsp.enable(enabled_servers)
+  end
 
   -- Setup keymaps when LSP attaches to a buffer
   vim.api.nvim_create_autocmd("LspAttach", {
