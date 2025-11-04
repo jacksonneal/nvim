@@ -26,8 +26,6 @@ return {
     config = function()
       -- setup neoconf
       require("neoconf").setup()
-      -- load global settings
-      require("modules.config")
     end,
   },
   {
