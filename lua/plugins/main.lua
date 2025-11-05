@@ -14,6 +14,11 @@ return {
     priority = 1000,
     -- Set colorscheme.
     config = function()
+      require("rose-pine").setup({
+        styles = {
+          italic = false
+        }
+      })
       vim.cmd.colorscheme("rose-pine-dawn")
     end,
   },
@@ -159,8 +164,8 @@ return {
         ---@param level string
         diagnostics_indicator = function(count, level)
           local icon = level == "error" and " "
-            or level == "warning" and " "
-            or " "
+              or level == "warning" and " "
+              or " "
           return " " .. icon .. count
         end,
         -- sloped style buffer separators
@@ -496,11 +501,11 @@ return {
         ":DapConditionBreakpoint<CR>",
         desc = "Conditional breakpoint.",
       },
-      { "<leader>di", ":DapStepInto<CR>", desc = "Step into." },
-      { "<leader>dp", ":DapStepOver<CR>", desc = "Step over." },
-      { "<leader>dP", ":DapContinue<CR>", desc = "Continue." },
-      { "<leader>dr", ":DapRestart<CR>", desc = "Restart." },
-      { "<leader>dq", ":DapTerminate<CR>", desc = "Terminate." },
+      { "<leader>di", ":DapStepInto<CR>",      desc = "Step into." },
+      { "<leader>dp", ":DapStepOver<CR>",      desc = "Step over." },
+      { "<leader>dP", ":DapContinue<CR>",      desc = "Continue." },
+      { "<leader>dr", ":DapRestart<CR>",       desc = "Restart." },
+      { "<leader>dq", ":DapTerminate<CR>",     desc = "Terminate." },
     },
     -- setup plugin
     config = function()
@@ -510,7 +515,7 @@ return {
       dap.adapters.python = {
         type = "executable",
         command = vim.fn.stdpath("data")
-          .. "/mason/packages/debugpy/venv/bin/python",
+            .. "/mason/packages/debugpy/venv/bin/python",
         args = { "-m", "debugpy.adapter" },
       }
       dap.configurations.python = {
@@ -571,9 +576,9 @@ return {
       layouts = {
         {
           elements = {
-            { id = "scopes", size = 0.45 },
+            { id = "scopes",      size = 0.45 },
             { id = "breakpoints", size = 0.30 },
-            { id = "stacks", size = 0.25 },
+            { id = "stacks",      size = 0.25 },
           },
           size = 50,
           position = "right",
@@ -731,10 +736,10 @@ return {
       local has_words_before = function()
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
         return col ~= 0
-          and vim.api
-              .nvim_buf_get_lines(0, line - 1, line, true)[1]
-              :sub(col, col)
-              :match("%s")
+            and vim.api
+            .nvim_buf_get_lines(0, line - 1, line, true)[1]
+            :sub(col, col)
+            :match("%s")
             == nil
       end
 
