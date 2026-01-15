@@ -443,6 +443,7 @@ return {
       },
       -- install language parsers
       ensure_installed = {
+        "c",
         "cpp",
         "graphql",
         "haskell",
