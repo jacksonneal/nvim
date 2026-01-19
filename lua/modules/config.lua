@@ -12,6 +12,7 @@
 
 ---Config settings.
 ---@class ConfigSettings
+---@field clangd LspSettings
 ---@field denols LspSettings
 ---@field eslint LspSettings
 ---@field jsonls LspSettings
@@ -27,6 +28,9 @@
 
 ---@type ConfigSettings
 local defaults = {
+  clangd = {
+    enable = true,
+  },
   denols = {
     enable = false,
   },
